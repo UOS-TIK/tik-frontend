@@ -17,24 +17,22 @@ const Main = () => {
         </ContentWrapper>
         <BannerImage src="images/banner_img.svg" alt="banner_img" />
       </MainBanner>
-      <div>
-        <div style={{display: "flex", flexDirection: "row", margin: "50px 80px"}}>
-          <div style={{display: "flex", flexGrow: "2", flexDirection: "column"}}>
-            <div style={{display: "flex", flexDirection: "row", gap: "4px"}}>
-              <div style={{color: "#1C1C1C", fontWeight:"700", fontSize: "20px"}}>나의 면접 이력</div>
-              <RightArrow src="images/ic_right_arrow.svg" alt="right_arrow_icon"/>
-            </div>
-            <div style={{marginTop: "20px", display: "grid", gridTemplateColumns: "1fr 1fr"}}>
-              <InterviewHistoryItem />
-              <InterviewHistoryItem />
-            </div>
-          </div>
-          <div style={{display: "flex", flexDirection: "column", alignItems: "center", flexGrow: "1", marginTop: "48px", backgroundColor: "#D0D3E080", border: "1px solid #0000001A", borderRadius: "16px", padding: "16px", maxWidth: "280px", maxHeight: "160px", gap: "30px"}}>
-            <div style={{marginTop: "30px", textAlign: "center", color: "#3D4371", fontSize: "17px"}}>면접을 생성하고,<br/> 맞춤 모의 면접을 경험해보세요!</div>
-            <div style={{color: "#FFFFFF", backgroundColor: "#3D437180", padding: "12px 72px", borderRadius: "10px", fontWeight: "700"}}>모의 면접 만들기 +</div>
-          </div>
-        </div>
-      </div>
+      <InterviewSection>
+        <InterviewHistory>
+          <HistorySectionTitle>
+            나의 면접 이력
+            <RightArrow src="images/ic_right_arrow.svg" alt="right_arrow_icon" />
+          </HistorySectionTitle>
+          <HistoryItems>
+            <InterviewHistoryItem />
+            <InterviewHistoryItem />
+          </HistoryItems>
+        </InterviewHistory>
+        <CreateInterview>
+          <CreateInterviewText>면접을 생성하고, 맞춤 모의 면접을 경험해보세요!</CreateInterviewText>
+          <CreateButton>모의 면접 만들기 +</CreateButton>
+        </CreateInterview>
+      </InterviewSection>
     </MainContainer>
   );
 };
@@ -91,9 +89,66 @@ const BannerImage = styled.img`
   width: 265px;
 `;
 
-const RightArrow = styled.img`
-  width: 16px;
+
+const InterviewSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 50px 148px;
 `;
 
+const InterviewHistory = styled.div`
+  display: flex;
+  flex-grow: 2;
+  flex-direction: column;
+`;
+
+const HistorySectionTitle = styled.div`
+  color: #1C1C1C;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+`;
+
+const RightArrow = styled.img`
+  width: 17px;
+  margin-left: 4px;
+`;
+
+const HistoryItems = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`;
+
+const CreateInterview = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  margin-top: 48px;
+  background-color: #D0D3E080;
+  border: 1px solid #0000001A;
+  border-radius: 16px;
+  padding: 16px;
+  max-width: 280px;
+  max-height: 160px;
+  gap: 30px;
+`;
+
+const CreateInterviewText = styled.div`
+  margin-top: 30px;
+  text-align: center;
+  color: #3D4371;
+  font-size: 17px;
+`;
+
+const CreateButton = styled.div`
+  color: #FFFFFF;
+  background-color: #3D437180;
+  padding: 12px 72px;
+  border-radius: 10px;
+  font-weight: 700;
+`;
 
 export default Main;
