@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import GenerateInterview from "./pages/GenerateInterview";
 import Main from "./pages/Main";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/generate-interview" element={<GenerateInterview />} />
       </Routes>
     </BrowserRouter>
   );

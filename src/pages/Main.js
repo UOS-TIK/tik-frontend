@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/Header";
 import InterviewHistoryItem from "../components/Main/InterviewHistoryItem";
 
 const Main = () => {
+  const navigate = useNavigate();
+
+  const handleInterviewClick = () => {
+    navigate('/generate-interview');
+  };
+
   return (
     <MainContainer>
       <Header />
@@ -30,7 +37,7 @@ const Main = () => {
         </InterviewHistory>
         <CreateInterview>
           <CreateInterviewText>면접을 생성하고, 맞춤 모의 면접을 경험해보세요!</CreateInterviewText>
-          <CreateButton>모의 면접 만들기 +</CreateButton>
+          <CreateButton onClick={handleInterviewClick}>모의 면접 만들기 +</CreateButton>
         </CreateInterview>
       </InterviewSection>
     </MainContainer>

@@ -1,7 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleInterviewClick = () => {
+    navigate('/generate-interview');
+  };
+  
   return (
     <HeaderContainer>
       <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -9,7 +15,7 @@ const Header = () => {
           <img src="images/ic_logo.svg" alt="logo_icon"/>
         </Link>
         <MenuContainer>
-          <MenuItem>면접 생성</MenuItem>
+          <MenuItem onClick={handleInterviewClick}>면접 생성</MenuItem>
           <MenuItem>이력 조회</MenuItem>
           <MenuItem>회원 정보</MenuItem>
         </MenuContainer>
