@@ -9,11 +9,11 @@ const GenerateInterview = () => {
         <ContentWrapper>
           <StyledBadge>모의면접 생성</StyledBadge>
           <ContentText>
-            <BannerTitle>Part 1. </BannerTitle>
-            <Description>면접관과 목소리로 대화하며 면접 실전 감각을 기를 수 있습니다.</Description>
+            <BannerTitle>Part 1. 어떤 면접인지 입력해 주세요</BannerTitle>
+            <Description>이력서 작성 페이지를 통해 미리 작성할 수 있으며, 선택한 이력서를 바탕으로 질문이 생성됩니다.</Description>
           </ContentText>
         </ContentWrapper>
-        <BannerImage src="images/banner_img.svg" alt="banner_img" />
+        <BannerImage src="images/ic_resume.svg" alt="resume_icon" />
       </MainBanner>
     </MainContainer>
   );
@@ -31,7 +31,7 @@ const MainContainer = styled.div`
 const MainBanner = styled.div`
   display: flex;
   justify-content: space-around;
-  background: #8d99f3;
+  background: #3D4371;
   width: 100%;
   height: 300px;
 `;
@@ -46,8 +46,8 @@ const ContentWrapper = styled.div`
 const StyledBadge = styled.div`
   width: fit-content;
   color: #ffffffcc;
-  background-color: #3d4371;
-  padding: 6px 8px;
+  padding: 6px 16px;
+  border: 1px solid #FFFFFF;
   border-radius: 7px;
   font-size: 15px;
   font-weight: 700;
@@ -70,5 +70,5 @@ const Description = styled.div`
 `;
 
 const BannerImage = styled.img`
-  width: 265px;
+  width: 210px;
 `;
