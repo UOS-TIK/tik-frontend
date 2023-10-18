@@ -36,7 +36,7 @@ const Main = () => {
           </HistoryItems>
         </InterviewHistory>
         <CreateInterview>
-          <CreateInterviewText>면접을 생성하고, 맞춤 모의 면접을 경험해보세요!</CreateInterviewText>
+          <CreateInterviewText>면접을 생성하고, <br />맞춤 모의 면접을 경험해보세요!</CreateInterviewText>
           <CreateButton onClick={handleInterviewClick}>모의 면접 만들기 +</CreateButton>
         </CreateInterview>
       </InterviewSection>
