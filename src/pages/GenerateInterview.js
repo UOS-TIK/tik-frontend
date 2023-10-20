@@ -97,11 +97,11 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #f9fafb;
-  height: 100vh;
 `;
 
 const MainBanner = styled.div`
   display: flex;
+  box-sizing: border-box;
   justify-content: space-around;
   background: #3d4371;
   width: 100%;

@@ -48,7 +48,6 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #F9FAFB;
-  height: 100vh;
 `;
 
 const MainBanner = styled.div`
