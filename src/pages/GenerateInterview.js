@@ -1,7 +1,14 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 
 const GenerateInterview = () => {
+  const [selectedJobType, setSelectedJobType] = useState("");
+
+  const handleJobTypeChange = (event) => {
+    setSelectedJobType(event.target.value);
+  };
+
   return (
     <MainContainer>
       <Header />
@@ -35,42 +42,66 @@ const GenerateInterview = () => {
           <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
             <div>2. 직군을 선택해주세요.</div>
             <div style={{ display: "flex", flexDirection: "row", gap: "8px" }}>
-              <div
-                style={{ display: "flex", flexDirection: "row", gap: "4px" }}
-              >
-                <input type={"checkbox"}></input>
+              <RadioButton>
+                <input
+                  type="radio"
+                  name="jobType"
+                  value="프론트엔드"
+                  checked={selectedJobType === '프론트엔드'}
+                  onChange={handleJobTypeChange}
+                />
                 <div>프론트엔드</div>
-              </div>
-              <div
-                style={{ display: "flex", flexDirection: "row", gap: "4px" }}
-              >
-                <input type={"checkbox"}></input>
+              </RadioButton>
+              <RadioButton>
+                <input
+                  type="radio"
+                  name="jobType"
+                  value="서버/백엔드"
+                  checked={selectedJobType === '서버/백엔드'}
+                  onChange={handleJobTypeChange}
+                />
                 <div>서버/백엔드</div>
-              </div>
-              <div
-                style={{ display: "flex", flexDirection: "row", gap: "4px" }}
-              >
-                <input type={"checkbox"}></input>
+              </RadioButton>
+              <RadioButton>
+                <input
+                  type="radio"
+                  name="jobType"
+                  value="웹 풀스택"
+                  checked={selectedJobType === '웹 풀스택'}
+                  onChange={handleJobTypeChange}
+                />
                 <div>웹 풀스택</div>
-              </div>
-              <div
-                style={{ display: "flex", flexDirection: "row", gap: "4px" }}
-              >
-                <input type={"checkbox"}></input>
+              </RadioButton>
+              <RadioButton>
+                <input
+                  type="radio"
+                  name="jobType"
+                  value="안드로이드"
+                  checked={selectedJobType === '안드로이드'}
+                  onChange={handleJobTypeChange}
+                />
                 <div>안드로이드</div>
-              </div>
-              <div
-                style={{ display: "flex", flexDirection: "row", gap: "4px" }}
-              >
-                <input type={"checkbox"}></input>
+              </RadioButton>
+              <RadioButton>
+                <input
+                  type="radio"
+                  name="jobType"
+                  value="iOS"
+                  checked={selectedJobType === 'iOS'}
+                  onChange={handleJobTypeChange}
+                />
                 <div>iOS</div>
-              </div>
-              <div
-                style={{ display: "flex", flexDirection: "row", gap: "4px" }}
-              >
-                <input type={"checkbox"}></input>
+              </RadioButton>
+              <RadioButton>
+                <input
+                  type="radio"
+                  name="jobType"
+                  value="DBA"
+                  checked={selectedJobType === 'DBA'}
+                  onChange={handleJobTypeChange}
+                />
                 <div>DBA</div>
-              </div>
+              </RadioButton>
             </div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
@@ -158,3 +189,11 @@ const RightArrow = styled.img`
   width: 17px;
   margin-left: 4px;
 `;
+
+const RadioButton = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 4px;
+`;
+
