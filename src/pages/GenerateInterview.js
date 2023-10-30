@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
-import RadioWithExplain from "../components/RadioWithExplain/RadioWithExplain";
+import MainBanner from "../components/MainBanner/MainBanner";
 
 
 const GenerateInterview = () => {
@@ -19,26 +19,17 @@ const GenerateInterview = () => {
   return (
     <MainContainer>
       <Header />
-      <MainBanner>
-        <ContentWrapper>
-          <StyledBadge>모의면접 생성</StyledBadge>
-          <ContentText>
-            <BannerTitle>Part 1. 어떤 면접인지 입력해 주세요</BannerTitle>
-            <Description>
-              이력서 작성 페이지를 통해 미리 작성할 수 있으며, 선택한 이력서를
-              바탕으로 질문이 생성됩니다.
-            </Description>
-          </ContentText>
-        </ContentWrapper>
-        <BannerImage src="images/ic_resume.svg" alt="resume_icon" />
-      </MainBanner>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          margin: "50px 148px",
-        }}
-      >
+      <MainBanner 
+        badgeText="모의면접 생성" 
+        badgeBgColor="#3d4371"
+        badgeBorder={true}
+        title="Part 1. 어떤 면접인지 입력해 주세요" 
+        description="이력서 작성 페이지를 통해 미리 작성할 수 있으며, 선택한 이력서를 바탕으로 질문이 생성됩니다." 
+        imageUrl="images/ic_resume.svg" 
+        bgColor="#3d4371" 
+      />
+
+      <div style={{ display: "flex", flexDirection: "column", margin: "50px 148px" }}>
         <InterviewSettingTitle>
           면접 환경 설정
           <RightArrow src="images/ic_right_arrow.svg" alt="right_arrow_icon" />
@@ -169,52 +160,6 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #f9fafb;
-`;
-
-const MainBanner = styled.div`
-  display: flex;
-  box-sizing: border-box;
-  justify-content: space-around;
-  background: #3d4371;
-  width: 100%;
-  height: 300px;
-`;
-
-const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 40px;
-`;
-
-const StyledBadge = styled.div`
-  width: fit-content;
-  color: #ffffffcc;
-  padding: 6px 16px;
-  border: 1px solid #ffffff;
-  border-radius: 7px;
-  font-size: 15px;
-  font-weight: 700;
-`;
-
-const ContentText = styled.div`
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-
-const BannerTitle = styled.div`
-  font-size: 25px;
-  font-weight: 800;
-`;
-
-const Description = styled.div`
-  font-size: 17px;
-`;
-
-const BannerImage = styled.img`
-  width: 210px;
 `;
 
 const InterviewSettingTitle = styled.div`

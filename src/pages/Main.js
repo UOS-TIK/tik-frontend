@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/Header";
 import InterviewHistoryItem from "../components/Main/InterviewHistoryItem";
+import MainBanner from "../components/MainBanner/MainBanner";
 
 const Main = () => {
   const navigate = useNavigate();
@@ -14,16 +15,15 @@ const Main = () => {
   return (
     <MainContainer>
       <Header />
-      <MainBanner>
-        <ContentWrapper>
-          <StyledBadge>실제 면접과 유사</StyledBadge>
-          <ContentText>
-            <BannerTitle>AI 면접관의 목소리를 들어보세요!</BannerTitle>
-            <Description>면접관과 목소리로 대화하며 면접 실전 감각을 기를 수 있습니다.</Description>
-          </ContentText>
-        </ContentWrapper>
-        <BannerImage src="images/banner_img.svg" alt="banner_img" />
-      </MainBanner>
+      <MainBanner 
+        badgeText="실제 면접과 유사" 
+        badgeBgColor="#3d4371"
+        badgeBorder={false}
+        title="AI 면접관의 목소리를 들어보세요!" 
+        description="면접관과 목소리로 대화하며 면접 실전 감각을 기를 수 있습니다." 
+        imageUrl="images/banner_img.svg" 
+        bgColor="#8D99F3" 
+      />
       <InterviewSection>
         <InterviewHistory>
           <HistorySectionTitle>
@@ -49,52 +49,6 @@ const MainContainer = styled.div`
   flex-direction: column;
   background-color: #F9FAFB;
 `;
-
-const MainBanner = styled.div`
-  display: flex;
-  justify-content: space-around;
-  background: #8d99f3;
-  width: 100%;
-  height: 300px;
-`;
-
-const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 40px;
-`;
-
-const StyledBadge = styled.div`
-  width: fit-content;
-  color: #ffffffcc;
-  background-color: #3d4371;
-  padding: 6px 8px;
-  border-radius: 7px;
-  font-size: 15px;
-  font-weight: 700;
-`;
-
-const ContentText = styled.div`
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-
-const BannerTitle = styled.div`
-  font-size: 25px;
-  font-weight: 800;
-`;
-
-const Description = styled.div`
-  font-size: 17px;
-`;
-
-const BannerImage = styled.img`
-  width: 265px;
-`;
-
 
 const InterviewSection = styled.div`
   display: flex;
