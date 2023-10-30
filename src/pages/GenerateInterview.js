@@ -1,8 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
+import RadioButton from "../components/RadioButton/Radiobutton";
+import RadioWithExplain from "../components/RadioWithExplain/RadioWithExplain";
 import MainBanner from "../components/MainBanner/MainBanner";
-
 
 const GenerateInterview = () => {
   const [selectedJobType, setSelectedJobType] = useState("");
@@ -19,23 +20,48 @@ const GenerateInterview = () => {
   return (
     <MainContainer>
       <Header />
-      <MainBanner 
-        badgeText="모의면접 생성" 
+      <MainBanner
+        badgeText="모의면접 생성"
         badgeBgColor="#3d4371"
         badgeBorder={true}
-        title="Part 1. 어떤 면접인지 입력해 주세요" 
-        description="이력서 작성 페이지를 통해 미리 작성할 수 있으며, 선택한 이력서를 바탕으로 질문이 생성됩니다." 
-        imageUrl="images/ic_resume.svg" 
-        bgColor="#3d4371" 
+        title="Part 1. 어떤 면접인지 입력해 주세요"
+        description="이력서 작성 페이지를 통해 미리 작성할 수 있으며, 선택한 이력서를 바탕으로 질문이 생성됩니다."
+        imageUrl="images/ic_resume.svg"
+        bgColor="#3d4371"
       />
 
-      <div style={{ display: "flex", flexDirection: "column", margin: "50px 148px" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          margin: "50px 148px",
+        }}
+      >
         <InterviewSettingTitle>
           면접 환경 설정
           <RightArrow src="images/ic_right_arrow.svg" alt="right_arrow_icon" />
         </InterviewSettingTitle>
-        <div style={{ display: "flex", flexDirection: "column", backgroundColor: "#F9FAFB", padding: "16px", border: "1px solid #0000001A", borderRadius: "20px",  maxWidth: "680px", color: "#1C1C1CB2", gap: "24px" }}>
-          <div style={{ display: "flex", flexDirection: "column", position: "relative", gap: "8px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            backgroundColor: "#F9FAFB",
+            padding: "16px",
+            border: "1px solid #0000001A",
+            borderRadius: "20px",
+            maxWidth: "680px",
+            color: "#1C1C1CB2",
+            gap: "24px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              position: "relative",
+              gap: "8px",
+            }}
+          >
             <div>1. 회사 이름을 입력해주세요.</div>
             <input />
             <div
@@ -114,11 +140,13 @@ const GenerateInterview = () => {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
             <div>4. 제출할 이력서를 선택해주세요.</div>
-            <div style={{height: "80px"}}>
+            <div style={{ height: "80px" }}>
               <RadioWithExplain
                 name="project"
                 value="미스터대박"
-                explain={"학교 소프트웨어 공학 수업에서 진행했던 프로젝트입니다."}
+                explain={
+                  "학교 소프트웨어 공학 수업에서 진행했던 프로젝트입니다."
+                }
                 checked={selectedProject === "미스터대박"}
                 onChange={handleProjectChange}
               >
@@ -163,7 +191,7 @@ const MainContainer = styled.div`
 `;
 
 const InterviewSettingTitle = styled.div`
-  color: #1C1C1C;
+  color: #1c1c1c;
   font-weight: 700;
   font-size: 20px;
   margin-bottom: 20px;
@@ -175,4 +203,3 @@ const RightArrow = styled.img`
   width: 17px;
   margin-left: 4px;
 `;
-
