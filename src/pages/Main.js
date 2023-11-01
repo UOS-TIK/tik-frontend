@@ -17,8 +17,7 @@ const Main = () => {
       <Header />
       <MainBanner 
         badgeText="실제 면접과 유사" 
-        badgeBgColor="#3d4371"
-        badgeBorder={false}
+        badgeType="filled"
         title="AI 면접관의 목소리를 들어보세요!" 
         description="면접관과 목소리로 대화하며 면접 실전 감각을 기를 수 있습니다." 
         imageUrl="images/banner_img.svg" 

@@ -24,9 +24,10 @@ export const StyledBadge = styled.div`
   font-size: 15px;
   font-weight: 700;
   color: #ffffffcc;
-  background-color: ${props => props.bgColor || 'transparent'};
-  border: ${props => props.border ? '1px solid #ffffff' : 'none'};
+  background-color: #3d4371;
+  border: ${props => props.badgeType === 'filled' ? '1px solid transparent' : '1px solid #ffffff'};
 `;
+
 
 
 export const ContentText = styled.div`

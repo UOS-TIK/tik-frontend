@@ -22,8 +22,7 @@ const GenerateInterview = () => {
       <Header />
       <MainBanner
         badgeText="모의면접 생성"
-        badgeBgColor="#3d4371"
-        badgeBorder={true}
+        badgeType="outlined"
         title="Part 1. 어떤 면접인지 입력해 주세요"
         description="이력서 작성 페이지를 통해 미리 작성할 수 있으며, 선택한 이력서를 바탕으로 질문이 생성됩니다."
         imageUrl="images/ic_resume.svg"

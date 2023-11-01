@@ -1,14 +1,11 @@
 import { BannerImage, BannerTitle, ContentText, ContentWrapper, Description, MainBannerContainer, StyledBadge } from "./style";
 
 
-const MainBanner = ({ badgeText, badgeBgColor, badgeBorder, title, description, imageUrl, bgColor }) => {
+const MainBanner = ({ badgeText, badgeType, title, description, imageUrl, bgColor }) => {
   return (
     <MainBannerContainer bgColor={bgColor}>
       <ContentWrapper>
-        <StyledBadge
-          bgColor={badgeBgColor} 
-          border={badgeBorder}
-        >
+        <StyledBadge badgeType={badgeType}>
           {badgeText}
         </StyledBadge>
         <ContentText>
