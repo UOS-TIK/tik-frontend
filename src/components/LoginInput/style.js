@@ -9,7 +9,6 @@ export const WrapperStyle = styled.div`
 export const LabelStyle = styled.span`
   color: #3d4371;
 
-  font-family: NanumGothic;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -25,7 +24,6 @@ export const InputStyle = styled.input`
   border: none;
   border-radius: 10px;
   padding: 12px;
-  font-family: NanumGothic;
   color: #3d4371;
   font-size: 15px;
 
