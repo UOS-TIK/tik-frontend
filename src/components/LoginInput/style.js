@@ -19,12 +19,12 @@ export const LabelStyle = styled.span`
 `;
 
 export const InputStyle = styled.input`
-  width: 280px;
+  width: calc(100% - 12px);
   height: 20px;
   background: rgba(61, 67, 113, 0.15);
   border: none;
   border-radius: 10px;
-  padding: 12px;
+  padding: 12px 0px 12px 12px;
   font-family: NanumGothic;
   color: #3d4371;
   font-size: 15px;
