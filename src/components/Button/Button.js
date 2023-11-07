@@ -6,9 +6,9 @@ export const Feature = {
 };
 
 export const Color = {
-  BLUE: "61, 67, 113",
-  GRAY: "68, 68, 68",
-  WHITE: "255, 255, 255",
+  BLUE: "#3D4371",
+  GRAY: "#444444",
+  WHITE: "#FFFFFF",
 };
 
 Object.freeze(Feature);

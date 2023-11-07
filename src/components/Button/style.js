@@ -11,15 +11,13 @@ export const ButtonStyle = styled.button`
   font-size: 16.5px;
   border-radius: 10px;
   background-color: ${(props) =>
-    props.feature === Feature.NONE
-      ? `rgba(${props.color}, 0.5)`
-      : `rgba(${props.color}, 0)`};
+    props.feature === Feature.NONE ? `${props.color}80` : `${props.color}00`};
   border-width: ${(props) => (props.feature === Feature.LINE ? "1px" : "0px")};
   border-style: solid;
-  border-color: ${(props) => `rgb(${props.color})`};
+  border-color: ${(props) => `${props.color}`};
   color: ${(props) =>
     props.feature === Feature.LINE && props.color !== Color.WHITE
-      ? `rgb(${props.color})`
+      ? `${props.color}`
       : "#ffffff"};
   letter-spacing: -1.68px;
   font-weight: 600;
@@ -28,16 +26,12 @@ export const ButtonStyle = styled.button`
   &:hover {
     transition: all 0.05s ease-in-out;
     background-color: ${(props) =>
-      props.feature === Feature.NONE
-        ? `rgba(${props.color}, 0.65)`
-        : `rgba(${props.color}, 0.15)`};
+      props.feature === Feature.NONE ? `${props.color}A6` : `${props.color}26`};
   }
   &:active {
     transition: all 0.05s ease-in-out;
     background-color: ${(props) =>
-      props.feature === Feature.NONE
-        ? `rgba(${props.color}, 0.80)`
-        : `rgba(${props.color}, 0.30)`};
+      props.feature === Feature.NONE ? `${props.color}CC` : `${props.color}4D`};
   }
 `;
 
@@ -47,8 +41,9 @@ export const ButtonFlexibleStyle = styled.button`
   padding: 4px 8px;
   font-size: 12px;
   border-radius: 8px;
-  background-color: ${(props) => `rgba(${props.color}, 0.1)`};
-  color: ${(props) => `rgba(${props.color}, 0.7)`};
+  background-color: ${(props) => `${props.color}26`};
+  color: ${(props) => `${props.color}B3`};
+
   letter-spacing: -1.2px;
   font-weight: 700;
   cursor: pointer;
@@ -56,10 +51,10 @@ export const ButtonFlexibleStyle = styled.button`
 
   &:hover {
     transition: all 0.05s ease-in-out;
-    background-color: ${(props) => `rgba(${props.color}, 0.2)`};
+    background-color: ${(props) => `${props.color}33`};
   }
   &:active {
     transition: all 0.05s ease-in-out;
-    background-color: ${(props) => `rgba(${props.color}, 0.4)`};
+    background-color: ${(props) => `${props.color}66`};
   }
 `;

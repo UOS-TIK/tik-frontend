@@ -4,7 +4,6 @@ import Main from "./pages/Main";
 import Test from "./pages/Test/Test";
 import ReactSpeechKit from "./pages/Test/ReactSpeechKit";
 import ReactSpeechRecognition from "./pages/Test/ReactSpeechRecognition";
-import ButtonTest from "./pages/Test/ButtonTest";
 
 function App() {
   return (
@@ -15,7 +14,6 @@ function App() {
         <Route path="/test" element={<Test />} />
         <Route path="/test/1" element={<ReactSpeechKit />} />
         <Route path="/test/2" element={<ReactSpeechRecognition />} />
-        <Route path="/buttontest" element={<ButtonTest />} />
       </Routes>
     </BrowserRouter>
   );
