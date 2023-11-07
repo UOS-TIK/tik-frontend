@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { InputStyle, LabelStyle, WrapperStyle } from "./style";
 
 const LoginInput = ({ type, label, value, onChangeHandler }) => {

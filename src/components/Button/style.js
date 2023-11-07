@@ -3,7 +3,7 @@ import { Feature, Color } from "./Button";
 
 export const ButtonStyle = styled.button`
   transition: all 0.05s ease-in-out;
-  width: 300px;
+  width: 100%;
   height: 40px;
   display: flex;
   align-items: center;
