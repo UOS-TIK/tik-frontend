@@ -1,22 +1,34 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Button, { Color, Feature } from "../components/Button/Button";
 import LoginInput from "../components/LoginInput/LoginInput";
 
-const Login = () => {
+const Signup = () => {
+  const [signupInfo, setSignupInfo] = useState({
+    username: '',
+    uid: '',
+    password: '',
+    checkPassword: '',
+  });
+
+  // const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,}$/;
+
   return (
     <MainContainer>
       <LeftContainer>
         <ContentWrapper>
-          <ContentTitle>Teck-Interview King에서 <br />기술면접을 대비해보세요!</ContentTitle>
+          <ContentTitle>TIK에 가입하시고 <br />기술면접을 대비해보세요!</ContentTitle>
             <InputWrapper>
+              <LoginInput label="이름" value={signupInfo.username}/>
               <LoginInput label="아이디" />
               <LoginInput label="비밀번호" type="password"/>
+              <LoginInput label="비밀번호 확인" type="password"/>
             </InputWrapper> 
-            <ButtonWrapper feature={Feature.NONE} color={Color.BLUE}>로그인하기</ButtonWrapper>
+            <ButtonWrapper feature={Feature.NONE} color={Color.BLUE}>회원가입하기</ButtonWrapper>
             <SignUpPrompt>
-              <div>Teck Interview King이 처음이신가요?</div>
-              <Link to="/signup" style={{color: "#1C1C1CB3"}}>회원가입</Link>
+              <div>이미 계정이 있으신가요?</div>
+              <Link to="/login" style={{color: "#1C1C1CB3"}}>로그인</Link>
             </SignUpPrompt>
         </ContentWrapper>
         <LogoWrapper>
@@ -33,7 +45,8 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
+
 
 const MainContainer = styled.div`
   display: flex;
