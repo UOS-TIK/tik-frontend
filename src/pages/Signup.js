@@ -1,5 +1,6 @@
+import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Button, { Color, Feature } from "../components/Button/Button";
 import LoginInput from "../components/LoginInput/LoginInput";
@@ -12,7 +13,37 @@ const Signup = () => {
     checkPassword: '',
   });
 
-  // const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,}$/;
+  const passwordRegEx = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%^&*])[a-zA-Z0-9!@#\$%^&*]{8,20}$/;
+  const navigate = useNavigate();
+
+  const passwordCheck = (signupInfo) => {
+		return passwordRegEx.test(signupInfo);
+	}
+  const checkEmptySignUpInfoValue = Object.values(signupInfo).some((data) => data === '');
+
+  const handleChangeSignUpInfoInput = (e) => {
+		const { name, value } = e.target;
+		setSignupInfo((prev) => ({ ...prev, [name]: value }));
+	}
+
+  const handleClickSignupButton = async () => {
+    const data = {
+      uid: signupInfo.uid,
+      password: signupInfo.password,
+      username: signupInfo.username
+    };
+    try {
+      const res = await axios.post("/user/signUp", data);
+      console.log(res);
+      if (res.status === 200) {
+        alert("회원가입 성공");
+        navigate("/login");
+      }
+    } catch (e) {
+      console.log(e);
+      alert("error 발생");
+    }
+  }
 
   return (
     <MainContainer>
@@ -20,12 +51,27 @@ const Signup = () => {
         <ContentWrapper>
           <ContentTitle>TIK에 가입하시고 <br />기술면접을 대비해보세요!</ContentTitle>
             <InputWrapper>
-              <LoginInput label="이름" value={signupInfo.username} onChange={(e) => {setSignupInfo.username(e.target.value)}}/>
-              <LoginInput label="아이디" />
-              <LoginInput label="비밀번호" type="password"/>
-              <LoginInput label="비밀번호 확인" type="password"/>
+              <LoginInput label="이름" name="username" value={signupInfo.username} onChange={handleChangeSignUpInfoInput}/>
+              <LoginInput label="아이디" name="uid" value={signupInfo.uid} onChange={handleChangeSignUpInfoInput} />
+              <LoginInput label="비밀번호" type="password" name="password" explanation="(영문, 숫자, 특수문자를 포함한 8~20자리)" value={signupInfo.password} onChange={handleChangeSignUpInfoInput}/>
+              <LoginInput label="비밀번호 확인" type="password" name="checkPassword" value={signupInfo.checkPassword} onChange={handleChangeSignUpInfoInput}/>
             </InputWrapper> 
-            <ButtonWrapper feature={Feature.NONE} color={Color.BLUE}>회원가입하기</ButtonWrapper>
+            <ButtonWrapper feature={Feature.NONE} color={Color.BLUE} handler={() => {
+              console.log(signupInfo);
+              if (checkEmptySignUpInfoValue) {
+                alert('모든 항목을 채워주세요.');
+                return;
+              }
+              if(!passwordCheck(signupInfo.password)){
+                alert('비밀번호를 형식에 맞춰 입력해주세요.\n(영문, 숫자, 특수문자를 포함한 8~20자리)');
+                return;
+              }
+              if (signupInfo.password !== signupInfo.checkPassword) {
+                alert("비밀번호가 서로 다릅니다.");
+                return;
+              }
+              handleClickSignupButton();
+            }} >회원가입하기</ButtonWrapper>
             <SignUpPrompt>
               <div>이미 계정이 있으신가요?</div>
               <Link to="/login" style={{color: "#1C1C1CB3"}}>로그인</Link>
