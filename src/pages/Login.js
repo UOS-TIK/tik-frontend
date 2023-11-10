@@ -20,7 +20,7 @@ const Login = () => {
             </SignUpPrompt>
         </ContentWrapper>
         <LogoWrapper>
-          <img src="images/ic_logo.svg" alt="logo"/>
+          <img src="images/ic_logo.svg" alt="logo" />
         </LogoWrapper>
       </LeftContainer>
       <RightContainer>
@@ -41,7 +41,7 @@ const MainContainer = styled.div`
 `;
 
 const LeftContainer = styled.div`
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   flex-basis: 40%;
   max-width: 40%;
   height: 100vh;
@@ -53,7 +53,7 @@ const ContentWrapper = styled.div`
 `;
 
 const ContentTitle = styled.div`
-  color: #3D4371;
+  color: #3d4371;
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 24px;
@@ -74,7 +74,7 @@ const SignUpPrompt = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: #1C1C1CB3;
+  color: #1c1c1cb3;
   font-size: 14px;
   margin-top: 12px;
 `;
@@ -96,7 +96,8 @@ const RightContainer = styled.div`
   display: flex;
   flex-grow: 1.2;
   height: 100vh;
-  background: linear-gradient(rgba(61, 67, 113, 0.7), rgba(61, 67, 113, 0.7)), url(/images/login_img.svg);
+  background: linear-gradient(rgba(61, 67, 113, 0.7), rgba(61, 67, 113, 0.7)),
+    url(/images/login_img.svg);
   background-size: cover;
 `;
 
@@ -110,10 +111,10 @@ const RightContentWrapper = styled.div`
 const Subtitle = styled.div`
   font-size: 30px;
   font-weight: 700;
-  color: #FFFFFFD9;
+  color: #ffffffd9;
 `;
 
 const MainTitle = styled.div`
   font-size: 48px;
-  color: #8D99F3D9;
+  color: #8d99f3d9;
 `;

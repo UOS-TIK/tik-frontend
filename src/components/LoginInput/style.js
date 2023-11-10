@@ -6,16 +6,32 @@ export const WrapperStyle = styled.div`
   gap: 7px;
 `;
 
+export const TextWrapperStyle = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+`;
+
 export const LabelStyle = styled.span`
   color: #3d4371;
 
-  font-family: NanumGothic;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.8px;
   margin-left: 6px;
+`;
+
+export const ExplanationStyle = styled.span`
+  color: #606060;
+
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.55px;
 `;
 
 export const InputStyle = styled.input`
@@ -25,7 +41,6 @@ export const InputStyle = styled.input`
   border: none;
   border-radius: 10px;
   padding: 12px 0px 12px 12px;
-  font-family: NanumGothic;
   color: #3d4371;
   font-size: 15px;
 
