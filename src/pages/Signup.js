@@ -20,7 +20,7 @@ const Signup = () => {
         <ContentWrapper>
           <ContentTitle>TIK에 가입하시고 <br />기술면접을 대비해보세요!</ContentTitle>
             <InputWrapper>
-              <LoginInput label="이름" value={signupInfo.username}/>
+              <LoginInput label="이름" value={signupInfo.username} onChange={(e) => {setSignupInfo.username(e.target.value)}}/>
               <LoginInput label="아이디" />
               <LoginInput label="비밀번호" type="password"/>
               <LoginInput label="비밀번호 확인" type="password"/>
