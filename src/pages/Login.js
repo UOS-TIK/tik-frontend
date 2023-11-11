@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Button, { Color, Feature } from "../components/Button/Button";
 import LoginInput from "../components/LoginInput/LoginInput";
@@ -7,25 +8,16 @@ const Login = () => {
     <MainContainer>
       <LeftContainer>
         <ContentWrapper>
-          <ContentTitle>
-            TIK에 가입하시고 <br />
-            기술면접을 대비해보세요!
-          </ContentTitle>
-          <InputWrapper>
-            <LoginInput label="아이디" />
-            <LoginInput
-              label="비밀번호"
-              type="password"
-              explanation="(영문, 숫자, 특수문자를 포함한 8~20자리)"
-            />
-          </InputWrapper>
-          <ButtonWrapper feature={Feature.NONE} color={Color.BLUE}>
-            로그인하기
-          </ButtonWrapper>
-          <SignUpPrompt>
-            <div>Teck Interview King이 처음이신가요?</div>
-            <div>회원가입</div>
-          </SignUpPrompt>
+          <ContentTitle>Teck-Interview King에서 <br />기술면접을 대비해보세요!</ContentTitle>
+            <InputWrapper>
+              <LoginInput label="아이디" />
+              <LoginInput label="비밀번호" type="password"/>
+            </InputWrapper> 
+            <ButtonWrapper feature={Feature.NONE} color={Color.BLUE}>로그인하기</ButtonWrapper>
+            <SignUpPrompt>
+              <div>Teck Interview King이 처음이신가요?</div>
+              <Link to="/signup" style={{color: "#1C1C1CB3"}}>회원가입</Link>
+            </SignUpPrompt>
         </ContentWrapper>
         <LogoWrapper>
           <img src="images/ic_logo.svg" alt="logo" />

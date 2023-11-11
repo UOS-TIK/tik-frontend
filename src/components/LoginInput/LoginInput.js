@@ -6,14 +6,14 @@ import {
   TextWrapperStyle,
 } from "./style";
 
-const LoginInput = ({ type, label, value, explanation, onChangeHandler }) => {
+const LoginInput = ({ type, label, name, value, explanation, onChange }) => {
   return (
     <WrapperStyle>
       <TextWrapperStyle>
         <LabelStyle>{label}</LabelStyle>
         <ExplanationStyle>{explanation}</ExplanationStyle>
       </TextWrapperStyle>
-      <InputStyle type={type} value={value} onChange={onChangeHandler} />
+      <InputStyle type={type} name={name} value={value} onChange={onChange} />
     </WrapperStyle>
   );
 };
