@@ -1,53 +1,43 @@
 import styled from "styled-components";
 
 export const InputStyle = styled.input`
-  width: calc(100% - 12px);
+  width: calc(100% - 24px);
   height: 20px;
   background: ${(props) => `${props.color}`};
   border-radius: 10px;
   border: ${(props) => (props.isFocused ? "2px" : "1px")} solid
     ${(props) =>
       props.isError ? "rgba(252, 49, 95, 0.50)" : "rgba(61, 67, 113, 0.3)"};
-
-  padding: 12px 0px 12px 12px;
+  padding: 12px;
   color: rgba(28, 28, 28, 0.7);
-  font-size: 15px;
-  font-style: normal;
+  font-size: 14px;
   font-weight: 700;
-  line-height: 24px;
-  letter-spacing: -0.8px;
+  letter-spacing: -1px;
 
   &:focus {
     outline: 2px solid
       ${(props) =>
         props.isError ? "rgba(252, 49, 95, 0.50)" : "rgba(141, 153, 243, 0.6)"};
     outline-offset: -2px;
-  }
-
-  &::placeholder {
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: -0.8px;
   }
 `;
 
 export const TextareaStyle = styled.textarea`
-  width: calc(100% - 12px);
-  height: 20px;
+  width: calc(100% - 24px);
+  height: 130px;
   background: ${(props) => `${props.color}`};
   border-radius: 10px;
   border: ${(props) => (props.isFocused ? "2px" : "1px")} solid
     ${(props) =>
       props.isError ? "rgba(252, 49, 95, 0.50)" : "rgba(61, 67, 113, 0.3)"};
-  padding: 12px 0px 12px 12px;
+  padding: 10px 12px;
   color: rgba(28, 28, 28, 0.7);
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 700;
+  font-family: NanumGothic;
+  font-size: 13px;
+  font-weight: 400;
   line-height: 24px;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.7px;
+  resize: none;
 
   &:focus {
     outline: 2px solid
@@ -56,11 +46,37 @@ export const TextareaStyle = styled.textarea`
     outline-offset: -2px;
   }
 
-  &::placeholder {
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: -0.8px;
+  &::-webkit-scrollbar {
+    width: 4px;
   }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888; /* 스크롤 바 색상 */
+    border-radius: 10px; /* 스크롤 바 모서리 둥글게 만들기 */
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* 스크롤 바 트랙 배경색 */
+    border-radius: 10px; /* 스크롤 바 트랙 모서리 둥글게 만들기 */
+  }
+
+  &::-webkit-scrollbar-button {
+    height: 10px; /* 버튼의 높이 조절 */
+    opacity: 100%;
+  }
+`;
+
+export const WrapperStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const LabelStyle = styled.span`
+  color: rgba(28, 28, 28, 0.7);
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.8px;
 `;

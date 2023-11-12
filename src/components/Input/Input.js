@@ -1,4 +1,4 @@
-import { InputStyle, TextareaStyle } from "./style";
+import { InputStyle, TextareaStyle, WrapperStyle, LabelStyle } from "./style";
 
 export const Color = {
   GRAY: "#3D437104",
@@ -18,26 +18,29 @@ const Input = ({
 }) => {
   if (!textarea) textarea = false;
 
-  return textarea ? (
-    <TextareaStyle
-      type={type}
-      label={label}
-      value={value}
-      onChange={onChangeHandler}
-      isError={isError}
-      color={color}
-      placeholder={label}
-    />
-  ) : (
-    <InputStyle
-      type={type}
-      label={label}
-      value={value}
-      onChange={onChangeHandler}
-      isError={isError}
-      color={color}
-      placeholder={label}
-    />
+  return (
+    <WrapperStyle>
+      <LabelStyle>{label}</LabelStyle>
+      {textarea ? (
+        <TextareaStyle
+          type={type}
+          label={label}
+          value={value}
+          onChange={onChangeHandler}
+          isError={isError}
+          color={color}
+        />
+      ) : (
+        <InputStyle
+          type={type}
+          label={label}
+          value={value}
+          onChange={onChangeHandler}
+          isError={isError}
+          color={color}
+        />
+      )}
+    </WrapperStyle>
   );
 };
 

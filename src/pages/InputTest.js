@@ -13,9 +13,18 @@ const InputTest = () => {
         flexDirection: "column",
       }}
     >
-      <Input label="test1" color={Color.GRAY} />
-      <Input label="test1" color={Color.GRAY} textarea={true} />
-      <Input label="test1" color={Color.GRAY} textarea={true} isError={true} />
+      <Input label="1. 이력서 이름을 입력해주세요" color={Color.GRAY} />
+      <Input
+        label="4. 상세 업무 및 성과를 입력해주세요"
+        color={Color.GRAY}
+        textarea={true}
+      />
+      <Input
+        label="에러났을 때 테스트"
+        color={Color.GRAY}
+        textarea={true}
+        isError={true}
+      />
       <div
         style={{
           backgroundColor: "#F9FAFB",
@@ -25,10 +34,14 @@ const InputTest = () => {
           padding: "10px",
         }}
       >
-        <Input label="test1" color={Color.WHITE} />
-        <Input label="test1" color={Color.WHITE} textarea={true} />
+        <Input label="1. 이력서 이름을 입력해주세요" color={Color.WHITE} />
         <Input
-          label="test1"
+          label="4. 상세 업무 및 성과를 입력해주세요"
+          color={Color.WHITE}
+          textarea={true}
+        />
+        <Input
+          label="에러났을 때 테스트"
           color={Color.WHITE}
           textarea={true}
           isError={true}
