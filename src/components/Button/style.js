@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Feature, Color } from "./Button";
 
 export const ButtonStyle = styled.button`
-  transition: all 0.05s ease-in-out;
   width: 100%;
   height: 40px;
   display: flex;
@@ -36,25 +35,26 @@ export const ButtonStyle = styled.button`
 `;
 
 export const ButtonFlexibleStyle = styled.button`
-  transition: all 0.05s ease-in-out;
   display: inline-flex;
-  padding: 4px 8px;
+  padding: 6px 10px;
   font-size: 12px;
   border-radius: 8px;
-  background-color: ${(props) => `${props.color}26`};
-  color: ${(props) => `${props.color}B3`};
+  background-color: rgba(68, 68, 68, 0.1);
+  color: rgba(68, 68, 68, 0.7);
+  height: fit-content;
 
   letter-spacing: -1.2px;
   font-weight: 700;
+  line-height: 1;
   cursor: pointer;
   border: none;
 
   &:hover {
     transition: all 0.05s ease-in-out;
-    background-color: ${(props) => `${props.color}33`};
+    background-color: rgba(68, 68, 68, 0.25);
   }
   &:active {
     transition: all 0.05s ease-in-out;
-    background-color: ${(props) => `${props.color}66`};
+    background-color: rgba(68, 68, 68, 0.4);
   }
 `;
