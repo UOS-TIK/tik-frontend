@@ -20,5 +20,5 @@ export const BoardTextStyle = styled.text`
   font-size: 17px;
   flex: 1;
   letter-spacing: -1.05px;
-  line-height: normal;
+  line-height: 1.5;
 `;
