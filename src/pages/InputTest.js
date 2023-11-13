@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Input, { Color } from "../components/Input/Input";
+import Textarea from "../components/Textarea/Textarea";
 
 const InputTest = () => {
   return (
@@ -13,17 +14,20 @@ const InputTest = () => {
         flexDirection: "column",
       }}
     >
-      <Input label="1. 이력서 이름을 입력해주세요" color={Color.GRAY} />
       <Input
+        label="1. 이력서 이름을 입력해주세요(5자 제한)"
+        color={Color.GRAY}
+        maxLength="5"
+      />
+      <Textarea
         label="4. 상세 업무 및 성과를 입력해주세요"
         color={Color.GRAY}
-        textarea={true}
       />
-      <Input
-        label="에러났을 때 테스트"
+      <Textarea
+        label="에러났을 때 테스트(5자 제한)"
         color={Color.GRAY}
-        textarea={true}
         isError={true}
+        maxLength="5"
       />
       <div
         style={{
@@ -35,15 +39,13 @@ const InputTest = () => {
         }}
       >
         <Input label="1. 이력서 이름을 입력해주세요" color={Color.WHITE} />
-        <Input
+        <Textarea
           label="4. 상세 업무 및 성과를 입력해주세요"
           color={Color.WHITE}
-          textarea={true}
         />
-        <Input
+        <Textarea
           label="에러났을 때 테스트"
           color={Color.WHITE}
-          textarea={true}
           isError={true}
         />
       </div>

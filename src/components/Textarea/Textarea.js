@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { InputStyle, WrapperStyle, LabelStyle } from "./style";
+import { TextareaStyle, WrapperStyle, LabelStyle } from "./style";
 
 export const Color = {
   GRAY: "#3D437104",
@@ -8,7 +8,7 @@ export const Color = {
 
 Object.freeze(Color);
 
-const Input = ({
+const Textarea = ({
   type,
   label,
   value,
@@ -27,10 +27,11 @@ const Input = ({
       onChangeHandler(inputValue);
     }
   };
+
   return (
     <WrapperStyle>
       <LabelStyle>{label}</LabelStyle>
-      <InputStyle
+      <TextareaStyle
         type={type}
         label={label}
         value={currentValue}
@@ -43,4 +44,4 @@ const Input = ({
   );
 };
 
-export default Input;
+export default Textarea;

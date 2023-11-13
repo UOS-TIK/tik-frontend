@@ -17,7 +17,7 @@ function App() {
         <Route path="/test/1" element={<ReactSpeechKit />} />
         <Route path="/test/2" element={<ReactSpeechRecognition />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/inputtest" element={<InputTest />} />
+        <Route path="/input-test" element={<InputTest />} />
       </Routes>
     </BrowserRouter>
   );
