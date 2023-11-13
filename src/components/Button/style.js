@@ -50,7 +50,7 @@ export const ButtonFlexibleStyle = styled.button`
   color: rgba(68, 68, 68, 0.7);
   height: fit-content;
 
-  letter-spacing: -1.2px;
+  letter-spacing: -0.5px;
   font-weight: 700;
   line-height: 1;
   cursor: pointer;
