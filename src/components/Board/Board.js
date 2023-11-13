@@ -1,10 +1,14 @@
 import { BoardStyle, BoardTextStyle } from "./style";
-import Button, { Feature, Color } from "../Button/Button";
+import Button, { ButtonFeature, ButtonColor } from "../Button/Button";
 
 const Board = ({ children, buttonText, buttonHandler }) => {
   return (
     <BoardStyle>
-      <Button feature={Feature.NONE} color={Color.BLUE} handler={buttonHandler}>
+      <Button
+        feature={ButtonFeature.NONE}
+        color={ButtonColor.BLUE}
+        handler={buttonHandler}
+      >
         {buttonText}
       </Button>
       <BoardTextStyle>{children}</BoardTextStyle>

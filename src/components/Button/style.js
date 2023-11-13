@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Feature, Color } from "./Button";
+import { ButtonFeature, ButtonColor } from "./Button";
 
 export const ButtonStyle = styled.button`
   width: 100%;
@@ -10,12 +10,15 @@ export const ButtonStyle = styled.button`
   font-size: 16.5px;
   border-radius: 10px;
   background-color: ${(props) =>
-    props.feature === Feature.NONE ? `${props.color}80` : `${props.color}00`};
-  border-width: ${(props) => (props.feature === Feature.LINE ? "1px" : "0px")};
+    props.feature === ButtonFeature.NONE
+      ? `${props.color}80`
+      : `${props.color}00`};
+  border-width: ${(props) =>
+    props.feature === ButtonFeature.LINE ? "1px" : "0px"};
   border-style: solid;
   border-color: ${(props) => `${props.color}`};
   color: ${(props) =>
-    props.feature === Feature.LINE && props.color !== Color.WHITE
+    props.feature === ButtonFeature.LINE && props.color !== ButtonColor.WHITE
       ? `${props.color}`
       : "#ffffff"};
   letter-spacing: -1.68px;
@@ -25,12 +28,16 @@ export const ButtonStyle = styled.button`
   &:hover {
     transition: all 0.05s ease-in-out;
     background-color: ${(props) =>
-      props.feature === Feature.NONE ? `${props.color}A6` : `${props.color}26`};
+      props.feature === ButtonFeature.NONE
+        ? `${props.color}A6`
+        : `${props.color}26`};
   }
   &:active {
     transition: all 0.05s ease-in-out;
     background-color: ${(props) =>
-      props.feature === Feature.NONE ? `${props.color}CC` : `${props.color}4D`};
+      props.feature === ButtonFeature.NONE
+        ? `${props.color}CC`
+        : `${props.color}4D`};
   }
 `;
 

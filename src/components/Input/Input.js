@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { InputStyle, WrapperStyle, LabelStyle } from "./style";
 
-export const Color = {
+export const InputColor = {
   GRAY: "#3D437104",
   WHITE: "#FFFFFF",
 };
 
-Object.freeze(Color);
+Object.freeze(InputColor);
 
 const Input = ({
   type,
