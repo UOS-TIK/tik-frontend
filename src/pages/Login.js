@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import api from "../api/api";
 import Button, { Color, Feature } from "../components/Button/Button";
 import LoginInput from "../components/LoginInput/LoginInput";
 
@@ -15,14 +16,27 @@ const Login = () => {
       const res = await axios.post('/user/signIn', {uid, password});
       console.log(res);
       if (res.status === 200) {
-        console.log("로그인 성공");
-        navigate("/");
+        console.log(res.data.data.accessToken);
+        localStorage.setItem('login-token', res.data.data.accessToken);
+        alert("로그인 성공");
+        // navigate("/");
       }
     } catch (e) {
       console.log(e);
       alert("error 발생");
     }
   };
+
+  // 토큰 테스트
+  const handleClickTestButton = async () => {
+    try {
+      const res = await api.get('/resume?memberId=1');
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
 
   return (
     <MainContainer>
@@ -40,6 +54,9 @@ const Login = () => {
               }
               handleClickLoginButton();
             }}>로그인하기</ButtonWrapper>
+            <ButtonWrapper feature={Feature.NONE} color={Color.BLUE} handler={() => {
+              handleClickTestButton();
+            }}>test</ButtonWrapper>
             <SignUpPrompt>
               <div>Teck Interview King이 처음이신가요?</div>
               <Link to="/signup" style={{color: "#1C1C1CB3"}}>회원가입</Link>
