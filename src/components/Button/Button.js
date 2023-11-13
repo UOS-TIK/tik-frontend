@@ -16,7 +16,7 @@ Object.freeze(Color);
 
 const Button = ({ feature, color, handler, children }) => {
   return feature === Feature.FLEXIBLE ? (
-    <ButtonFlexibleStyle feature={feature} color={color} onClick={handler}>
+    <ButtonFlexibleStyle feature={feature} onClick={handler}>
       {children}
     </ButtonFlexibleStyle>
   ) : (
