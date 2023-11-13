@@ -1,10 +1,19 @@
-import { InputStyle, LabelStyle, WrapperStyle } from "./style";
+import {
+  InputStyle,
+  LabelStyle,
+  WrapperStyle,
+  ExplanationStyle,
+  TextWrapperStyle,
+} from "./style";
 
-const LoginInput = ({ type, label, value, onChangeHandler }) => {
+const LoginInput = ({ type, label, name, value, explanation, onChange }) => {
   return (
     <WrapperStyle>
-      <LabelStyle>{label}</LabelStyle>
-      <InputStyle type={type} value={value} onChange={onChangeHandler} />
+      <TextWrapperStyle>
+        <LabelStyle>{label}</LabelStyle>
+        <ExplanationStyle>{explanation}</ExplanationStyle>
+      </TextWrapperStyle>
+      <InputStyle type={type} name={name} value={value} onChange={onChange} />
     </WrapperStyle>
   );
 };
