@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
@@ -167,6 +168,8 @@ const ProjectContainer = (props) => {
 };
 
 const ResumeForm = (props) => {
+  const { setResumeList } = props;
+
   const [name, setName] = useState("");
   const [introduction, setIntroduction] = useState("");
   const [project, setProject] = useState([]);
@@ -269,7 +272,7 @@ const Resume = () => {
                 이력서를 추가해주세요.
               </ImageText>
             ) : (
-              <ResumeForm addMode={addMode} />
+              <ResumeForm addMode={addMode} setResumeList={setResumeList} />
             )}
           </WhiteBoxContainer>
         </div>
