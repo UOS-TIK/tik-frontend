@@ -8,25 +8,19 @@ export const InputColor = {
 
 Object.freeze(InputColor);
 
-const Input = ({
-  type,
-  label,
-  value,
-  onChangeHandler,
-  isError,
-  color,
-  maxLength,
-}) => {
+const Input = ({ type, label, value, onChange, isError, color, maxLength }) => {
   const [currentValue, setCurrentValue] = useState(value || "");
+  if (!maxLength) maxLength = 100;
 
   const handleChange = (e) => {
     const inputValue = e.target.value.slice(0, maxLength);
     setCurrentValue(inputValue);
 
-    if (onChangeHandler) {
-      onChangeHandler(inputValue);
+    if (onChange) {
+      onChange(inputValue);
     }
   };
+
   return (
     <WrapperStyle>
       <LabelStyle>{label}</LabelStyle>

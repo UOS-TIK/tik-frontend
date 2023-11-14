@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import MainBanner from "../components/MainBanner/MainBanner";
@@ -12,26 +12,29 @@ import Textarea, { TextareaColor } from "../components/Textarea/Textarea";
 import ImageText, { ImageTextColor } from "../components/ImageText/ImageText";
 
 const ProjectForm = (props) => {
-  const { setAddMode } = props;
+  const { setAddMode, project, setProject } = props;
 
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
   const [description, setDescription] = useState("");
   const [techStack, setTechStack] = useState([]);
 
-  function onChangeName(e) {
-    setName(e.target.value);
-  }
-
-  function onChangeSummary(e) {
-    setSummary(e.target.value);
-  }
-
-  function onChangeDescription(e) {
-    setDescription(e.target.value);
-  }
-
   function onClickCloseButton() {
+    setAddMode(false);
+  }
+
+  function addProject() {
+    const newId = project.length + 1;
+
+    const newProject = {
+      id: newId,
+      name: name,
+      summary: summary,
+      description: description,
+      techStack: techStack,
+    };
+
+    setProject([...project, newProject]);
     setAddMode(false);
   }
 
@@ -47,33 +50,40 @@ const ProjectForm = (props) => {
         label="1. 프로젝트 이름을 입력해주세요"
         color={InputColor.WHITE}
         value={name}
-        handler={onChangeName}
+        onChange={setName}
       />
       <Input
         label="2. 프로젝트 한 줄 설명을 입력해주세요"
         color={InputColor.WHITE}
         value={summary}
-        handler={onChangeSummary}
+        onChange={setSummary}
       />
-      <div
-        style={{
-          display: "flex",
-          gap: "12px",
-          width: "100%",
-          alignItems: "center",
-        }}
-      >
-        <LabelStyle>3. 사용 스택을 선택해주세요</LabelStyle>
-        <Button feature={ButtonFeature.FLEXIBLE}>스택 검색</Button>
-      </div>
+      <WrapperStyle>
+        <div
+          style={{
+            display: "flex",
+            gap: "12px",
+            width: "100%",
+            alignItems: "center",
+          }}
+        >
+          <LabelStyle>3. 사용 스택을 선택해주세요</LabelStyle>
+          <Button feature={ButtonFeature.FLEXIBLE}>스택 검색</Button>
+        </div>
+        <NoContentContainer>선택한 스택이 없습니다.</NoContentContainer>
+      </WrapperStyle>
       <Textarea
         label="4. 상세 업무 및 성과를 입력해주세요"
         color={TextareaColor.WHITE}
         value={description}
-        handler={onChangeDescription}
+        onChange={setDescription}
       />
       <div style={{ width: "300px" }}>
-        <Button feature={ButtonFeature.NONE} color={ButtonColor.BLUE}>
+        <Button
+          feature={ButtonFeature.NONE}
+          color={ButtonColor.BLUE}
+          handler={addProject}
+        >
           프로젝트 추가하기
         </Button>
       </div>
@@ -99,16 +109,57 @@ const ProjectContainer = (props) => {
         </Button>
       </TitleWrapper>
       {project.length === 0 && !addMode ? (
-        <NoProjectContainer>
+        <NoContentContainer>
           입력된 사이드 프로젝트가 없습니다.
-        </NoProjectContainer>
+        </NoContentContainer>
       ) : (
         <ProjectWrapperStyle>
           {addMode && (
             <GrayBoxContainer>
-              <ProjectForm setAddMode={setAddMode} />
+              <ProjectForm
+                setAddMode={setAddMode}
+                project={project}
+                setProject={setProject}
+              />
             </GrayBoxContainer>
           )}
+          {project.map((project) => (
+            <GrayBoxContainer key={project.id}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "100%",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    width: "100%",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "2px",
+                    }}
+                  >
+                    <ProjectNameStyle>{project.name}</ProjectNameStyle>
+                    <ProjectSummaryStyle>{project.summary}</ProjectSummaryStyle>
+                  </div>
+                  <div> 스택 두는 곳</div>
+                </div>
+                <Textarea
+                  value={project.description}
+                  readOnly={true}
+                ></Textarea>
+              </div>
+            </GrayBoxContainer>
+          ))}
         </ProjectWrapperStyle>
       )}
     </WrapperStyle>
@@ -119,13 +170,28 @@ const ResumeForm = (props) => {
   const [name, setName] = useState("");
   const [introduction, setIntroduction] = useState("");
   const [project, setProject] = useState([]);
-  function onChangeName(e) {
-    setName(e.target.value);
-  }
 
-  function onChangeIntroduction(e) {
-    setIntroduction(e.target.value);
-  }
+  useEffect(() => {
+    console.log("Project", project);
+  }, [project]);
+
+  const addResume = async () => {
+    const data = {
+      name: name,
+      introduction: introduction,
+      project: project,
+    };
+    try {
+      const res = await axios.post("/resume", data);
+      console.log(res);
+      if (res.status === 201) {
+        alert("이력서 추가 성공");
+        setResumeList(res.data.data);
+      }
+    } catch (e) {
+      alert(e);
+    }
+  };
 
   return (
     <>
@@ -133,17 +199,21 @@ const ResumeForm = (props) => {
         label="이력서 이름"
         color={InputColor.GRAY}
         value={name}
-        handler={onChangeName}
+        onChange={setName}
       />
       <ProjectContainer setProject={setProject} project={project} />
       <Textarea
         label="설명"
         color={TextareaColor.GRAY}
         value={introduction}
-        handler={onChangeIntroduction}
+        onChange={setIntroduction}
       />
       <div style={{ width: "300px" }}>
-        <Button feature={ButtonFeature.NONE} color={ButtonColor.GRAY}>
+        <Button
+          feature={ButtonFeature.NONE}
+          color={ButtonColor.GRAY}
+          handler={addResume}
+        >
           이력서 추가하기
         </Button>
       </div>
@@ -154,7 +224,7 @@ const ResumeForm = (props) => {
 const Resume = () => {
   const [addMode, setAddMode] = useState(false);
 
-  const [info, setInfo] = useState({});
+  const [resumeList, setResumeList] = useState([]);
 
   function onClickAddButton() {
     setAddMode(true);
@@ -189,7 +259,7 @@ const Resume = () => {
         <div style={{ display: "flex", flexDirection: "row", gap: "80px" }}>
           <ListWrapper></ListWrapper>
           <WhiteBoxContainer>
-            {Object.keys(info).length === 0 && !addMode ? (
+            {resumeList.length === 0 && !addMode ? (
               <ImageText
                 imageUrl="images/ic_resume.svg"
                 color={ImageTextColor.BLUE}
@@ -199,7 +269,7 @@ const Resume = () => {
                 이력서를 추가해주세요.
               </ImageText>
             ) : (
-              <ResumeForm addMode={addMode} info={info} setInfo={setInfo} />
+              <ResumeForm addMode={addMode} />
             )}
           </WhiteBoxContainer>
         </div>
@@ -266,8 +336,8 @@ const WhiteBoxContainer = styled.div`
 
 const GrayBoxContainer = styled.div`
   display: flex;
-  width: calc(100% - 32px);
-  padding: 16px;
+  width: calc(100% - 24px);
+  padding: 12px;
   flex-direction: column;
   gap: 20px;
   border-radius: 20px;
@@ -276,8 +346,8 @@ const GrayBoxContainer = styled.div`
   align-items: center;
 `;
 
-const NoProjectContainer = styled.div`
-  fill: #ffffff;
+const NoContentContainer = styled.div`
+  background: #fff;
   border: 1px solid rgba(61, 67, 113, 0.3);
   border-radius: 10px;
   color: rgba(28, 28, 28, 0.7);
@@ -292,4 +362,18 @@ const ProjectWrapperStyle = styled.div`
   flex-direction: column;
   gap: 4px;
   width: 100%;
+`;
+
+const ProjectNameStyle = styled.div`
+  color: rgba(28, 28, 28, 0.7);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+`;
+
+const ProjectSummaryStyle = styled.div`
+  color: rgba(61, 67, 113, 0.5);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: -0.1px;
 `;

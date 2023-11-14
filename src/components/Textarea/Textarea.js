@@ -12,19 +12,21 @@ const Textarea = ({
   type,
   label,
   value,
-  onChangeHandler,
+  onChange,
   isError,
   color,
   maxLength,
+  readOnly,
 }) => {
   const [currentValue, setCurrentValue] = useState(value || "");
+  if (!readOnly) readOnly = false;
 
   const handleChange = (e) => {
     const inputValue = e.target.value.slice(0, maxLength);
     setCurrentValue(inputValue);
 
-    if (onChangeHandler) {
-      onChangeHandler(inputValue);
+    if (onChange) {
+      onChange(inputValue);
     }
   };
 
@@ -39,6 +41,7 @@ const Textarea = ({
         isError={isError}
         color={color}
         maxLength={maxLength}
+        readOnly={readOnly}
       />
     </WrapperStyle>
   );
