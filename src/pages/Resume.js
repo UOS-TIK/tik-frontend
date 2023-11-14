@@ -238,11 +238,11 @@ const Resume = () => {
       <Header />
       <MainBanner
         badgeText="모의면접 생성"
-        badgeType="outlined"
-        title="Part 1. 어떤 면접인지 입력해 주세요"
-        description="이력서 작성 페이지를 통해 미리 작성할 수 있으며, 선택한 이력서를 바탕으로 질문이 생성됩니다."
+        badgeType="filled"
+        title="자신의 이력서를 정리해 보세요!"
+        description="면접 생성 시 입력한 이력서를 기반으로 면접 질문이 생성됩니다."
         imageUrl="images/ic_resume.svg"
-        bgColor="#3d4371"
+        bgColor="#8D99F3"
       />
       <ContentContainer>
         <div style={{ width: "400px", marginBottom: "20px" }}>
