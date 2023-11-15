@@ -26,6 +26,7 @@ export const WrapperStyle = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 `;
 
 export const LabelStyle = styled.span`
@@ -34,5 +35,5 @@ export const LabelStyle = styled.span`
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.2px;
 `;
