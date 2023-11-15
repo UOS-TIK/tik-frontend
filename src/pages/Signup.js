@@ -2,35 +2,41 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Button, { Color, Feature } from "../components/Button/Button";
+import Button, {
+  ButtonColor,
+  ButtonFeature,
+} from "../components/Button/Button";
 import LoginInput from "../components/LoginInput/LoginInput";
 
 const Signup = () => {
   const [signupInfo, setSignupInfo] = useState({
-    username: '',
-    uid: '',
-    password: '',
-    checkPassword: '',
+    username: "",
+    uid: "",
+    password: "",
+    checkPassword: "",
   });
 
-  const passwordRegEx = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%^&*])[a-zA-Z0-9!@#\$%^&*]{8,20}$/;
+  const passwordRegEx =
+    /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%^&*])[a-zA-Z0-9!@#\$%^&*]{8,20}$/;
   const navigate = useNavigate();
 
   const passwordCheck = (signupInfo) => {
-		return passwordRegEx.test(signupInfo);
-	}
-  const checkEmptySignUpInfoValue = Object.values(signupInfo).some((data) => data === '');
+    return passwordRegEx.test(signupInfo);
+  };
+  const checkEmptySignUpInfoValue = Object.values(signupInfo).some(
+    (data) => data === ""
+  );
 
   const handleChangeSignUpInfoInput = (e) => {
-		const { name, value } = e.target;
-		setSignupInfo((prev) => ({ ...prev, [name]: value }));
-	}
+    const { name, value } = e.target;
+    setSignupInfo((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleClickSignupButton = async () => {
     const data = {
       uid: signupInfo.uid,
       password: signupInfo.password,
-      username: signupInfo.username
+      username: signupInfo.username,
     };
     try {
       const res = await axios.post("/user/signUp", data);
@@ -44,27 +50,58 @@ const Signup = () => {
       if (e.response.data.data)
         alert(e.response.data.data);
     }
-  }
+  };
 
   return (
     <MainContainer>
       <LeftContainer>
         <ContentWrapper>
-          <ContentTitle>TIK에 가입하시고 <br />기술면접을 대비해보세요!</ContentTitle>
-            <InputWrapper>
-              <LoginInput label="이름" name="username" value={signupInfo.username} onChange={handleChangeSignUpInfoInput}/>
-              <LoginInput label="아이디" name="uid" value={signupInfo.uid} onChange={handleChangeSignUpInfoInput} />
-              <LoginInput label="비밀번호" type="password" name="password" explanation="(영문, 숫자, 특수문자를 포함한 8~20자리)" value={signupInfo.password} onChange={handleChangeSignUpInfoInput}/>
-              <LoginInput label="비밀번호 확인" type="password" name="checkPassword" value={signupInfo.checkPassword} onChange={handleChangeSignUpInfoInput}/>
-            </InputWrapper> 
-            <ButtonWrapper feature={Feature.NONE} color={Color.BLUE} handler={() => {
+          <ContentTitle>
+            TIK에 가입하시고 <br />
+            기술면접을 대비해보세요!
+          </ContentTitle>
+          <InputWrapper>
+            <LoginInput
+              label="이름"
+              name="username"
+              value={signupInfo.username}
+              onChange={handleChangeSignUpInfoInput}
+            />
+            <LoginInput
+              label="아이디"
+              name="uid"
+              value={signupInfo.uid}
+              onChange={handleChangeSignUpInfoInput}
+            />
+            <LoginInput
+              label="비밀번호"
+              type="password"
+              name="password"
+              explanation="(영문, 숫자, 특수문자를 포함한 8~20자리)"
+              value={signupInfo.password}
+              onChange={handleChangeSignUpInfoInput}
+            />
+            <LoginInput
+              label="비밀번호 확인"
+              type="password"
+              name="checkPassword"
+              value={signupInfo.checkPassword}
+              onChange={handleChangeSignUpInfoInput}
+            />
+          </InputWrapper>
+          <ButtonWrapper
+            feature={ButtonFeature.NONE}
+            color={ButtonColor.BLUE}
+            handler={() => {
               console.log(signupInfo);
               if (checkEmptySignUpInfoValue) {
-                alert('모든 항목을 채워주세요.');
+                alert("모든 항목을 채워주세요.");
                 return;
               }
-              if(!passwordCheck(signupInfo.password)){
-                alert('비밀번호를 형식에 맞춰 입력해주세요.\n(영문, 숫자, 특수문자를 포함한 8~20자리)');
+              if (!passwordCheck(signupInfo.password)) {
+                alert(
+                  "비밀번호를 형식에 맞춰 입력해주세요.\n(영문, 숫자, 특수문자를 포함한 8~20자리)"
+                );
                 return;
               }
               if (signupInfo.password !== signupInfo.checkPassword) {
@@ -72,14 +109,19 @@ const Signup = () => {
                 return;
               }
               handleClickSignupButton();
-            }} >회원가입하기</ButtonWrapper>
-            <SignUpPrompt>
-              <div>이미 계정이 있으신가요?</div>
-              <Link to="/login" style={{color: "#1C1C1CB3"}}>로그인</Link>
-            </SignUpPrompt>
+            }}
+          >
+            회원가입하기
+          </ButtonWrapper>
+          <SignUpPrompt>
+            <div>이미 계정이 있으신가요?</div>
+            <Link to="/login" style={{ color: "#1C1C1CB3" }}>
+              로그인
+            </Link>
+          </SignUpPrompt>
         </ContentWrapper>
         <LogoWrapper>
-          <img src="images/ic_logo.svg" alt="logo"/>
+          <img src="images/ic_logo.svg" alt="logo" />
         </LogoWrapper>
       </LeftContainer>
       <RightContainer>
@@ -94,14 +136,13 @@ const Signup = () => {
 
 export default Signup;
 
-
 const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
 `;
 
 const LeftContainer = styled.div`
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   flex-basis: 40%;
   max-width: 40%;
   height: 100vh;
@@ -113,7 +154,7 @@ const ContentWrapper = styled.div`
 `;
 
 const ContentTitle = styled.div`
-  color: #3D4371;
+  color: #3d4371;
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 24px;
@@ -134,7 +175,7 @@ const SignUpPrompt = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: #1C1C1CB3;
+  color: #1c1c1cb3;
   font-size: 14px;
   margin-top: 12px;
 `;
@@ -156,7 +197,8 @@ const RightContainer = styled.div`
   display: flex;
   flex-grow: 1.2;
   height: 100vh;
-  background: linear-gradient(rgba(61, 67, 113, 0.7), rgba(61, 67, 113, 0.7)), url(/images/login_img.svg);
+  background: linear-gradient(rgba(61, 67, 113, 0.7), rgba(61, 67, 113, 0.7)),
+    url(/images/login_img.svg);
   background-size: cover;
 `;
 
@@ -170,10 +212,10 @@ const RightContentWrapper = styled.div`
 const Subtitle = styled.div`
   font-size: 30px;
   font-weight: 700;
-  color: #FFFFFFD9;
+  color: #ffffffd9;
 `;
 
 const MainTitle = styled.div`
   font-size: 48px;
-  color: #8D99F3D9;
+  color: #8d99f3d9;
 `;

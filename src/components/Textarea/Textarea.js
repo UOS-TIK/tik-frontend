@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { TextareaStyle, WrapperStyle, LabelStyle } from "./style";
 
-export const Color = {
+export const TextareaColor = {
   GRAY: "#3D437104",
   WHITE: "#FFFFFF",
 };
 
-Object.freeze(Color);
+Object.freeze(TextareaColor);
 
 const Textarea = ({
   type,

@@ -3,17 +3,20 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import api from "../api/api";
-import Button, { Color, Feature } from "../components/Button/Button";
+import Button, {
+  ButtonColor,
+  ButtonFeature,
+} from "../components/Button/Button";
 import LoginInput from "../components/LoginInput/LoginInput";
 
 const Login = () => {
-  const [uid, setUid] = useState('');
-  const [password, setPassword] = useState('');
+  const [uid, setUid] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleClickLoginButton = async () => {
     try {
-      const res = await axios.post('/user/signIn', {uid, password});
+      const res = await axios.post("/user/signIn", { uid, password });
       console.log(res);
       if (res.status === 200) {
         console.log(res.data.data.accessToken);
@@ -33,22 +36,44 @@ const Login = () => {
     <MainContainer>
       <LeftContainer>
         <ContentWrapper>
-          <ContentTitle>Teck-Interview King에서 <br />기술면접을 대비해보세요!</ContentTitle>
-            <InputWrapper>
-              <LoginInput label="아이디" name="uid" value={uid} onChange={(e) => setUid(e.target.value)}/>
-              <LoginInput label="비밀번호" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-            </InputWrapper> 
-            <ButtonWrapper feature={Feature.NONE} color={Color.BLUE} handler={() => {
-              if (!(uid && password) ) {
-                alert('모든 항목을 채워주세요.');
+          <ContentTitle>
+            Teck-Interview King에서 <br />
+            기술면접을 대비해보세요!
+          </ContentTitle>
+          <InputWrapper>
+            <LoginInput
+              label="아이디"
+              name="uid"
+              value={uid}
+              onChange={(e) => setUid(e.target.value)}
+            />
+            <LoginInput
+              label="비밀번호"
+              type="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </InputWrapper>
+          <ButtonWrapper
+            feature={ButtonFeature.NONE}
+            color={ButtonColor.BLUE}
+            handler={() => {
+              if (!(uid && password)) {
+                alert("모든 항목을 채워주세요.");
                 return;
               }
               handleClickLoginButton();
-            }}>로그인하기</ButtonWrapper>
-            <SignUpPrompt>
-              <div>Teck Interview King이 처음이신가요?</div>
-              <Link to="/signup" style={{color: "#1C1C1CB3"}}>회원가입</Link>
-            </SignUpPrompt>
+            }}
+          >
+            로그인하기
+          </ButtonWrapper>
+          <SignUpPrompt>
+            <div>Teck Interview King이 처음이신가요?</div>
+            <Link to="/signup" style={{ color: "#1C1C1CB3" }}>
+              회원가입
+            </Link>
+          </SignUpPrompt>
         </ContentWrapper>
         <LogoWrapper>
           <img src="images/ic_logo.svg" alt="logo" />
