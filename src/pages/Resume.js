@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../api/api";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
@@ -28,7 +28,6 @@ const ProjectForm = (props) => {
     const newId = project.length + 1;
 
     const newProject = {
-      id: newId,
       name: name,
       summary: summary,
       description: description,
@@ -182,17 +181,19 @@ const ResumeForm = (props) => {
     const data = {
       name: name,
       introduction: introduction,
-      project: project,
+      projects: project,
     };
     try {
-      const res = await axios.post("/resume", data);
+      console.log(data);
+      const res = await api.post("/resume", data);
       console.log(res);
       if (res.status === 201) {
         alert("이력서 추가 성공");
         setResumeList(res.data.data);
       }
     } catch (e) {
-      alert(e);
+      console.log(e);
+      if (e.response.data.data) alert(e.response.data.data);
     }
   };
 
