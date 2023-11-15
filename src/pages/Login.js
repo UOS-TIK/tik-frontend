@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import api from "../api/api";
 import Button, {
   ButtonColor,
   ButtonFeature,
@@ -18,14 +19,18 @@ const Login = () => {
       const res = await axios.post("/user/signIn", { uid, password });
       console.log(res);
       if (res.status === 200) {
-        console.log("로그인 성공");
+        console.log(res.data.data.accessToken);
+        localStorage.setItem('login-token', res.data.data.accessToken);
+        alert("로그인 성공");
         navigate("/");
       }
     } catch (e) {
       console.log(e);
-      alert("error 발생");
+      if (e.response.data.data)
+        alert(e.response.data.data);
     }
   };
+
 
   return (
     <MainContainer>
