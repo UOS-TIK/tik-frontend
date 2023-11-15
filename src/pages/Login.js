@@ -19,21 +19,12 @@ const Login = () => {
         console.log(res.data.data.accessToken);
         localStorage.setItem('login-token', res.data.data.accessToken);
         alert("로그인 성공");
-        // navigate("/");
+        navigate("/");
       }
     } catch (e) {
       console.log(e);
-      alert("error 발생");
-    }
-  };
-
-  // 토큰 테스트
-  const handleClickTestButton = async () => {
-    try {
-      const res = await api.get('/resume?memberId=1');
-      console.log(res);
-    } catch (e) {
-      console.log(e);
+      if (e.response.data.data)
+        alert(e.response.data.data);
     }
   };
 
@@ -54,9 +45,6 @@ const Login = () => {
               }
               handleClickLoginButton();
             }}>로그인하기</ButtonWrapper>
-            <ButtonWrapper feature={Feature.NONE} color={Color.BLUE} handler={() => {
-              handleClickTestButton();
-            }}>test</ButtonWrapper>
             <SignUpPrompt>
               <div>Teck Interview King이 처음이신가요?</div>
               <Link to="/signup" style={{color: "#1C1C1CB3"}}>회원가입</Link>

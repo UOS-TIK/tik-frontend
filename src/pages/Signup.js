@@ -41,7 +41,8 @@ const Signup = () => {
       }
     } catch (e) {
       console.log(e);
-      alert("error 발생");
+      if (e.response.data.data)
+        alert(e.response.data.data);
     }
   }
 
