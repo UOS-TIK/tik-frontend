@@ -13,6 +13,7 @@ import api from "../api/api";
 
 const GenerateInterview = () => {
   const [resumes, setResumes] = useState([]);
+  const [interviewName, SetInterviewName] = useState("");
   const [companyName, setCompanyName]  = useState("");
   const [selectedJobType, setSelectedJobType] = useState("");
   const [jobDescription, setJobDescription] =  useState("");
@@ -30,11 +31,13 @@ const GenerateInterview = () => {
   };
 
   const handleResumeQuestionChange = (event) => {
-    setResumeQuestion(event.target.value.slice(0, 1));
+    const value = event.target.value.replace(/\D/g, '');
+    setResumeQuestion(value);
   };
   
   const handleCsQuestionChange = (event) => {
-    setCsQuestion(event.target.value.slice(0, 1));
+    const value = event.target.value.replace(/\D/g, '');
+    setCsQuestion(value);
   };
 
   const handleMakeResumeBtnClick = () => {
@@ -42,6 +45,10 @@ const GenerateInterview = () => {
   };
 
   const generateInterviewBtnhandler = () => {
+    if (!interviewName) {
+      alert('면접 이름을 입력해주세요.');
+      return;
+    }
     if (!companyName) {
       alert('회사 이름을 입력해주세요.');
       return;
@@ -68,7 +75,7 @@ const GenerateInterview = () => {
     const data = {
       resumeId: selectedProject,
       company: companyName,
-      interviewName: companyName,
+      interviewName: interviewName,
       occupation: selectedJobType,
       jobDescription: jobDescription,
       options: {
@@ -153,10 +160,10 @@ const GenerateInterview = () => {
             }}
           >
             <Input
-              label="1. 회사 이름을 입력해주세요."
+              label="1. 면접 이름을 입력해주세요."
               color={InputColor.WHITE}
-              value={companyName}
-              onChange={setCompanyName}
+              value={interviewName}
+              onChange={SetInterviewName}
             />
             <div
               style={{
@@ -172,9 +179,15 @@ const GenerateInterview = () => {
                 alt="additional_info_icon"
                 style={{ width: "18px" }}
               />
-              회사 이름은 면접 이름으로 저장됩니다.
+              다른 면접과 구분될 수 있도록 면접 이름을 지어주세요!
             </div>
           </div>
+          <Input
+              label="2. 지원할 회사 이름을 입력해주세요."
+              color={InputColor.WHITE}
+              value={companyName}
+              onChange={setCompanyName}
+            />
           <div style={{ display: "flex", flexDirection: "column", gap: "10px"}}>
             <div>2. 직군을 선택해주세요.</div>
             <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
@@ -309,7 +322,7 @@ export default GenerateInterview;
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f9fafb;
+  background-color: #ffffff;
 `;
 
 const InterviewSettingTitle = styled.div`
