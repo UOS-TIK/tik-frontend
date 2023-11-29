@@ -6,6 +6,7 @@ import ReactSpeechRecognition from "./pages/Test/ReactSpeechRecognition";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Resume from "./pages/Resume";
+import Interview from "./pages/Interview";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/resume" element={<Resume />} />
+        <Route path="/interview" element={<Interview />} />
       </Routes>
     </BrowserRouter>
   );
