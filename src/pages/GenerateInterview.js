@@ -4,9 +4,17 @@ import Header from "../components/Header";
 import RadioButton from "../components/RadioButton/Radiobutton";
 import RadioWithExplain from "../components/RadioWithExplain/RadioWithExplain";
 import MainBanner from "../components/MainBanner/MainBanner";
+import Input, { InputColor } from "../components/Input/Input";
+import Textarea, { TextareaColor } from "../components/Textarea/Textarea";
+import Button, { ButtonColor, ButtonFeature } from "../components/Button/Button";
+import { useNavigate } from "react-router-dom";
+import Board from "../components/Board/Board";
 
 const GenerateInterview = () => {
+  const [companyName, setCompanyName]  = useState("");
   const [selectedJobType, setSelectedJobType] = useState("");
+  const [jobDescription, setJobDescription] =  useState("");
+  const navigate = useNavigate();
 
   const handleJobTypeChange = (event) => {
     setSelectedJobType(event.target.value);
@@ -15,6 +23,10 @@ const GenerateInterview = () => {
   const [selectedProject, setSelectedProject] = useState("");
   const handleProjectChange = (event) => {
     setSelectedProject(event.target.value);
+  };
+
+  const handleMakeResumeBtnClick = () => {
+    navigate("/resume");
   };
 
   return (
@@ -34,6 +46,7 @@ const GenerateInterview = () => {
           display: "flex",
           flexDirection: "column",
           margin: "50px 148px",
+          fontSize: "14px"
         }}
       >
         <InterviewSettingTitle>
@@ -61,8 +74,12 @@ const GenerateInterview = () => {
               gap: "8px",
             }}
           >
-            <div>1. 회사 이름을 입력해주세요.</div>
-            <input />
+            <Input
+              label="1. 회사 이름을 입력해주세요."
+              color={InputColor.WHITE}
+              value={companyName}
+              onChange={setCompanyName}
+            />
             <div
               style={{
                 display: "flex",
@@ -80,9 +97,9 @@ const GenerateInterview = () => {
               회사 이름은 면접 이름으로 저장됩니다.
             </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px"}}>
             <div>2. 직군을 선택해주세요.</div>
-            <div style={{ display: "flex", flexDirection: "row", gap: "8px" }}>
+            <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
               <RadioButton
                 name="jobType"
                 value="프론트엔드"
@@ -133,12 +150,41 @@ const GenerateInterview = () => {
               </RadioButton>
             </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            <div>3. 모집 공고문을 입력해주세요. (공백 포함 500자 이내)</div>
-            <input style={{ height: "80px" }}></input>
-          </div>
+          <Textarea
+            label="3. 모집 공고문을 입력해주세요. (공백 포함 500자 이내)"
+            color={TextareaColor.WHITE}
+            value={jobDescription}
+            maxLength={500}
+            onChange={setJobDescription}
+          />
           <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
             <div>4. 제출할 이력서를 선택해주세요.</div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                position: "absolute",
+                whiteSpace: "nowrap",
+                left: "897px",
+                gap: "6px",
+              }}
+            >
+              <div style={{display: "flex",gap: "6px"}}>
+                <img
+                  src="/images/ic_additional_info.svg"
+                  alt="additional_info_icon"
+                  style={{ width: "18px" }}
+                />
+                새로운 이력서가 필요하세요?
+              </div>
+              <Board
+                buttonText="이력서 작성하러 가기"
+                buttonHandler={handleMakeResumeBtnClick}
+              >
+                이력서를 분야별로 정리하여, <br />
+                맞춤형 이력서를 제시해보세요!
+              </Board>
+            </div>
             <div style={{ height: "80px" }}>
               <RadioWithExplain
                 name="project"
@@ -171,9 +217,25 @@ const GenerateInterview = () => {
               </RadioWithExplain>
             </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            <div>5. 면접 질문의 개수를 선택해주세요.</div>
-            <input style={{ height: "80px" }}></input>
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            <div>5. 면접 질문의 개수를 선택해주세요. (최대 합 10개 이내)</div>
+            <div style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "4px", marginLeft: "12px"}}>
+              <div style={{fontWeight: "700", width: "132px"}}>이력서 기반 질문 개수</div>
+              <input style={{width: "16px", padding: "2px"}} />
+              <div>개</div>
+            </div>
+            <div style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "4px", marginLeft: "12px"}}>
+              <div style={{fontWeight: "700", width: "132px"}}>CS 기반 질문 개수</div>
+              <input style={{width: "16px", padding: "2px"}} />
+              <div>개</div>
+            </div>
+          </div>
+          <div style={{minWidth: "240px", display: "flex", margin: "auto"}}>
+            <Button
+              feature={ButtonFeature.NONE}
+              color={ButtonColor.BLUE}
+              // handler={}
+            >면접 생성하기</Button>
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ export const RadioWrapper = styled.label`
   margin-right: 10px;
   cursor: pointer;
   position: relative;
-  padding-left: 25px;
+  padding-left: 20px;
 `;
 
 export const RadioInput = styled.input`
@@ -27,8 +27,8 @@ export const RadioIcon = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 16px;
-  width: 16px;
+  height: 14px;
+  width: 14px;
   border-radius: 50%;
   border: 1.5px solid ${props => props.checked ? '#3D4371' : '#3D437199'};
   background-color: #fff;
