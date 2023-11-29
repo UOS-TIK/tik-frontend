@@ -49,7 +49,7 @@ export const RadioIcon = styled.div`
 
 export const RadioTitle = styled.div`
   margin-left: 30px;
-  width: 120px;
+  width: 150px;
   font-weight: 700;
   color: ${(props) => (props.checked ? '#1C1C1CD9' : '#1C1C1C99')};
 `;

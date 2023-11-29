@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import RadioButton from "../components/RadioButton/Radiobutton";
@@ -9,8 +9,10 @@ import Textarea, { TextareaColor } from "../components/Textarea/Textarea";
 import Button, { ButtonColor, ButtonFeature } from "../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import Board from "../components/Board/Board";
+import api from "../api/api";
 
 const GenerateInterview = () => {
+  const [resumes, setResumes] = useState([]);
   const [companyName, setCompanyName]  = useState("");
   const [selectedJobType, setSelectedJobType] = useState("");
   const [jobDescription, setJobDescription] =  useState("");
@@ -22,12 +24,36 @@ const GenerateInterview = () => {
 
   const [selectedProject, setSelectedProject] = useState("");
   const handleProjectChange = (event) => {
-    setSelectedProject(event.target.value);
+    setSelectedProject(Number(event.target.value));
   };
 
   const handleMakeResumeBtnClick = () => {
     navigate("/resume");
   };
+
+  // const generateInterviewBtnhandler = () => {
+    
+  // };
+
+  // const generateInterviewApi = async () => {
+  //   try {
+  //     const res = await api.
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
+  useEffect(() => {
+    const getResumeList = async () => {
+      try {
+        const res = await api.get('/resume');
+        setResumes(res.data.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getResumeList();
+  }, []);
 
   return (
     <MainContainer>
@@ -185,36 +211,19 @@ const GenerateInterview = () => {
                 맞춤형 이력서를 제시해보세요!
               </Board>
             </div>
-            <div style={{ height: "80px" }}>
-              <RadioWithExplain
-                name="project"
-                value="미스터대박"
-                explain={
-                  "학교 소프트웨어 공학 수업에서 진행했던 프로젝트입니다."
-                }
-                checked={selectedProject === "미스터대박"}
-                onChange={handleProjectChange}
-              >
-                미스터대박
-              </RadioWithExplain>
-              <RadioWithExplain
-                name="project"
-                value="uostime"
-                explain={"서울 시립대 학생들을 위한 시간표 제공 서비스입니다."}
-                checked={selectedProject === "uostime"}
-                onChange={handleProjectChange}
-              >
-                uostime
-              </RadioWithExplain>
-              <RadioWithExplain
-                name="project"
-                value="uspray"
-                explain={"기독교 청년들을 위한 기도 수첩 어플입니다."}
-                checked={selectedProject === "uspray"}
-                onChange={handleProjectChange}
-              >
-                uspray
-              </RadioWithExplain>
+            <div>
+              {resumes.map((resume) => (
+                <RadioWithExplain
+                  key={resume.id}
+                  name="resume"
+                  value={resume.id}
+                  explain={resume.introduction}
+                  checked={selectedProject === resume.id}
+                  onChange={handleProjectChange}
+                >
+                  {resume.name}
+                </RadioWithExplain>
+              ))}
             </div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -234,7 +243,7 @@ const GenerateInterview = () => {
             <Button
               feature={ButtonFeature.NONE}
               color={ButtonColor.BLUE}
-              // handler={}
+              // handler={generateInterviewBtnhandler}
             >면접 생성하기</Button>
           </div>
         </div>
