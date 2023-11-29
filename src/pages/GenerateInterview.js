@@ -16,38 +16,90 @@ const GenerateInterview = () => {
   const [companyName, setCompanyName]  = useState("");
   const [selectedJobType, setSelectedJobType] = useState("");
   const [jobDescription, setJobDescription] =  useState("");
+  const [selectedProject, setSelectedProject] = useState("");
+  const [resumeQuestion, setResumeQuestion] = useState("1");
+  const [csQuestion, setCsQuestion] = useState("0");
   const navigate = useNavigate();
 
   const handleJobTypeChange = (event) => {
     setSelectedJobType(event.target.value);
   };
 
-  const [selectedProject, setSelectedProject] = useState("");
   const handleProjectChange = (event) => {
-    setSelectedProject(Number(event.target.value));
+    setSelectedProject(parseInt(event.target.value, 10));
+  };
+
+  const handleResumeQuestionChange = (event) => {
+    setResumeQuestion(event.target.value.slice(0, 1));
+  };
+  
+  const handleCsQuestionChange = (event) => {
+    setCsQuestion(event.target.value.slice(0, 1));
   };
 
   const handleMakeResumeBtnClick = () => {
     navigate("/resume");
   };
 
-  // const generateInterviewBtnhandler = () => {
-    
-  // };
+  const generateInterviewBtnhandler = () => {
+    if (!companyName) {
+      alert('회사 이름을 입력해주세요.');
+      return;
+    }
+    if (!selectedJobType) {
+      alert('직군을 선택해주세요.');
+      return;
+    }
+    if (!jobDescription) {
+      alert('모집 공고문을 입력해주세요.');
+      return;
+    }
+    const totalQuestions = Number(resumeQuestion) + Number(csQuestion);
+    if (totalQuestions < 1 || totalQuestions > 10) {
+      alert("질문은 총 1개에서 10개까지 가능합니다.");
+      return;
+    }
 
-  // const generateInterviewApi = async () => {
-  //   try {
-  //     const res = await api.
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+    generateInterviewApi();
+  };
+
+  const generateInterviewApi = async () => {
+
+    const data = {
+      resumeId: selectedProject,
+      company: companyName,
+      interviewName: companyName,
+      occupation: selectedJobType,
+      jobDescription: jobDescription,
+      options: {
+        resumeQuestion: resumeQuestion,
+        csQuestion: csQuestion
+      }
+    };
+    try {
+      const res = await api.post("/interview/init", data);
+      console.log(res);
+      if (res.status === 201) {
+        alert("면접을 생성하였습니다. 면접 페이지로 이동합니다.");
+        navigate("/interview", { state: { interviewId: res.data.data.interviewId } });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
     const getResumeList = async () => {
       try {
         const res = await api.get('/resume');
-        setResumes(res.data.data);
+        const resumeData = res.data.data;
+
+        setResumes(resumeData);
+        if(resumeData.length > 0) {
+          setSelectedProject(resumeData[0].id);
+        }
+
+        
       } catch (e) {
         console.log(e);
       }
@@ -230,12 +282,12 @@ const GenerateInterview = () => {
             <div>5. 면접 질문의 개수를 선택해주세요. (최대 합 10개 이내)</div>
             <div style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "4px", marginLeft: "12px"}}>
               <div style={{fontWeight: "700", width: "132px"}}>이력서 기반 질문 개수</div>
-              <input style={{width: "16px", padding: "2px"}} />
+              <input style={{width: "16px", padding: "2px"}} value={resumeQuestion} onChange={handleResumeQuestionChange}/>
               <div>개</div>
             </div>
             <div style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "4px", marginLeft: "12px"}}>
               <div style={{fontWeight: "700", width: "132px"}}>CS 기반 질문 개수</div>
-              <input style={{width: "16px", padding: "2px"}} />
+              <input style={{width: "16px", padding: "2px"}} value={csQuestion} onChange={handleCsQuestionChange} />
               <div>개</div>
             </div>
           </div>
@@ -243,7 +295,7 @@ const GenerateInterview = () => {
             <Button
               feature={ButtonFeature.NONE}
               color={ButtonColor.BLUE}
-              // handler={generateInterviewBtnhandler}
+              handler={generateInterviewBtnhandler}
             >면접 생성하기</Button>
           </div>
         </div>
