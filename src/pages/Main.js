@@ -51,6 +51,7 @@ const Main = () => {
 };
 
 const MainContainer = styled.div`
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: #f9fafb;
