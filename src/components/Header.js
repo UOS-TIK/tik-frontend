@@ -7,6 +7,11 @@ const Header = () => {
   const handleInterviewClick = () => {
     navigate('/generate-interview');
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem('login-token');
+    navigate('/login');
+  };
   
   return (
     <HeaderContainer>
@@ -19,7 +24,7 @@ const Header = () => {
           <MenuItem>이력 조회</MenuItem>
         </MenuContainer>
       </div>
-      <LogoutButton>로그아웃</LogoutButton>
+      <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
     </HeaderContainer>
   );
 };
