@@ -16,19 +16,19 @@ import { WrapperStyle, LabelStyle } from "../../components/Input/style";
 import ProjectForm from "./ProjectForm";
 
 const ProjectContainer = (props) => {
-  const { project, setProject, addMode } = props;
+  const { project, setProject, addMode, setModalOn } = props;
 
-  const [projectAddMode, setAddMode] = useState(false);
+  const [projectAddMode, setProjectAddMode] = useState(false);
 
   function onClickAddButton() {
-    setAddMode(true);
+    setProjectAddMode(true);
   }
 
   return (
     <WrapperStyle>
       <TitleWrapper>
         <LabelStyle>사이드 프로젝트</LabelStyle>
-        {!addMode && (
+        {addMode && (
           <Button feature={ButtonFeature.FLEXIBLE} handler={onClickAddButton}>
             사이드 프로젝트 추가
           </Button>
@@ -43,9 +43,10 @@ const ProjectContainer = (props) => {
           {projectAddMode && (
             <GrayBoxContainer>
               <ProjectForm
-                setAddMode={setAddMode}
+                setProjectAddMode={setProjectAddMode}
                 project={project}
                 setProject={setProject}
+                setModalOn={setModalOn}
               />
             </GrayBoxContainer>
           )}

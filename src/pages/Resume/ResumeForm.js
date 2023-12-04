@@ -9,33 +9,11 @@ import Button, {
 import ProjectContainer from "./ProjectContainer";
 
 const ResumeForm = (props) => {
-  const { addMode, setResumeList, selectedResumeId } = props;
+  const { setResumeList, setModalOn } = props;
 
   const [name, setName] = useState("");
   const [introduction, setIntroduction] = useState("");
   const [project, setProject] = useState([]);
-
-  useEffect(() => {
-    console.log("Project", project);
-  }, [project]);
-
-  useEffect(() => {
-    getResume();
-  }, [selectedResumeId]);
-
-  const getResume = async () => {
-    try {
-      const res = await api.get(`/resume/detail?resumeId=${selectedResumeId}`);
-      if (res.status === 200) {
-        setName(res.data.data.name);
-        setIntroduction(res.data.data.introduction);
-        setProject(res.data.data.projects);
-      }
-    } catch (e) {
-      console.log(e);
-      if (e.response.data.data) alert(e.response.data.data);
-    }
-  };
 
   const addResume = async () => {
     const data = {
@@ -56,27 +34,25 @@ const ResumeForm = (props) => {
       if (e.response.data.data) alert(e.response.data.data);
     }
   };
-
   return (
     <>
       <Input
         label="이력서 이름"
         color={InputColor.GRAY}
         value={name}
-        onChange={addMode ? setName : undefined}
-        readOnly={!addMode}
+        onChange={setName}
       />
       <ProjectContainer
         setProject={setProject}
         project={project}
-        addMode={addMode}
+        addMode={true}
+        setModalOn={setModalOn}
       />
       <Textarea
         label="설명"
         color={TextareaColor.GRAY}
         value={introduction}
-        onChange={addMode ? setIntroduction : undefined}
-        readOnly={!addMode}
+        onChange={setIntroduction}
       />
       <div style={{ width: "300px" }}>
         <Button

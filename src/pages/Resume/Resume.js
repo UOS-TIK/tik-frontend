@@ -14,12 +14,17 @@ import {
   RightArrow,
   WhiteBoxContainer,
 } from "./style";
+import BlackScreen from "../../components/BlackScren/BlackScren";
+import Modal from "../../components/Modal/Modal";
 import ResumeForm from "./ResumeForm";
 import ResumeList from "./ResumeList";
+import StackSearch from "./StackSearch";
+import ResumeContainer from "./ResumeContainer";
 
 const Resume = () => {
   //mode
   const [addMode, setAddMode] = useState(false);
+  const [modalOn, setModalOn] = useState(false);
   //variable
   const [resumeList, setResumeList] = useState([]);
   const [selectedResumeId, setSelectedResumeId] = useState(0);
@@ -27,6 +32,11 @@ const Resume = () => {
   useEffect(() => {
     getResumeList();
   }, []);
+
+  useEffect(() => {
+    console.log("modalOn", modalOn);
+    console.log("음");
+  }, [modalOn]);
 
   const getResumeList = async () => {
     try {
@@ -47,6 +57,14 @@ const Resume = () => {
 
   return (
     <MainContainer>
+      {modalOn && (
+        <>
+          <Modal>
+            <StackSearch setModalOn={setModalOn} />
+          </Modal>
+          <BlackScreen ModalOn={modalOn} onClick={() => setModalOn(false)} />
+        </>
+      )}
       <Header />
       <MainBanner
         badgeText="이력서 간편 입력"
@@ -88,12 +106,13 @@ const Resume = () => {
                 <br />
                 이력서를 추가해주세요.
               </ImageText>
-            ) : (
+            ) : selectedResumeId === 0 ? (
               <ResumeForm
-                addMode={addMode}
                 setResumeList={setResumeList}
-                selectedResumeId={selectedResumeId}
+                setModalOn={setModalOn}
               />
+            ) : (
+              <ResumeContainer selectedResumeId={selectedResumeId} />
             )}
           </WhiteBoxContainer>
         </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ListWrapper } from "./style";
-import ResumeContainer from "./ResumeContainer";
+import ResumeListContainer from "./ResumeListContainer";
 
 const ResumeList = (props) => {
   const { resumeList, selectedResumeId, setSelectedResumeId, setAddMode } =
@@ -16,7 +16,7 @@ const ResumeList = (props) => {
   return (
     <ListWrapper>
       {resumeList.map((resume) => (
-        <ResumeContainer
+        <ResumeListContainer
           key={resume.id}
           resume={resume}
           selectedResumeId={selectedResumeId}

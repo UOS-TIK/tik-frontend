@@ -128,3 +128,39 @@ export const ProjectSummaryStyle = styled.div`
   font-weight: 400;
   letter-spacing: -0.1px;
 `;
+
+export const ModalWrapper = styled.div`
+  display: flex;
+  width: 416px;
+  padding: 24px 24px 12px 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  border-radius: 20px;
+  border: 3px solid rgba(68, 68, 68, 0.5);
+  background: #f9fafb;
+`;
+
+export const ModalText = styled.div`
+  color: rgba(28, 28, 28, 0.7);
+
+  font-family: NanumGothic;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.8px;
+`;
+
+export const StackBox = styled.div`
+  display: flex;
+  width: 368px;
+  height: 128px;
+  padding: 8px 16px;
+  align-items: flex-start;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  border: 1px solid rgba(61, 67, 113, 0.3);
+  background: #fff;
+`;

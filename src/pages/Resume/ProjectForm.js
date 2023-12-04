@@ -9,16 +9,12 @@ import { TitleWrapper, NoContentContainer } from "./style";
 import { WrapperStyle, LabelStyle } from "../../components/Input/style";
 
 const ProjectForm = (props) => {
-  const { setAddMode, project, setProject } = props;
+  const { setProjectAddMode, project, setProject, setModalOn } = props;
 
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
   const [description, setDescription] = useState("");
   const [techStack, setTechStack] = useState([]);
-
-  function onClickCloseButton() {
-    setAddMode(false);
-  }
 
   function addProject() {
     const newId = project.length + 1;
@@ -31,14 +27,17 @@ const ProjectForm = (props) => {
     };
 
     setProject([...project, newProject]);
-    setAddMode(false);
+    setProjectAddMode(false);
   }
 
   return (
     <>
       <TitleWrapper>
         <LabelStyle>새 프로젝트 입력</LabelStyle>
-        <Button feature={ButtonFeature.FLEXIBLE} handler={onClickCloseButton}>
+        <Button
+          feature={ButtonFeature.FLEXIBLE}
+          handler={() => setProjectAddMode(false)}
+        >
           닫기
         </Button>
       </TitleWrapper>
@@ -64,7 +63,12 @@ const ProjectForm = (props) => {
           }}
         >
           <LabelStyle>3. 사용 스택을 선택해주세요</LabelStyle>
-          <Button feature={ButtonFeature.FLEXIBLE}>스택 검색</Button>
+          <Button
+            feature={ButtonFeature.FLEXIBLE}
+            handler={() => setModalOn(true)}
+          >
+            스택 검색
+          </Button>
         </div>
         <NoContentContainer>선택한 스택이 없습니다.</NoContentContainer>
       </WrapperStyle>
