@@ -5,7 +5,7 @@ import ReactSpeechKit from "./pages/Test/ReactSpeechKit";
 import ReactSpeechRecognition from "./pages/Test/ReactSpeechRecognition";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Resume from "./pages/Resume";
+import Resume from "./pages/Resume/Resume";
 
 function App() {
   return (
