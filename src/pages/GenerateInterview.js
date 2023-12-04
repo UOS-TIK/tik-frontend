@@ -1,21 +1,118 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import RadioButton from "../components/RadioButton/Radiobutton";
 import RadioWithExplain from "../components/RadioWithExplain/RadioWithExplain";
 import MainBanner from "../components/MainBanner/MainBanner";
+import Input, { InputColor } from "../components/Input/Input";
+import Textarea, { TextareaColor } from "../components/Textarea/Textarea";
+import Button, { ButtonColor, ButtonFeature } from "../components/Button/Button";
+import { useNavigate } from "react-router-dom";
+import Board from "../components/Board/Board";
+import api from "../api/api";
 
 const GenerateInterview = () => {
+  const [resumes, setResumes] = useState([]);
+  const [interviewName, SetInterviewName] = useState("");
+  const [companyName, setCompanyName]  = useState("");
   const [selectedJobType, setSelectedJobType] = useState("");
+  const [jobDescription, setJobDescription] =  useState("");
+  const [selectedProject, setSelectedProject] = useState("");
+  const [resumeQuestion, setResumeQuestion] = useState("1");
+  const [csQuestion, setCsQuestion] = useState("0");
+  const navigate = useNavigate();
 
   const handleJobTypeChange = (event) => {
     setSelectedJobType(event.target.value);
   };
 
-  const [selectedProject, setSelectedProject] = useState("");
   const handleProjectChange = (event) => {
-    setSelectedProject(event.target.value);
+    setSelectedProject(parseInt(event.target.value, 10));
   };
+
+  const handleResumeQuestionChange = (event) => {
+    const value = event.target.value.replace(/\D/g, '');
+    setResumeQuestion(value);
+  };
+  
+  const handleCsQuestionChange = (event) => {
+    const value = event.target.value.replace(/\D/g, '');
+    setCsQuestion(value);
+  };
+
+  const handleMakeResumeBtnClick = () => {
+    navigate("/resume");
+  };
+
+  const generateInterviewBtnhandler = () => {
+    if (!interviewName) {
+      alert('면접 이름을 입력해주세요.');
+      return;
+    }
+    if (!companyName) {
+      alert('회사 이름을 입력해주세요.');
+      return;
+    }
+    if (!selectedJobType) {
+      alert('직군을 선택해주세요.');
+      return;
+    }
+    if (!jobDescription) {
+      alert('모집 공고문을 입력해주세요.');
+      return;
+    }
+    const totalQuestions = Number(resumeQuestion) + Number(csQuestion);
+    if (totalQuestions < 1 || totalQuestions > 10) {
+      alert("질문은 총 1개에서 10개까지 가능합니다.");
+      return;
+    }
+
+    generateInterviewApi();
+  };
+
+  const generateInterviewApi = async () => {
+
+    const data = {
+      resumeId: selectedProject,
+      company: companyName,
+      interviewName: interviewName,
+      occupation: selectedJobType,
+      jobDescription: jobDescription,
+      options: {
+        resumeQuestion: resumeQuestion,
+        csQuestion: csQuestion
+      }
+    };
+    try {
+      const res = await api.post("/interview/init", data);
+      console.log(res);
+      if (res.status === 201) {
+        alert("면접을 생성하였습니다. 면접 페이지로 이동합니다.");
+        navigate("/interview", { state: { interviewId: res.data.data.interviewId } });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    const getResumeList = async () => {
+      try {
+        const res = await api.get('/resume');
+        const resumeData = res.data.data;
+
+        setResumes(resumeData);
+        if(resumeData.length > 0) {
+          setSelectedProject(resumeData[0].id);
+        }
+
+        
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getResumeList();
+  }, []);
 
   return (
     <MainContainer>
@@ -34,6 +131,7 @@ const GenerateInterview = () => {
           display: "flex",
           flexDirection: "column",
           margin: "50px 148px",
+          fontSize: "14px"
         }}
       >
         <InterviewSettingTitle>
@@ -61,8 +159,12 @@ const GenerateInterview = () => {
               gap: "8px",
             }}
           >
-            <div>1. 회사 이름을 입력해주세요.</div>
-            <input />
+            <Input
+              label="1. 면접 이름을 입력해주세요."
+              color={InputColor.WHITE}
+              value={interviewName}
+              onChange={SetInterviewName}
+            />
             <div
               style={{
                 display: "flex",
@@ -77,12 +179,18 @@ const GenerateInterview = () => {
                 alt="additional_info_icon"
                 style={{ width: "18px" }}
               />
-              회사 이름은 면접 이름으로 저장됩니다.
+              다른 면접과 구분될 수 있도록 면접 이름을 지어주세요!
             </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <Input
+              label="2. 지원할 회사 이름을 입력해주세요."
+              color={InputColor.WHITE}
+              value={companyName}
+              onChange={setCompanyName}
+            />
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px"}}>
             <div>2. 직군을 선택해주세요.</div>
-            <div style={{ display: "flex", flexDirection: "row", gap: "8px" }}>
+            <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
               <RadioButton
                 name="jobType"
                 value="프론트엔드"
@@ -133,47 +241,75 @@ const GenerateInterview = () => {
               </RadioButton>
             </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            <div>3. 모집 공고문을 입력해주세요. (공백 포함 500자 이내)</div>
-            <input style={{ height: "80px" }}></input>
-          </div>
+          <Textarea
+            label="3. 모집 공고문을 입력해주세요. (공백 포함 500자 이내)"
+            color={TextareaColor.WHITE}
+            value={jobDescription}
+            maxLength={500}
+            onChange={setJobDescription}
+          />
           <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
             <div>4. 제출할 이력서를 선택해주세요.</div>
-            <div style={{ height: "80px" }}>
-              <RadioWithExplain
-                name="project"
-                value="미스터대박"
-                explain={
-                  "학교 소프트웨어 공학 수업에서 진행했던 프로젝트입니다."
-                }
-                checked={selectedProject === "미스터대박"}
-                onChange={handleProjectChange}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                position: "absolute",
+                whiteSpace: "nowrap",
+                left: "897px",
+                gap: "6px",
+              }}
+            >
+              <div style={{display: "flex",gap: "6px"}}>
+                <img
+                  src="/images/ic_additional_info.svg"
+                  alt="additional_info_icon"
+                  style={{ width: "18px" }}
+                />
+                새로운 이력서가 필요하세요?
+              </div>
+              <Board
+                buttonText="이력서 작성하러 가기"
+                buttonHandler={handleMakeResumeBtnClick}
               >
-                미스터대박
-              </RadioWithExplain>
-              <RadioWithExplain
-                name="project"
-                value="uostime"
-                explain={"서울 시립대 학생들을 위한 시간표 제공 서비스입니다."}
-                checked={selectedProject === "uostime"}
-                onChange={handleProjectChange}
-              >
-                uostime
-              </RadioWithExplain>
-              <RadioWithExplain
-                name="project"
-                value="uspray"
-                explain={"기독교 청년들을 위한 기도 수첩 어플입니다."}
-                checked={selectedProject === "uspray"}
-                onChange={handleProjectChange}
-              >
-                uspray
-              </RadioWithExplain>
+                이력서를 분야별로 정리하여, <br />
+                맞춤형 이력서를 제시해보세요!
+              </Board>
+            </div>
+            <div>
+              {resumes.map((resume) => (
+                <RadioWithExplain
+                  key={resume.id}
+                  name="resume"
+                  value={resume.id}
+                  explain={resume.introduction}
+                  checked={selectedProject === resume.id}
+                  onChange={handleProjectChange}
+                >
+                  {resume.name}
+                </RadioWithExplain>
+              ))}
             </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            <div>5. 면접 질문의 개수를 선택해주세요.</div>
-            <input style={{ height: "80px" }}></input>
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            <div>5. 면접 질문의 개수를 선택해주세요. (최대 합 10개 이내)</div>
+            <div style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "4px", marginLeft: "12px"}}>
+              <div style={{fontWeight: "700", width: "132px"}}>이력서 기반 질문 개수</div>
+              <input style={{width: "16px", padding: "2px"}} value={resumeQuestion} onChange={handleResumeQuestionChange}/>
+              <div>개</div>
+            </div>
+            <div style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "4px", marginLeft: "12px"}}>
+              <div style={{fontWeight: "700", width: "132px"}}>CS 기반 질문 개수</div>
+              <input style={{width: "16px", padding: "2px"}} value={csQuestion} onChange={handleCsQuestionChange} />
+              <div>개</div>
+            </div>
+          </div>
+          <div style={{minWidth: "240px", display: "flex", margin: "auto"}}>
+            <Button
+              feature={ButtonFeature.NONE}
+              color={ButtonColor.BLUE}
+              handler={generateInterviewBtnhandler}
+            >면접 생성하기</Button>
           </div>
         </div>
       </div>
@@ -186,7 +322,7 @@ export default GenerateInterview;
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f9fafb;
+  background-color: #ffffff;
 `;
 
 const InterviewSettingTitle = styled.div`

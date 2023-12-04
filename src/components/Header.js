@@ -7,6 +7,11 @@ const Header = () => {
   const handleInterviewClick = () => {
     navigate('/generate-interview');
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem('login-token');
+    navigate('/login');
+  };
   
   return (
     <HeaderContainer>
@@ -17,10 +22,9 @@ const Header = () => {
         <MenuContainer>
           <MenuItem onClick={handleInterviewClick}>면접 생성</MenuItem>
           <MenuItem>이력 조회</MenuItem>
-          <MenuItem>회원 정보</MenuItem>
         </MenuContainer>
       </div>
-      <LogoutButton>로그아웃</LogoutButton>
+      <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
     </HeaderContainer>
   );
 };
@@ -43,7 +47,8 @@ const HeaderContainer = styled.div`
 
 const MenuContainer = styled.div`
   display: flex;
-  gap: 72px;
+  gap: 60px;
+  margin-left: 60px;
 `;
 
 const MenuItem = styled.div`
