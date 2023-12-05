@@ -17,8 +17,7 @@ import { WrapperStyle, LabelStyle } from "../../components/Input/style";
 import ProjectForm from "./ProjectForm";
 import StackChip from "../../components/StackChip/StackChip";
 
-const ProjectView = (props) => {
-  const { project, setProject, addMode } = props;
+const ProjectView = ({ project, setProject, addMode }) => {
 
   const [projectAddMode, setProjectAddMode] = useState(false);
 
