@@ -9,8 +9,7 @@ import Button, {
 import ProjectView from "./ProjectView.js";
 import { ButtonWrapper } from "./style";
 
-const ResumeView = (props) => {
-  const { selectedResumeId, setResumeList, setAddMode } = props;
+const ResumeView = ({ selectedResumeId, setResumeList, setAddMode }) => {
 
   const [name, setName] = useState("");
   const [introduction, setIntroduction] = useState("");
