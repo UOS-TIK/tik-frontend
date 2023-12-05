@@ -53,7 +53,7 @@ const ResumeForm = (props) => {
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) alert("[ResumeForm]addResume");
+      if (e.response.data.data) console.log("[ResumeForm]addResume");
     }
   };
 
@@ -122,7 +122,7 @@ const ResumeForm = (props) => {
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) alert("modifyResume", e.response.data.data);
+      if (e.response.data.data) console.log("modifyResume", e.response.data.data);
     }
   };
 
