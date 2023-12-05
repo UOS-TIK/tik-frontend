@@ -8,8 +8,7 @@ import Button, {
 } from "../../components/Button/Button";
 import ProjectView from "./ProjectView.js";
 
-const ResumeForm = (props) => {
-  const { setResumeList, selectedResumeId, setAddMode } = props;
+const ResumeForm = ({ setResumeList, selectedResumeId, setAddMode }) => {
 
   const [name, setName] = useState("");
   const [introduction, setIntroduction] = useState("");
