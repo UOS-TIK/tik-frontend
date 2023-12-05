@@ -5,9 +5,7 @@ import Input, { InputColor } from "../../components/Input/Input";
 import Button, { ButtonFeature } from "../../components/Button/Button";
 import StackChip from "../../components/StackChip/StackChip";
 
-const SearchStack = (props) => {
-  const { setModalOn, techStack, setTechStack } = props;
-
+const SearchStack = ({ setModalOn, techStack, setTechStack }) => {
   const [string, setString] = useState("");
   const [allstackList, setAllStackList] = useState([]);
   const [searchList, setSearchList] = useState([]);
