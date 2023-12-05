@@ -38,7 +38,7 @@ const Resume = () => {
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) alert("[Resume]getResumeList");
+      if (e.response.data.data) console.log("[Resume]getResumeList");
     }
   };
 
