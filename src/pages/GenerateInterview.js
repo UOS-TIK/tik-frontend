@@ -88,7 +88,7 @@ const GenerateInterview = () => {
       console.log(res);
       if (res.status === 201) {
         alert("면접을 생성하였습니다. 면접 페이지로 이동합니다.");
-        navigate("/interview", { state: { interviewId: res.data.data.interviewId } });
+        navigate("/start-interview", { state: { interviewId: res.data.data.interviewId } });
       }
     } catch (e) {
       console.log(e);

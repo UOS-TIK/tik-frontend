@@ -1,8 +1,9 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import api from "../api/api";
-import Button, { ButtonColor, ButtonFeature } from "../components/Button/Button";
 
-const Interview = () => {
+import { useLocation, useNavigate } from 'react-router-dom';
+import api from '../api/api';
+import Button, { ButtonColor, ButtonFeature } from '../components/Button/Button';
+
+const StartInterview = () => {
   const location = useLocation();
   const interviewId = location.state.interviewId;
   const navigate = useNavigate();
@@ -17,6 +18,10 @@ const Interview = () => {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const startInterview = () => {
+    navigate("/interview", { state: { interviewId: interviewId } });
   };
 
   return (
@@ -38,10 +43,23 @@ const Interview = () => {
         </div>
       </div>
       <div style={{height: "calc(100% - 140px)", border: "2px solid #FFF", backgroundColor: "rgba(255, 255, 255, 0.10)"}}>
-        <div>인터뷰 아이디: {interviewId}</div>
+        <div style={{display: "flex", flexDirection: "column", alignItems:"center", height:"100%", justifyContent: "center", gap: "12px"}}>
+          <img
+            src="/images/ic_robot.svg"
+            alt="robot_icon"
+          />
+          <div style={{fontSize: "18px", textAlign: "center"}}>AI를 기반으로 면접이 생성되었습니다. <br /> 면접을 시작하시겠습니까?</div>
+          <div style={{width: "300px"}}>
+            <Button
+              feature={ButtonFeature.NONE}
+              color={ButtonColor.BLUE}
+              handler={() => startInterview()}
+            >면접 시작하기</Button>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Interview;
+export default StartInterview;

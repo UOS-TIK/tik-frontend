@@ -7,8 +7,9 @@ import ReactSpeechRecognition from "./pages/Test/ReactSpeechRecognition";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Resume from "./pages/Resume";
-import Interview from "./pages/Interview";
 import { useLocation } from 'react-router-dom';
+import StartInterview from "./pages/StartInterview";
+import Interview from "./pages/Interview";
 
 function CheckAuth({children}) {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/resume" element={<CheckAuth><Resume /></CheckAuth>} />
+        <Route path="/start-interview" element={<CheckAuth><StartInterview /></CheckAuth>} />
         <Route path="/interview" element={<CheckAuth><Interview /></CheckAuth>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
