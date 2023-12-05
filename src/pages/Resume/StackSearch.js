@@ -36,7 +36,7 @@ const SearchStack = (props) => {
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) alert("getStackList", e.response.data.data);
+      if (e.response.data.data) console.log("getStackList", e.response.data.data);
     }
   };
 
@@ -52,7 +52,7 @@ const SearchStack = (props) => {
       }
     } catch (e) {
       if (e.response && e.response.data && e.response.data.data) {
-        alert("search", e.response.data.data);
+        console.log("search", e.response.data.data);
       }
     }
   };
