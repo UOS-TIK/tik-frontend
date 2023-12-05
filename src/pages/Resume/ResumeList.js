@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { ListWrapper } from "./style";
 import ResumeListContainer from "./ResumeListContainer";
 
-const ResumeList = (props) => {
-  const { resumeList, selectedResumeId, setSelectedResumeId, setAddMode } =
-    props;
+const ResumeList = ({ resumeList, selectedResumeId, setSelectedResumeId, setAddMode }) => {
 
   useEffect(() => {
     const firstResume = resumeList[0];
