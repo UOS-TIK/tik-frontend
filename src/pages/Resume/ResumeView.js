@@ -6,10 +6,11 @@ import Button, {
   ButtonColor,
   ButtonFeature,
 } from "../../components/Button/Button";
-import ProjectContainer from "./ProjectContainer";
+import ProjectView from "./ProjectView.js";
+import { ButtonWrapper } from "./style";
 
-const ResumeContainer = (props) => {
-  const { selectedResumeId } = props;
+const ResumeView = (props) => {
+  const { selectedResumeId, setResumeList, setAddMode } = props;
 
   const [name, setName] = useState("");
   const [introduction, setIntroduction] = useState("");
@@ -17,7 +18,7 @@ const ResumeContainer = (props) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getResume();
+    if (selectedResumeId !== 0) getResume();
   }, [selectedResumeId]);
 
   const getResume = async () => {
@@ -28,11 +29,25 @@ const ResumeContainer = (props) => {
         setName(res.data.data.name);
         setIntroduction(res.data.data.introduction);
         setProject(res.data.data.projects);
-        console.log(res.data.data);
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) alert(e.response.data.data);
+      if (e.response.data.data) alert("[ResumeView]getResume");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const deleteResume = async () => {
+    try {
+      setLoading(true);
+      const res = await api.patch(`/resume/disable/${selectedResumeId}`);
+      if (res.status === 204) {
+        setResumeList(res.data.data);
+      }
+    } catch (e) {
+      console.log(e);
+      if (e.response.data.data) alert("delete", e.response.data.data);
     } finally {
       setLoading(false);
     }
@@ -50,7 +65,7 @@ const ResumeContainer = (props) => {
             value={name}
             readOnly
           />
-          <ProjectContainer
+          <ProjectView
             setProject={setProject}
             project={project}
             addMode={false}
@@ -61,10 +76,26 @@ const ResumeContainer = (props) => {
             value={introduction}
             readOnly
           />
+          <ButtonWrapper>
+            <Button
+              color={ButtonColor.GRAY}
+              feature={ButtonFeature.LINE}
+              handler={deleteResume}
+            >
+              삭제하기
+            </Button>
+            <Button
+              color={ButtonColor.GRAY}
+              feature={ButtonFeature.NONE}
+              handler={() => setAddMode(true)}
+            >
+              수정하기
+            </Button>
+          </ButtonWrapper>
         </>
       )}
     </>
   );
 };
 
-export default ResumeContainer;
+export default ResumeView;

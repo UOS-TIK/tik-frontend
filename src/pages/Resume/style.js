@@ -116,6 +116,7 @@ export const ProjectWrapperStyle = styled.div`
 `;
 
 export const ProjectNameStyle = styled.div`
+  padding-left: 4px;
   color: rgba(28, 28, 28, 0.7);
   font-size: 14px;
   font-weight: 700;
@@ -123,8 +124,9 @@ export const ProjectNameStyle = styled.div`
 `;
 
 export const ProjectSummaryStyle = styled.div`
+  padding-left: 4px;
   color: rgba(61, 67, 113, 0.5);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 400;
   letter-spacing: -0.1px;
 `;
@@ -145,7 +147,7 @@ export const ModalText = styled.div`
   color: rgba(28, 28, 28, 0.7);
 
   font-family: NanumGothic;
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -163,4 +165,55 @@ export const StackBox = styled.div`
   border-radius: 10px;
   border: 1px solid rgba(61, 67, 113, 0.3);
   background: #fff;
+  max-height: 200px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888; /* 스크롤 바 색상 */
+    border-radius: 10px; /* 스크롤 바 모서리 둥글게 만들기 */
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* 스크롤 바 트랙 배경색 */
+    border-radius: 10px; /* 스크롤 바 트랙 모서리 둥글게 만들기 */
+  }
+
+  &::-webkit-scrollbar-button {
+    height: 10px; /* 버튼의 높이 조절 */
+    opacity: 100%;
+  }
+`;
+
+export const StackContainer = styled.div`
+  display: flex;
+  padding: 8px 16px;
+  align-items: center;
+  align-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  border: 1px solid rgba(61, 67, 113, 0.3);
+  background: #fff;
+`;
+
+export const StackWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  align-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-radius: 10px;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  padding-top: 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 `;

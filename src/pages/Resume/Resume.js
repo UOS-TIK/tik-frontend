@@ -14,17 +14,14 @@ import {
   RightArrow,
   WhiteBoxContainer,
 } from "./style";
-import BlackScreen from "../../components/BlackScren/BlackScren";
-import Modal from "../../components/Modal/Modal";
+
 import ResumeForm from "./ResumeForm";
 import ResumeList from "./ResumeList";
-import StackSearch from "./StackSearch";
-import ResumeContainer from "./ResumeContainer";
+import ResumeView from "./ResumeView";
 
 const Resume = () => {
   //mode
   const [addMode, setAddMode] = useState(false);
-  const [modalOn, setModalOn] = useState(false);
   //variable
   const [resumeList, setResumeList] = useState([]);
   const [selectedResumeId, setSelectedResumeId] = useState(0);
@@ -32,11 +29,6 @@ const Resume = () => {
   useEffect(() => {
     getResumeList();
   }, []);
-
-  useEffect(() => {
-    console.log("modalOn", modalOn);
-    console.log("음");
-  }, [modalOn]);
 
   const getResumeList = async () => {
     try {
@@ -46,25 +38,21 @@ const Resume = () => {
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) alert(e.response.data.data);
+      if (e.response.data.data) alert("[Resume]getResumeList");
     }
   };
 
   function onClickAddButton() {
-    setAddMode(true);
     setSelectedResumeId(0);
+    setAddMode(true);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
   }
 
   return (
     <MainContainer>
-      {modalOn && (
-        <>
-          <Modal>
-            <StackSearch setModalOn={setModalOn} />
-          </Modal>
-          <BlackScreen ModalOn={modalOn} onClick={() => setModalOn(false)} />
-        </>
-      )}
       <Header />
       <MainBanner
         badgeText="이력서 간편 입력"
@@ -106,13 +94,18 @@ const Resume = () => {
                 <br />
                 이력서를 추가해주세요.
               </ImageText>
-            ) : selectedResumeId === 0 ? (
+            ) : addMode ? (
               <ResumeForm
                 setResumeList={setResumeList}
-                setModalOn={setModalOn}
+                selectedResumeId={selectedResumeId}
+                setAddMode={setAddMode}
               />
             ) : (
-              <ResumeContainer selectedResumeId={selectedResumeId} />
+              <ResumeView
+                selectedResumeId={selectedResumeId}
+                setResumeList={setResumeList}
+                setAddMode={setAddMode}
+              />
             )}
           </WhiteBoxContainer>
         </div>

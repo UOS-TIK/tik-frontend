@@ -21,6 +21,7 @@ const ResumeList = (props) => {
           resume={resume}
           selectedResumeId={selectedResumeId}
           setSelectedResumeId={setSelectedResumeId}
+          setAddMode={setAddMode}
         />
       ))}
     </ListWrapper>

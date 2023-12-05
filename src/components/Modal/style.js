@@ -9,12 +9,13 @@ export const ModalWrapper = styled.div`
   transform: ${(props) =>
     props.isModalOn ? "translate(-50%, -50%)" : "translate(-50%, -40%)"};
   display: flex;
-  width: 368px;
-  padding: 8px 16px;
+  width: 416px;
+  padding: 24px 24px 12px 24px;
+  flex-direction: column;
   align-items: flex-start;
   gap: 8px;
   flex-wrap: wrap;
-  border-radius: 10px;
-  border: 1px solid rgba(61, 67, 113, 0.3);
-  background: #fff;
+  border-radius: 20px;
+  border: 3px solid rgba(68, 68, 68, 0.5);
+  background: #f9fafb;
 `;

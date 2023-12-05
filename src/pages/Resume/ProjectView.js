@@ -11,17 +11,33 @@ import {
   GrayBoxContainer,
   ProjectNameStyle,
   ProjectSummaryStyle,
+  StackWrapper,
 } from "./style";
 import { WrapperStyle, LabelStyle } from "../../components/Input/style";
 import ProjectForm from "./ProjectForm";
+import StackChip from "../../components/StackChip/StackChip";
 
-const ProjectContainer = (props) => {
-  const { project, setProject, addMode, setModalOn } = props;
+const ProjectView = (props) => {
+  const { project, setProject, addMode } = props;
 
   const [projectAddMode, setProjectAddMode] = useState(false);
 
   function onClickAddButton() {
     setProjectAddMode(true);
+  }
+
+  function onClickProject(id) {
+    if (addMode) {
+      const result = window.confirm("해당 프로젝트를 삭제하시겠습니까?");
+      if (result) {
+        deleteProject(id);
+      }
+    }
+  }
+
+  function deleteProject(id) {
+    const updatedProjects = project.filter((proj) => proj.id !== id);
+    setProject(updatedProjects);
   }
 
   return (
@@ -46,12 +62,14 @@ const ProjectContainer = (props) => {
                 setProjectAddMode={setProjectAddMode}
                 project={project}
                 setProject={setProject}
-                setModalOn={setModalOn}
               />
             </GrayBoxContainer>
           )}
           {project.map((project) => (
-            <GrayBoxContainer key={project.id}>
+            <GrayBoxContainer
+              key={project.id}
+              onClick={() => onClickProject(project.id)}
+            >
               <div
                 style={{
                   display: "flex",
@@ -72,13 +90,17 @@ const ProjectContainer = (props) => {
                     style={{
                       display: "flex",
                       flexDirection: "column",
-                      gap: "2px",
+                      gap: "6px",
                     }}
                   >
                     <ProjectNameStyle>{project.name}</ProjectNameStyle>
                     <ProjectSummaryStyle>{project.summary}</ProjectSummaryStyle>
                   </div>
-                  <div> 스택 두는 곳</div>
+                  <StackWrapper>
+                    {project.techStack.map((stack) => (
+                      <StackChip key={stack.id}>{stack.name}</StackChip>
+                    ))}
+                  </StackWrapper>
                 </div>
                 <Textarea
                   value={project.description}
@@ -93,4 +115,4 @@ const ProjectContainer = (props) => {
   );
 };
 
-export default ProjectContainer;
+export default ProjectView;

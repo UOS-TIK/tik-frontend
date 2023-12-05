@@ -18,9 +18,8 @@ export const TextareaStyle = styled.textarea`
   resize: none;
 
   &:focus {
-    outline: 2px solid
-      ${(props) =>
-        props.isError ? "rgba(252, 49, 95, 0.50)" : "rgba(141, 153, 243, 0.6)"};
+    outline: ${(props) =>
+      props.readOnly ? "none" : "2px solid rgba(141, 153, 243, 0.6)"};
     outline-offset: -2px;
   }
 

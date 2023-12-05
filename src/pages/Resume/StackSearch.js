@@ -3,24 +3,56 @@ import api from "../../api/api";
 import { ModalText, StackBox } from "./style";
 import Input, { InputColor } from "../../components/Input/Input";
 import Button, { ButtonFeature } from "../../components/Button/Button";
+import StackChip from "../../components/StackChip/StackChip";
 
 const SearchStack = (props) => {
-  const { setModalOn } = props;
+  const { setModalOn, techStack, setTechStack } = props;
 
   const [string, setString] = useState("");
+  const [allstackList, setAllStackList] = useState([]);
   const [searchList, setSearchList] = useState([]);
 
-  const search = async (event) => {
+  useEffect(() => {
+    getStackList();
+  }, []);
+
+  useEffect(() => {
+    setSearchList(allstackList);
+  }, [allstackList]);
+
+  function onClickStack(stack) {
+    if (!techStack.some((item) => item.id === stack.id)) {
+      setTechStack([...techStack, stack]);
+    }
+
+    setModalOn(false);
+  }
+
+  const getStackList = async () => {
     try {
-      const res = await api.get(`/techStack?text=${event.target.value}`);
+      const res = await api.get("/techStack/all");
+      if (res.status === 200) {
+        setAllStackList(res.data.data);
+      }
+    } catch (e) {
+      console.log(e);
+      if (e.response.data.data) alert("getStackList", e.response.data.data);
+    }
+  };
+
+  const search = async (string) => {
+    if (string === "") {
+      setSearchList(allstackList);
+      return;
+    }
+    try {
+      const res = await api.get(`/techStack?text=${string}`);
       if (res.status === 200) {
         setSearchList(res.data.data);
-        console.log("검색 결과", res.data.data);
       }
     } catch (e) {
       if (e.response && e.response.data && e.response.data.data) {
-        // 오류 처리 로직
-        alert(e.response.data.data);
+        alert("search", e.response.data.data);
       }
     }
   };
@@ -34,7 +66,17 @@ const SearchStack = (props) => {
         onChange={search}
       />
       <ModalText>검색 결과</ModalText>
-      <StackBox></StackBox>
+      <StackBox>
+        {searchList.map((stack, index) => (
+          <StackChip
+            key={index}
+            id={stack.id}
+            handler={() => onClickStack(stack)}
+          >
+            {stack.name}
+          </StackChip>
+        ))}
+      </StackBox>
       <div
         style={{
           display: "flex",

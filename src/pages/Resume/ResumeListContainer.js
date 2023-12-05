@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ResumeWrapper, ResumeTitle, ResumeIntroduction } from "./style";
 
 const ResumeListContainer = (props) => {
-  const { resume, setSelectedResumeId, selectedResumeId } = props;
+  const { resume, setSelectedResumeId, selectedResumeId, setAddMode } = props;
   const [selected, setSelected] = useState(false);
 
   useEffect(() => {
@@ -13,6 +13,11 @@ const ResumeListContainer = (props) => {
 
   const clickResume = () => {
     if (!selected) setSelectedResumeId(resume.id);
+    setAddMode(false);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
   };
 
   return (
