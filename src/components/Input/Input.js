@@ -8,9 +8,19 @@ export const InputColor = {
 
 Object.freeze(InputColor);
 
-const Input = ({ type, label, value, onChange, isError, color, maxLength }) => {
+const Input = ({
+  type,
+  label,
+  value,
+  onChange,
+  isError,
+  color,
+  maxLength,
+  readOnly: readOnlyProp,
+}) => {
   const [currentValue, setCurrentValue] = useState(value || "");
   if (!maxLength) maxLength = 100;
+  const [readOnly, setReadOnly] = useState(readOnlyProp || false);
 
   const handleChange = (e) => {
     const inputValue = e.target.value.slice(0, maxLength);
@@ -32,6 +42,7 @@ const Input = ({ type, label, value, onChange, isError, color, maxLength }) => {
         isError={isError}
         color={color}
         maxLength={maxLength}
+        readOnly={readOnly}
       />
     </WrapperStyle>
   );

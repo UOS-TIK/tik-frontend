@@ -5,7 +5,7 @@ export const InputStyle = styled.input`
   height: 20px;
   background: ${(props) => `${props.color}`};
   border-radius: 10px;
-  border: ${(props) => (props.isFocused ? "2px" : "1px")} solid
+  border: ${(props) => (props.isError ? "2px" : "1px")} solid
     ${(props) =>
       props.isError ? "rgba(252, 49, 95, 0.50)" : "rgba(61, 67, 113, 0.3)"};
   padding: 12px;
@@ -15,10 +15,10 @@ export const InputStyle = styled.input`
   letter-spacing: -1px;
 
   &:focus {
-    outline: 2px solid
-      ${(props) =>
-        props.isError ? "rgba(252, 49, 95, 0.50)" : "rgba(141, 153, 243, 0.6)"};
+    outline: ${(props) =>
+      props.readOnly ? "none" : "2px solid rgba(141, 153, 243, 0.6)"};
     outline-offset: -2px;
+    pointer-events: ${(props) => (props.readOnly ? "none" : "auto")};
   }
 `;
 

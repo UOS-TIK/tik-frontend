@@ -6,10 +6,10 @@ import ReactSpeechKit from "./pages/Test/ReactSpeechKit";
 import ReactSpeechRecognition from "./pages/Test/ReactSpeechRecognition";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Resume from "./pages/Resume";
+import Resume from "./pages/Resume/Resume";
 import Interview from "./pages/Interview";
-import History from "./pages/History/History";
 import { useLocation } from "react-router-dom";
+import History from "./pages/History/History";
 
 function CheckAuth({ children }) {
   const navigate = useNavigate();
@@ -78,14 +78,6 @@ function App() {
           element={
             <CheckAuth>
               <Interview />
-            </CheckAuth>
-          }
-        />
-        <Route
-          path="/history"
-          element={
-            <CheckAuth>
-              <History />
             </CheckAuth>
           }
         />
