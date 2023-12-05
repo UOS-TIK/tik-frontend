@@ -78,7 +78,7 @@ const ResumeForm = (props) => {
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) alert("[ResumeForm]getResume");
+      if (e.response.data.data) console.log("[ResumeForm]getResume");
     } finally {
       setLoading(false);
     }
