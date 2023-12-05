@@ -1,27 +1,34 @@
-import { Link, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const Header = () => {
   const navigate = useNavigate();
 
   const handleInterviewClick = () => {
-    navigate('/generate-interview');
+    navigate("/generate-interview");
+  };
+
+  const handleResumeClick = () => {
+    navigate("/resume");
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('login-token');
-    navigate('/login');
+    localStorage.removeItem("login-token");
+    navigate("/login");
   };
-  
+
   return (
     <HeaderContainer>
-      <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+      <div
+        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+      >
         <Link to="/">
-          <img src="images/ic_logo.svg" alt="logo_icon"/>
+          <img src="images/ic_logo.svg" alt="logo_icon" />
         </Link>
         <MenuContainer>
           <MenuItem onClick={handleInterviewClick}>면접 생성</MenuItem>
-          <MenuItem>이력 조회</MenuItem>
+          <MenuItem>면접 이력 조회</MenuItem>
+          <MenuItem onClick={handleResumeClick}>이력서 조회</MenuItem>
         </MenuContainer>
       </div>
       <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
