@@ -25,8 +25,8 @@ const Interview = () => {
         <div style={{color: "#FFFFFFCC", border: "1px solid #FFFFFFCC", width: "fit-content", padding: "6px 10px", borderRadius: "7px"}}>면접 맞춤 진행</div>
         <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
           <div style={{display: "flex", flexDirection: "column", gap: "4px"}}>
-            <div style={{fontSize: "20px", fontWeight: "700"}}>Part 2. 면접을 만들었어요</div>
-            <div>입력한 직군 정보와 이력서를 바탕으로 면접 질문을 생성했습니다.</div>
+            <div style={{fontSize: "20px", fontWeight: "700"}}>Part 3. 면접이 진행 중이에요</div>
+            <div>실제 면접 상황인 것처럼 면접에 임해보세요.</div>
           </div>
           <div style={{width: "300px"}}>
             <Button
@@ -37,8 +37,28 @@ const Interview = () => {
           </div>
         </div>
       </div>
-      <div style={{height: "calc(100% - 140px)", border: "2px solid #FFF", backgroundColor: "rgba(255, 255, 255, 0.10)"}}>
-        <div>인터뷰 아이디: {interviewId}</div>
+      <div style={{height: "calc(100% - 140px)", border: "2px solid #FFF", backgroundColor: "rgba(255, 255, 255, 0.20)", padding: "8px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+      <div style={{flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "flex-end", gap: "2px"}}>
+        <div style={{display: "flex", justifyContent: "flex-start"}}>
+          <div style={{padding: "8px 16px", backgroundColor: "#F9FAFB", borderRadius: "10px", color: "#000", fontSize: "14px" ,width: "fit-content"}}>면접관의 질문입니다.</div>
+        </div>
+        <div style={{display: "flex", justifyContent: "flex-end"}}>
+          <div style={{padding: "8px 16px", backgroundColor: "#8D99F3", borderRadius: "10px", color: "#FFF", fontSize: "14px" ,width: "fit-content"}}>제가 생각할 때는 </div>
+        </div>
+        <div style={{display: "flex", justifyContent: "flex-start"}}>
+          <div style={{padding: "8px 16px", backgroundColor: "#F9FAFB", borderRadius: "10px", color: "#000", fontSize: "14px" ,width: "fit-content"}}>면접관의 질문입니다.</div>
+        </div>
+      </div>
+
+        <div style={{display: "flex",justifyContent: "flex-end"}}>
+           <div style={{width: "300px"}}>
+            <Button
+                feature={ButtonFeature.NONE}
+                color={ButtonColor.BLUE}
+                // handler={() => stopInterviewApi()}
+              >대답할게요!</Button>
+           </div>
+          </div>
       </div>
     </div>
   );
