@@ -32,7 +32,7 @@ const ResumeView = (props) => {
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) alert("[ResumeView]getResume");
+      if (e.response.data.data) console.log("[ResumeView]getResume");
     } finally {
       setLoading(false);
     }
