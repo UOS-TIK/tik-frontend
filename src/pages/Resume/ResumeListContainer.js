@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { ResumeWrapper, ResumeTitle, ResumeIntroduction } from "./style";
 
-const ResumeListContainer = ({ resume, setSelectedResumeId, selectedResumeId, setAddMode }) => {
+const ResumeListContainer = ({
+  resume,
+  setSelectedResumeId,
+  selectedResumeId,
+  setAddMode,
+}) => {
   const [selected, setSelected] = useState(false);
 
   useEffect(() => {

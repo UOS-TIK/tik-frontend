@@ -18,7 +18,6 @@ import ProjectForm from "./ProjectForm";
 import StackChip from "../../components/StackChip/StackChip";
 
 const ProjectView = ({ project, setProject, addMode }) => {
-
   const [projectAddMode, setProjectAddMode] = useState(false);
 
   function onClickAddButton() {

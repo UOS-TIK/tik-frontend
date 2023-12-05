@@ -9,7 +9,6 @@ import Button, {
 import ProjectView from "./ProjectView.js";
 
 const ResumeForm = ({ setResumeList, selectedResumeId, setAddMode }) => {
-
   const [name, setName] = useState("");
   const [introduction, setIntroduction] = useState("");
   const [project, setProject] = useState([]);
@@ -121,7 +120,8 @@ const ResumeForm = ({ setResumeList, selectedResumeId, setAddMode }) => {
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) console.log("modifyResume", e.response.data.data);
+      if (e.response.data.data)
+        console.log("modifyResume", e.response.data.data);
     }
   };
 

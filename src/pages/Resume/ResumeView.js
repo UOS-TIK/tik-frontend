@@ -10,7 +10,6 @@ import ProjectView from "./ProjectView.js";
 import { ButtonWrapper } from "./style";
 
 const ResumeView = ({ selectedResumeId, setResumeList, setAddMode }) => {
-
   const [name, setName] = useState("");
   const [introduction, setIntroduction] = useState("");
   const [project, setProject] = useState([]);

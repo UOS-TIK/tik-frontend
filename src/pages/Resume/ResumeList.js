@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import { ListWrapper } from "./style";
 import ResumeListContainer from "./ResumeListContainer";
 
-const ResumeList = ({ resumeList, selectedResumeId, setSelectedResumeId, setAddMode }) => {
-
+const ResumeList = ({
+  resumeList,
+  selectedResumeId,
+  setSelectedResumeId,
+  setAddMode,
+}) => {
   useEffect(() => {
     const firstResume = resumeList[0];
     if (firstResume) {

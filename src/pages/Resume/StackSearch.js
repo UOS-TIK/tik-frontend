@@ -34,7 +34,8 @@ const SearchStack = ({ setModalOn, techStack, setTechStack }) => {
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) console.log("getStackList", e.response.data.data);
+      if (e.response.data.data)
+        console.log("getStackList", e.response.data.data);
     }
   };
 

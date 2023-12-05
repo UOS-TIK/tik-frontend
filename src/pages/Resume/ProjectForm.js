@@ -14,7 +14,6 @@ import { Stack } from "@mui/material";
 import StackChip from "../../components/StackChip/StackChip";
 
 const ProjectForm = ({ setProjectAddMode, project, setProject }) => {
-
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
   const [description, setDescription] = useState("");
