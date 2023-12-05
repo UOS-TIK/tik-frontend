@@ -47,7 +47,7 @@ const ResumeView = (props) => {
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) alert("delete", e.response.data.data);
+      if (e.response.data.data) console.log("delete", e.response.data.d);
     } finally {
       setLoading(false);
     }
