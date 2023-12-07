@@ -30,7 +30,13 @@ const Interview = () => {
   
         if (isMounted) {
           console.log(res.data.data.reply);
-          setInterviewItems([{ question: res.data.data.reply, answer: '' }]);
+          setInterviewItems(prevItems => {
+            if (prevItems.length === 0) {
+              return [{ question: res.data.data.reply, answer: '' }];
+            }
+            return prevItems;
+          });
+          
         }
       } catch (error) {
         console.log(error);
