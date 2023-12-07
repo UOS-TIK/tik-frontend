@@ -52,7 +52,7 @@ const ResumeView = ({ selectedResumeId, setResumeList, setAddMode }) => {
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) console.log("delete", e.response.data.d);
+      if (e.response.data.data) console.log("delete", e.response.data.data);
     } finally {
       setLoading(false);
     }

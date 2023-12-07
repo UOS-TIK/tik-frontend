@@ -20,6 +20,8 @@ const History = () => {
   const [historyList, setHistoryList] = useState([]);
   const [selectedHistoryId, setSelectedHistoryId] = useState(0);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     getHistoryList();
   }, []);
@@ -29,11 +31,10 @@ const History = () => {
       const res = await api.get("/history/list");
       if (res.status === 200) {
         setHistoryList(res.data.data);
-        console.log("getHistoryList", res.data.data);
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) alert("[History]getHistoryList");
+      if (e.response.data.data) console.log("[History]getHistoryList");
     }
   };
 
@@ -63,8 +64,10 @@ const History = () => {
         <div style={{ display: "flex", flexDirection: "row", gap: "80px" }}>
           <HistoryList
             historyList={historyList}
+            setHistoryList={setHistoryList}
             selectedHistoryId={selectedHistoryId}
             setSelectedHistoryId={setSelectedHistoryId}
+            setLoading={setLoading}
           />
           <WhiteBoxContainer>
             {historyList.length === 0 ? (
@@ -80,6 +83,8 @@ const History = () => {
               <HistoryView
                 selectedHistoryId={selectedHistoryId}
                 setHistoryList={setHistoryList}
+                loading={loading}
+                setLoading={setLoading}
               />
             )}
           </WhiteBoxContainer>

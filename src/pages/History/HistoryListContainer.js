@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import api from "../../api/api";
 import {
   HistoryContainer,
   HistoryContainerImage,
@@ -9,7 +10,13 @@ import {
 } from "./style";
 
 const HistoryListContainer = (props) => {
-  const { history, setSelectedHistoryId, selectedHistoryId } = props;
+  const {
+    history,
+    setHistoryList,
+    setSelectedHistoryId,
+    selectedHistoryId,
+    setLoading,
+  } = props;
   const [selected, setSelected] = useState(false);
 
   useEffect(() => {
@@ -24,6 +31,28 @@ const HistoryListContainer = (props) => {
       top: 0,
       left: 0,
     });
+  };
+
+  function onClickDeleteButton() {
+    const result = window.confirm("해당 면접 이력를 삭제하시겠습니까?");
+    if (result) {
+      deleteHistory();
+    }
+  }
+
+  const deleteHistory = async () => {
+    try {
+      setLoading(true);
+      const res = await api.delete(`/history/delete/${selectedHistoryId}`);
+      if (res.status === 200) {
+        setHistoryList(res.data.data);
+      }
+    } catch (e) {
+      console.log(e);
+      if (e.response.data.data) console.log("delete", e.response.data.data);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -51,10 +80,13 @@ const HistoryListContainer = (props) => {
           <HistoryIntroduction>
             {history.beginTime === null
               ? "진행되지 않은 면접입니다."
-              : history.beginTime}
+              : history.beginTime.replace("T", " ")}
           </HistoryIntroduction>
         </HistoryTextWrapper>
-        <HistoryDeleteImage src={"images/ic_history.svg"} />
+        <HistoryDeleteImage
+          src={"images/ic_history.svg"}
+          onClick={onClickDeleteButton}
+        />
       </div>
     </HistoryContainer>
   );

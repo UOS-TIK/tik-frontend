@@ -6,15 +6,20 @@ import Button, {
   ButtonColor,
   ButtonFeature,
 } from "../../components/Button/Button";
-import { ButtonWrapper } from "./style";
+import {
+  ButtonWrapper,
+  HistoryTextStyle,
+  LabelStyle,
+  ItemContainer,
+  MainLabelStyle,
+} from "./style";
+import Content from "./Content";
 
 const HistoryView = (props) => {
-  const { selectedHistoryId, setHistoryList, setAddMode } = props;
+  const { selectedHistoryId, setHistoryList, setAddMode, loading, setLoading } =
+    props;
 
-  const [name, setName] = useState("");
-  const [introduction, setIntroduction] = useState("");
-  const [project, setProject] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [history, setHistory] = useState({});
 
   useEffect(() => {
     if (selectedHistoryId !== 0) getHistory();
@@ -27,13 +32,11 @@ const HistoryView = (props) => {
         `/history/view?interviewHistoryId=${selectedHistoryId}`
       );
       if (res.status === 200) {
-        setName(res.data.data.name);
-        setIntroduction(res.data.data.introduction);
-        setProject(res.data.data.projects);
+        setHistory(res.data.data);
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) alert("[HistoryView]getHistory");
+      if (e.response.data.data) console.log("[HistoryView]getHistory");
     } finally {
       setLoading(false);
     }
@@ -48,7 +51,7 @@ const HistoryView = (props) => {
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.data) alert("delete", e.response.data.data);
+      if (e.response.data.data) console.log("delete", e.response.data.data);
     } finally {
       setLoading(false);
     }
@@ -60,34 +63,17 @@ const HistoryView = (props) => {
         <span>로딩중</span>
       ) : (
         <>
-          <Input
-            label="이력서 이름"
-            color={InputColor.GRAY}
-            value={name}
-            readOnly
-          />
-          <Textarea
-            label="설명"
-            color={InputColor.GRAY}
-            value={introduction}
-            readOnly
-          />
-          <ButtonWrapper>
-            <Button
-              color={ButtonColor.GRAY}
-              feature={ButtonFeature.LINE}
-              handler={deleteHistory}
-            >
-              삭제하기
-            </Button>
-            <Button
-              color={ButtonColor.GRAY}
-              feature={ButtonFeature.NONE}
-              handler={() => setAddMode(true)}
-            >
-              수정하기
-            </Button>
-          </ButtonWrapper>
+          <div style={{ width: "100%" }}>
+            <HistoryTextStyle>2023/10/04(수) 17:45 제작</HistoryTextStyle>
+          </div>
+          <Content label="면접 상세 정보">
+            <ItemContainer>
+              <LabelStyle>
+                - 회사 이름:{" "}
+                <MainLabelStyle>{history.interviewName}</MainLabelStyle>
+              </LabelStyle>
+            </ItemContainer>
+          </Content>
         </>
       )}
     </>

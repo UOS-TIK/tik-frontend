@@ -3,12 +3,18 @@ import { ListWrapper } from "./style";
 import HistoryListContainer from "./HistoryListContainer";
 
 const HistoryList = (props) => {
-  const { historyList, selectedHistoryId, setSelectedHistoryId } = props;
+  const {
+    historyList,
+    setHistoryList,
+    selectedHistoryId,
+    setSelectedHistoryId,
+    setLoading,
+  } = props;
 
   useEffect(() => {
     const firstHistory = historyList[0];
     if (firstHistory) {
-      setSelectedHistoryId(firstHistory.InterviewHistoryId);
+      setSelectedHistoryId(firstHistory.interviewHistoryId);
     }
   }, [historyList]);
 
@@ -18,8 +24,10 @@ const HistoryList = (props) => {
         <HistoryListContainer
           key={history.id}
           history={history}
+          setHistoryList={setHistoryList}
           selectedHistoryId={selectedHistoryId}
           setSelectedHistoryId={setSelectedHistoryId}
+          setLoading={setLoading}
         />
       ))}
     </ListWrapper>

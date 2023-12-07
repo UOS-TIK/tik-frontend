@@ -8,6 +8,10 @@ const Header = () => {
     navigate("/generate-interview");
   };
 
+  const handleHistoryClick = () => {
+    navigate("/history");
+  };
+
   const handleResumeClick = () => {
     navigate("/resume");
   };
@@ -27,7 +31,7 @@ const Header = () => {
         </Link>
         <MenuContainer>
           <MenuItem onClick={handleInterviewClick}>면접 생성</MenuItem>
-          <MenuItem>면접 이력 조회</MenuItem>
+          <MenuItem onClick={handleHistoryClick}>면접 이력 조회</MenuItem>
           <MenuItem onClick={handleResumeClick}>이력서 조회</MenuItem>
         </MenuContainer>
       </div>
