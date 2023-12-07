@@ -36,28 +36,6 @@ const ResumeView = ({ selectedResumeId, setResumeList, setAddMode }) => {
     }
   };
 
-  function onClickDeleteButton() {
-    const result = window.confirm("해당 프로젝트를 삭제하시겠습니까?");
-    if (result) {
-      deleteResume();
-    }
-  }
-
-  const deleteResume = async () => {
-    try {
-      setLoading(true);
-      const res = await api.patch(`/resume/disable/${selectedResumeId}`);
-      if (res.status === 200) {
-        setResumeList(res.data.data);
-      }
-    } catch (e) {
-      console.log(e);
-      if (e.response.data.data) console.log("delete", e.response.data.data);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <>
       {loading ? (
@@ -81,22 +59,6 @@ const ResumeView = ({ selectedResumeId, setResumeList, setAddMode }) => {
             value={introduction}
             readOnly
           />
-          <ButtonWrapper>
-            <Button
-              color={ButtonColor.GRAY}
-              feature={ButtonFeature.LINE}
-              handler={onClickDeleteButton}
-            >
-              삭제하기
-            </Button>
-            <Button
-              color={ButtonColor.GRAY}
-              feature={ButtonFeature.NONE}
-              handler={() => setAddMode(true)}
-            >
-              수정하기
-            </Button>
-          </ButtonWrapper>
         </>
       )}
     </>

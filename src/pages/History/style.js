@@ -41,6 +41,7 @@ export const ListWrapper = styled.div`
   width: 400px;
   max-height: 500px;
   overflow-y: auto;
+  padding-right: 4px;
 
   &::-webkit-scrollbar {
     width: 4px;
@@ -153,7 +154,7 @@ export const GrayBoxContainer = styled.div`
   width: calc(100% - 24px);
   padding: 12px;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   border-radius: 20px;
   border: 1px solid rgba(61, 67, 113, 0.3);
   background: rgba(61, 67, 113, 0.03);
@@ -165,4 +166,100 @@ export const ItemContainer = styled.div`
   width: 100%;
   flex-direction: row;
   align-items: center;
+`;
+
+export const ModalScroll = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding-right: 4px;
+  width: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888; /* 스크롤 바 색상 */
+    border-radius: 10px; /* 스크롤 바 모서리 둥글게 만들기 */
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* 스크롤 바 트랙 배경색 */
+    border-radius: 10px; /* 스크롤 바 트랙 모서리 둥글게 만들기 */
+  }
+
+  &::-webkit-scrollbar-button {
+    height: 1px; /* 버튼의 높이 조절 */
+    opacity: 100%;
+  }
+`;
+
+export const HistoryViewFeedBack = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+`;
+
+export const DialogWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  flex-direction: column;
+`;
+
+export const InterviewQuestion = styled.div`
+  padding: 8px 16px;
+  background-color: #f9fafb;
+  border-radius: 10px;
+  color: #000;
+  font-size: 14px;
+  width: fit-content;
+  line-height: 24px;
+`;
+
+export const InterviewAnswer = styled.div`
+  padding: 8px 16px;
+  background-color: #8d99f3;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  line-height: 24px;
+`;
+
+export const Line = styled.hr`
+  align-self: stretch;
+  height: 1px;
+  background-color: #fff;
+  width: 100%;
+  border: none;
+`;
+
+export const DialogFeedback = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  align-self: stretch;
+  flex-direction: row;
+`;
+
+export const DialogScore = styled.div`
+  display: flex;
+  padding: 6px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #fff;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.7px;
 `;

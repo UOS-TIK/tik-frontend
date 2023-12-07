@@ -89,6 +89,7 @@ const ProjectView = ({ project, setProject, addMode }) => {
                       display: "flex",
                       flexDirection: "column",
                       gap: "6px",
+                      width: "auto",
                     }}
                   >
                     <ProjectNameStyle>{project.name}</ProjectNameStyle>

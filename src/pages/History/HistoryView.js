@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
-import Input, { InputColor } from "../../components/Input/Input";
-import Textarea, { TextareaColor } from "../../components/Textarea/Textarea";
-import Button, {
-  ButtonColor,
-  ButtonFeature,
-} from "../../components/Button/Button";
 import {
-  ButtonWrapper,
   HistoryTextStyle,
-  LabelStyle,
-  ItemContainer,
-  MainLabelStyle,
+  HistoryViewFeedBack,
+  WhiteBoxContainer,
 } from "./style";
-import Content from "./Content";
+import HistoryViewDetail from "./HistoryViewDetail";
+import HistoryViewResult from "./HistoryViewResult";
+import HistoryViewDialog from "./HistoryViewDialog";
+import ImageText, {
+  ImageTextColor,
+} from "../../components/ImageText/ImageText";
+import Textarea, { TextareaColor } from "../../components/Textarea/Textarea";
 
 const HistoryView = (props) => {
   const { selectedHistoryId, setHistoryList, setAddMode, loading, setLoading } =
@@ -42,21 +40,6 @@ const HistoryView = (props) => {
     }
   };
 
-  const deleteHistory = async () => {
-    try {
-      setLoading(true);
-      const res = await api.patch(`/history/disable/${selectedHistoryId}`);
-      if (res.status === 204) {
-        setHistoryList(res.data.data);
-      }
-    } catch (e) {
-      console.log(e);
-      if (e.response.data.data) console.log("delete", e.response.data.data);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <>
       {loading ? (
@@ -64,27 +47,35 @@ const HistoryView = (props) => {
       ) : (
         <>
           <div style={{ width: "100%" }}>
-            <HistoryTextStyle>2023/10/04(수) 17:45 제작</HistoryTextStyle>
+            <HistoryTextStyle>
+              {history.beginTime.replace("T", " ")} 제작
+            </HistoryTextStyle>
           </div>
-          <Content label="면접 상세 정보">
-            <ItemContainer>
-              <LabelStyle>
-                - 회사 이름:{" "}
-                <MainLabelStyle>{history.interviewName}</MainLabelStyle>
-              </LabelStyle>
-            </ItemContainer>
-            <LabelStyle>
-              - 직군: <MainLabelStyle>{history.interviewName}</MainLabelStyle>
-            </LabelStyle>
-            <LabelStyle>
-              - 입력한 모집 공고문:{" "}
-              <MainLabelStyle>{history.interviewName}</MainLabelStyle>
-            </LabelStyle>
-            <LabelStyle>
-              - 입력한 이력서:{" "}
-              <MainLabelStyle>{history.interviewName}</MainLabelStyle>
-            </LabelStyle>
-          </Content>
+          <HistoryViewDetail history={history} />
+          {history.score === null ? (
+            <div style={{ width: "100%" }}>
+              <ImageText
+                imageUrl="images/ic_resume.svg"
+                color={ImageTextColor.BLUE}
+              >
+                피드백 및 저장 중입니다.
+                <br />약 10분 후 확인하실 수 있습니다.
+              </ImageText>
+            </div>
+          ) : (
+            <>
+              <HistoryViewResult history={history} />
+              <HistoryViewFeedBack>
+                <Textarea
+                  label="피드백"
+                  color={TextareaColor.GRAY}
+                  value={history.comment}
+                  readOnly
+                />
+              </HistoryViewFeedBack>
+              <HistoryViewDialog dialog={history.question} />
+            </>
+          )}
         </>
       )}
     </>

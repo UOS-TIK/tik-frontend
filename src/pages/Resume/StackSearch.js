@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import api from "../../api/api";
 import { ModalText, StackBox } from "./style";
 import Input, { InputColor } from "../../components/Input/Input";
-import Button, { ButtonFeature } from "../../components/Button/Button";
 import StackChip from "../../components/StackChip/StackChip";
 
 const SearchStack = ({ setModalOn, techStack, setTechStack }) => {
@@ -76,25 +75,6 @@ const SearchStack = ({ setModalOn, techStack, setTechStack }) => {
           </StackChip>
         ))}
       </StackBox>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          paddingTop: "8px",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "10px",
-          alignSelf: "stretch",
-        }}
-      >
-        <Button
-          feature={ButtonFeature.FLEXIBLE}
-          handler={() => setModalOn(false)}
-        >
-          닫기
-        </Button>
-      </div>
     </>
   );
 };

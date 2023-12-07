@@ -156,7 +156,7 @@ export const ModalText = styled.div`
 
 export const StackBox = styled.div`
   display: flex;
-  width: 368px;
+  width: calc(100% - 24px);
   height: 128px;
   padding: 8px 16px;
   align-items: flex-start;
@@ -203,10 +203,11 @@ export const StackContainer = styled.div`
 export const StackWrapper = styled.div`
   display: flex;
   align-items: center;
-  align-content: center;
   gap: 8px;
-  flex-wrap: wrap;
   border-radius: 10px;
+  width: 30%;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
 `;
 
 export const ButtonWrapper = styled.div`
