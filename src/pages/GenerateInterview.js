@@ -10,6 +10,7 @@ import Button, { ButtonColor, ButtonFeature } from "../components/Button/Button"
 import { useNavigate } from "react-router-dom";
 import Board from "../components/Board/Board";
 import api from "../api/api";
+import LoaderModal from "../components/LoaderModal/LoaderModal";
 
 const GenerateInterview = () => {
   const [resumes, setResumes] = useState([]);
@@ -116,6 +117,7 @@ const GenerateInterview = () => {
 
   return (
     <MainContainer>
+      <LoaderModal></LoaderModal>
       <Header />
       <MainBanner
         badgeText="모의면접 생성"
