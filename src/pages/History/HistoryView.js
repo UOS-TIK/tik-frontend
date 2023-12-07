@@ -73,6 +73,17 @@ const HistoryView = (props) => {
                 <MainLabelStyle>{history.interviewName}</MainLabelStyle>
               </LabelStyle>
             </ItemContainer>
+            <LabelStyle>
+              - 직군: <MainLabelStyle>{history.interviewName}</MainLabelStyle>
+            </LabelStyle>
+            <LabelStyle>
+              - 입력한 모집 공고문:{" "}
+              <MainLabelStyle>{history.interviewName}</MainLabelStyle>
+            </LabelStyle>
+            <LabelStyle>
+              - 입력한 이력서:{" "}
+              <MainLabelStyle>{history.interviewName}</MainLabelStyle>
+            </LabelStyle>
           </Content>
         </>
       )}
