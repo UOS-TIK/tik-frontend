@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import GenerateInterview from "./pages/GenerateInterview";
-import Main from "./pages/Main";
+import Main from "./pages/Main/Main";
 import ReactSpeechKit from "./pages/Test/ReactSpeechKit";
 import ReactSpeechRecognition from "./pages/Test/ReactSpeechRecognition";
 import Login from "./pages/Login";

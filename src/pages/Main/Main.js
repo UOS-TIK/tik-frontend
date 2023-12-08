@@ -1,10 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import Header from "../components/Header";
-import InterviewHistoryItem from "../components/Main/InterviewHistoryItem";
-import MainBanner from "../components/MainBanner/MainBanner";
-import Board from "../components/Board/Board";
+import Header from "../../components/Header";
+import InterviewHistoryItem from "./InterviewHistoryItem";
+import MainBanner from "../../components/MainBanner/MainBanner";
+import Board from "../../components/Board/Board";
+import {
+  MainContainer,
+  InterviewSection,
+  InterviewHistory,
+  HistorySectionTitle,
+  RightArrow,
+  HistoryItems,
+} from "./style";
 
 const Main = () => {
   const navigate = useNavigate();
@@ -49,43 +56,5 @@ const Main = () => {
     </MainContainer>
   );
 };
-
-const MainContainer = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #f9fafb;
-`;
-
-const InterviewSection = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin: 50px 148px;
-`;
-
-const InterviewHistory = styled.div`
-  display: flex;
-  flex-grow: 2;
-  flex-direction: column;
-`;
-
-const HistorySectionTitle = styled.div`
-  color: #1c1c1c;
-  font-weight: 700;
-  font-size: 20px;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-`;
-
-const RightArrow = styled.img`
-  width: 17px;
-  margin-left: 4px;
-`;
-
-const HistoryItems = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-`;
 
 export default Main;
