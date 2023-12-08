@@ -26,7 +26,7 @@ const HistoryView = (props) => {
       );
       if (res.status === 200) {
         setHistory(res.data.data);
-        console.log(res.data.data.question);
+        console.log(res.data.data);
       }
     } catch (e) {
       console.log(e);
