@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import {PropagateLoader} from 'react-spinners';
+import {DotLoader} from 'react-spinners';
 
 const LoaderModal = () => {
+
   return (
-    <ModalContainer>면접을 생성하는 중입니다. <br /> 조금만 기다려주세요.
-      <PropagateLoader color="#3d4371" />
+    <ModalContainer>
+      <div style={{textAlign: "center"}}>면접을 생성하는 중입니다. <br /> 조금만 기다려주세요.</div>
+      <DotLoader color="#3d4371" />
     </ModalContainer>
   );
 };
@@ -20,13 +22,15 @@ const ModalContainer = styled.div`
   transform: ${(props) =>
     props.isModalOn ? "translate(-50%, -50%)" : "translate(-50%, -40%)"};
   display: flex;
-  width: 400px;
-  padding: 24px 24px 12px 24px;
+  width: 360px;
+  padding: 24px 24px 34px 24px;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
+  gap: 20px;
   flex-wrap: wrap;
   border-radius: 20px;
   border: 3px solid rgba(68, 68, 68, 0.5);
   background: #f9fafb;
+  align-items: center;
+  color: #3D4371;
+  font-weight: 600;
 `;
