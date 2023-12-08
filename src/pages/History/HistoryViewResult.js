@@ -1,20 +1,5 @@
-import { useEffect, useState } from "react";
-import Button, {
-  ButtonColor,
-  ButtonFeature,
-} from "../../components/Button/Button";
-import Modal, { ModalSize } from "../../components/Modal/Modal";
-import BackScreen from "../../components/BackScreen/BackScreen";
 import Content from "./Content";
-import JobDescription from "./JobDescription";
-import ResumeView from "../Resume/ResumeView";
-import {
-  HistoryTextStyle,
-  LabelStyle,
-  ItemContainer,
-  MainLabelStyle,
-  ModalScroll,
-} from "./style";
+import { LabelStyle, ItemContainer, MainLabelStyle } from "./style";
 
 const HistoryViewResult = ({ history }) => {
   const { minutes, seconds } = getTimeDifference(

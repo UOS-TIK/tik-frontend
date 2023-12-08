@@ -1,9 +1,6 @@
 import { useState } from "react";
 import Textarea from "../../components/Textarea/Textarea";
-import Button, {
-  ButtonColor,
-  ButtonFeature,
-} from "../../components/Button/Button";
+import Button, { ButtonFeature } from "../../components/Button/Button";
 import {
   TitleWrapper,
   NoContentContainer,

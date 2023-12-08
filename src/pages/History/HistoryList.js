@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ListWrapper } from "./style";
 import HistoryListContainer from "./HistoryListContainer";
 

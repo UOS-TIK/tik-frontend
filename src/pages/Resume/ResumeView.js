@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
 import Input, { InputColor } from "../../components/Input/Input";
-import Textarea, { TextareaColor } from "../../components/Textarea/Textarea";
-import Button, {
-  ButtonColor,
-  ButtonFeature,
-} from "../../components/Button/Button";
+import Textarea from "../../components/Textarea/Textarea";
 import ProjectView from "./ProjectView.js";
-import { ButtonWrapper } from "./style";
 
 const ResumeView = ({ selectedResumeId, setResumeList, setAddMode }) => {
   const [name, setName] = useState("");

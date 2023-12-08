@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
-import {
-  HistoryTextStyle,
-  HistoryViewFeedBack,
-  WhiteBoxContainer,
-} from "./style";
+import { HistoryTextStyle, HistoryViewFeedBack } from "./style";
 import HistoryViewDetail from "./HistoryViewDetail";
 import HistoryViewResult from "./HistoryViewResult";
 import HistoryViewDialog from "./HistoryViewDialog";
@@ -14,8 +10,7 @@ import ImageText, {
 import Textarea, { TextareaColor } from "../../components/Textarea/Textarea";
 
 const HistoryView = (props) => {
-  const { selectedHistoryId, setHistoryList, setAddMode, loading, setLoading } =
-    props;
+  const { selectedHistoryId, loading, setLoading } = props;
 
   const [history, setHistory] = useState({});
 

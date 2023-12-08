@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { WrapperStyle, LabelStyle, GrayBoxContainer } from "./style";
 
 const Content = ({ label, value, children }) => {
