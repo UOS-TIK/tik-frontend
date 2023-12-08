@@ -31,6 +31,7 @@ const HistoryView = (props) => {
       );
       if (res.status === 200) {
         setHistory(res.data.data);
+        console.log(res.data.data.question);
       }
     } catch (e) {
       console.log(e);
@@ -52,8 +53,15 @@ const HistoryView = (props) => {
             </HistoryTextStyle>
           </div>
           <HistoryViewDetail history={history} />
-          {history.score === null ? (
-            <div style={{ width: "100%" }}>
+          {history.comment === null ? (
+            <div
+              style={{
+                width: "100%",
+                height: "350px",
+                borderRadius: "20px",
+                border: "1px solid rgba(0, 0, 0, 0.1)",
+              }}
+            >
               <ImageText
                 imageUrl="images/ic_resume.svg"
                 color={ImageTextColor.BLUE}

@@ -119,6 +119,7 @@ export const WhiteBoxContainer = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
   background: #fff;
   min-height: 350px;
+  height: fit-content;
 `;
 
 export const HistoryTextStyle = styled.div`
