@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Resume from "./pages/Resume/Resume";
 import Interview from "./pages/Interview";
+import History from "./pages/History/History";
 import { useLocation } from "react-router-dom";
 
 function CheckAuth({ children }) {
@@ -69,6 +70,14 @@ function App() {
           element={
             <CheckAuth>
               <Resume />
+            </CheckAuth>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <CheckAuth>
+              <History />
             </CheckAuth>
           }
         />

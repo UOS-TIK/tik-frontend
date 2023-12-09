@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
 import Input, { InputColor } from "../../components/Input/Input";
-import Textarea, { TextareaColor } from "../../components/Textarea/Textarea";
-import Button, {
-  ButtonColor,
-  ButtonFeature,
-} from "../../components/Button/Button";
+import Textarea from "../../components/Textarea/Textarea";
 import ProjectView from "./ProjectView.js";
-import { ButtonWrapper } from "./style";
 
 const ResumeView = ({ selectedResumeId, setResumeList, setAddMode }) => {
   const [name, setName] = useState("");
@@ -36,28 +31,6 @@ const ResumeView = ({ selectedResumeId, setResumeList, setAddMode }) => {
     }
   };
 
-  function onClickDeleteButton() {
-    const result = window.confirm("해당 프로젝트를 삭제하시겠습니까?");
-    if (result) {
-      deleteResume();
-    }
-  }
-
-  const deleteResume = async () => {
-    try {
-      setLoading(true);
-      const res = await api.patch(`/resume/disable/${selectedResumeId}`);
-      if (res.status === 200) {
-        setResumeList(res.data.data);
-      }
-    } catch (e) {
-      console.log(e);
-      if (e.response.data.data) console.log("delete", e.response.data.d);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <>
       {loading ? (
@@ -81,22 +54,6 @@ const ResumeView = ({ selectedResumeId, setResumeList, setAddMode }) => {
             value={introduction}
             readOnly
           />
-          <ButtonWrapper>
-            <Button
-              color={ButtonColor.GRAY}
-              feature={ButtonFeature.LINE}
-              handler={onClickDeleteButton}
-            >
-              삭제하기
-            </Button>
-            <Button
-              color={ButtonColor.GRAY}
-              feature={ButtonFeature.NONE}
-              handler={() => setAddMode(true)}
-            >
-              수정하기
-            </Button>
-          </ButtonWrapper>
         </>
       )}
     </>

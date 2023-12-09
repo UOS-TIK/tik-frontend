@@ -94,6 +94,7 @@ export const WhiteBoxContainer = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
   background: #fff;
   min-height: 350px;
+  height: fit-content;
 `;
 
 export const GrayBoxContainer = styled.div`
@@ -156,7 +157,7 @@ export const ModalText = styled.div`
 
 export const StackBox = styled.div`
   display: flex;
-  width: 368px;
+  width: calc(100% - 24px);
   height: 128px;
   padding: 8px 16px;
   align-items: flex-start;
@@ -203,10 +204,11 @@ export const StackContainer = styled.div`
 export const StackWrapper = styled.div`
   display: flex;
   align-items: center;
-  align-content: center;
   gap: 8px;
-  flex-wrap: wrap;
   border-radius: 10px;
+  width: 30%;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
 `;
 
 export const ButtonWrapper = styled.div`
