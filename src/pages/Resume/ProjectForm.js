@@ -10,7 +10,6 @@ import { WrapperStyle, LabelStyle } from "../../components/Input/style";
 import BackScreen from "../../components/BackScreen/BackScreen";
 import Modal from "../../components/Modal/Modal";
 import StackSearch from "./StackSearch";
-import { Stack } from "@mui/material";
 import StackChip from "../../components/StackChip/StackChip";
 
 const ProjectForm = ({ setProjectAddMode, project, setProject }) => {
@@ -61,7 +60,7 @@ const ProjectForm = ({ setProjectAddMode, project, setProject }) => {
     <>
       {modalOn && (
         <>
-          <Modal>
+          <Modal title="스택 검색" closeFunc={setModalOn}>
             <StackSearch
               setModalOn={setModalOn}
               techStack={techStack}

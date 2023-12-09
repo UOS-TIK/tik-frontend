@@ -10,6 +10,8 @@ import Button, { ButtonColor, ButtonFeature } from "../components/Button/Button"
 import { useNavigate } from "react-router-dom";
 import Board from "../components/Board/Board";
 import api from "../api/api";
+import LoaderModal from "../components/LoaderModal/LoaderModal";
+import BackScreen from "../components/BackScreen/BackScreen";
 
 const GenerateInterview = () => {
   const [resumes, setResumes] = useState([]);
@@ -20,6 +22,7 @@ const GenerateInterview = () => {
   const [selectedProject, setSelectedProject] = useState("");
   const [resumeQuestion, setResumeQuestion] = useState("1");
   const [csQuestion, setCsQuestion] = useState("0");
+  const [modalOn, setModalOn] = useState(false);
   const navigate = useNavigate();
 
   const handleJobTypeChange = (event) => {
@@ -67,6 +70,7 @@ const GenerateInterview = () => {
       return;
     }
 
+    setModalOn(true);
     generateInterviewApi();
   };
 
@@ -87,8 +91,8 @@ const GenerateInterview = () => {
       const res = await api.post("/interview/init", data);
       console.log(res);
       if (res.status === 201) {
-        alert("면접을 생성하였습니다. 면접 페이지로 이동합니다.");
-        navigate("/interview", { state: { interviewId: res.data.data.interviewId } });
+        setModalOn(false);
+        navigate("/start-interview", { state: { interviewId: res.data.data.interviewId } });
       }
     } catch (e) {
       console.log(e);
@@ -116,6 +120,12 @@ const GenerateInterview = () => {
 
   return (
     <MainContainer>
+      {modalOn && (
+        <>
+          <LoaderModal/>
+          <BackScreen ModalOn={modalOn} onClick={() => setModalOn(false)} />
+        </>
+      )}
       <Header />
       <MainBanner
         badgeText="모의면접 생성"
@@ -308,7 +318,7 @@ const GenerateInterview = () => {
             <Button
               feature={ButtonFeature.NONE}
               color={ButtonColor.BLUE}
-              handler={generateInterviewBtnhandler}
+              handler={() =>{generateInterviewBtnhandler();}}
             >면접 생성하기</Button>
           </div>
         </div>

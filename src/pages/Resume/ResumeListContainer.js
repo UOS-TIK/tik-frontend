@@ -27,7 +27,11 @@ const ResumeListContainer = ({
   return (
     <ResumeWrapper selected={selected} onClick={clickResume}>
       <ResumeTitle>{resume.name}</ResumeTitle>
-      <ResumeIntroduction>{resume.introduction}</ResumeIntroduction>
+      <ResumeIntroduction>
+        {resume.introduction.length > 35
+          ? `${resume.introduction.slice(0, 35)}...`
+          : resume.introduction}
+      </ResumeIntroduction>
     </ResumeWrapper>
   );
 };

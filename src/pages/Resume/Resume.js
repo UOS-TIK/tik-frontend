@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import api from "../../api/api";
 import Header from "../../components/Header";
 import MainBanner from "../../components/MainBanner/MainBanner";
-import Button, { ButtonFeature } from "../../components/Button/Button";
+import Button, {
+  ButtonFeature,
+  ButtonColor,
+} from "../../components/Button/Button";
 import ImageText, {
   ImageTextColor,
 } from "../../components/ImageText/ImageText";
@@ -13,6 +16,7 @@ import {
   InterviewSettingTitle,
   RightArrow,
   WhiteBoxContainer,
+  ButtonWrapper,
 } from "./style";
 
 import ResumeForm from "./ResumeForm";
@@ -50,6 +54,26 @@ const Resume = () => {
       left: 0,
     });
   }
+
+  function onClickDeleteButton() {
+    const result = window.confirm("해당 프로젝트를 삭제하시겠습니까?");
+    if (result) {
+      deleteResume();
+    }
+  }
+
+  const deleteResume = async () => {
+    try {
+      const res = await api.patch(`/resume/disable/${selectedResumeId}`);
+      if (res.status === 200) {
+        setResumeList(res.data.data);
+      }
+    } catch (e) {
+      console.log(e);
+      if (e.response.data.data) console.log("delete", e.response.data.data);
+    } finally {
+    }
+  };
 
   return (
     <MainContainer>
@@ -101,11 +125,29 @@ const Resume = () => {
                 setAddMode={setAddMode}
               />
             ) : (
-              <ResumeView
-                selectedResumeId={selectedResumeId}
-                setResumeList={setResumeList}
-                setAddMode={setAddMode}
-              />
+              <>
+                <ResumeView
+                  selectedResumeId={selectedResumeId}
+                  setResumeList={setResumeList}
+                  setAddMode={setAddMode}
+                />
+                <ButtonWrapper>
+                  <Button
+                    color={ButtonColor.GRAY}
+                    feature={ButtonFeature.LINE}
+                    handler={onClickDeleteButton}
+                  >
+                    삭제하기
+                  </Button>
+                  <Button
+                    color={ButtonColor.GRAY}
+                    feature={ButtonFeature.NONE}
+                    handler={() => setAddMode(true)}
+                  >
+                    수정하기
+                  </Button>
+                </ButtonWrapper>
+              </>
             )}
           </WhiteBoxContainer>
         </div>
