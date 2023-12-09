@@ -79,6 +79,7 @@ export const HistoryContainer = styled.div`
 export const HistoryContainerImage = styled.img`
   width: 22px;
   align-self: flex-start;
+  heigth: ${(props) => (props.selected === true ? `43px` : `44px`)};
 `;
 export const HistoryTextWrapper = styled.div`
   display: flex;
