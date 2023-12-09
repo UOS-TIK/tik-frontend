@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
+import { SyncLoader } from "react-spinners";
 import { HistoryTextStyle, HistoryViewFeedBack } from "./style";
 import HistoryViewDetail from "./HistoryViewDetail";
 import HistoryViewResult from "./HistoryViewResult";
@@ -9,9 +10,7 @@ import ImageText, {
 } from "../../components/ImageText/ImageText";
 import Textarea, { TextareaColor } from "../../components/Textarea/Textarea";
 
-const HistoryView = (props) => {
-  const { selectedHistoryId, loading, setLoading } = props;
-
+const HistoryView = ({ selectedHistoryId, loading, setLoading }) => {
   const [history, setHistory] = useState({});
 
   useEffect(() => {
@@ -39,7 +38,7 @@ const HistoryView = (props) => {
   return (
     <>
       {loading ? (
-        <span>로딩중</span>
+        <SyncLoader color="#3d4371" />
       ) : (
         <>
           <div style={{ width: "100%" }}>

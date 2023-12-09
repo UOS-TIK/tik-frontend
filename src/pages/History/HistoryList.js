@@ -2,15 +2,13 @@ import { useEffect } from "react";
 import { ListWrapper } from "./style";
 import HistoryListContainer from "./HistoryListContainer";
 
-const HistoryList = (props) => {
-  const {
-    historyList,
-    setHistoryList,
-    selectedHistoryId,
-    setSelectedHistoryId,
-    setLoading,
-  } = props;
-
+const HistoryList = ({
+  historyList,
+  setHistoryList,
+  selectedHistoryId,
+  setSelectedHistoryId,
+  setLoading,
+}) => {
   useEffect(() => {
     const firstHistory = historyList[0];
     if (firstHistory) {
