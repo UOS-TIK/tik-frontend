@@ -70,15 +70,13 @@ const Main = () => {
               ))}
           </HistoryItems>
         </InterviewHistory>
-        <div style={{ width: "333px" }}>
-          <Board
-            buttonText="면접 생성하기 +"
-            buttonHandler={handleInterviewClick}
-          >
-            면접을 생성하고, <br />
-            맞춤 모의 면접을 경험해보세요!
-          </Board>
-        </div>
+        <Board
+          buttonText="면접 생성하기 +"
+          buttonHandler={handleInterviewClick}
+        >
+          면접을 생성하고, <br />
+          맞춤 모의 면접을 경험해보세요!
+        </Board>
       </InterviewSection>
     </MainContainer>
   );
