@@ -4,12 +4,14 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #f9fafb;
+  min-height: 100vh;
 `;
 
 export const InterviewSection = styled.div`
   display: flex;
   flex-direction: row;
   margin: 50px 148px;
+  gap: 1rem;
 `;
 
 export const InterviewHistory = styled.div`
@@ -33,8 +35,10 @@ export const RightArrow = styled.img`
 `;
 
 export const HistoryItems = styled.div`
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
 `;
 
 export const HistoryItemContainer = styled.div`
