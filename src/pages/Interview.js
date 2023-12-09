@@ -192,8 +192,8 @@ const Interview = () => {
         <div style={{display: "flex",justifyContent: "flex-end"}}>
            <div style={{width: "300px"}}>
             <Button
-                feature={ButtonFeature.LINE}
-                color={ButtonColor.WHITE}
+                feature={buttonState === "대답할게요!" ?  ButtonFeature.LINE : ButtonFeature.NONE}
+                color={buttonState === "대답할게요!" ? ButtonColor.WHITE : ButtonColor.BLUE}
                 handler={() => clickSpeakButton()}
               >{buttonState}</Button>
            </div>
