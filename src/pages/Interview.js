@@ -17,6 +17,14 @@ const Interview = () => {
   const audioChunksRef = useRef([]);
   const htmlAudioRef = useRef(null);
 
+  const scrollableAreaRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollableAreaRef.current) {
+      scrollableAreaRef.current.scrollTop = scrollableAreaRef.current.scrollHeight;
+    }
+  }, [interviewItems])
+
   useEffect(() => {
     let isMounted = true;
   
@@ -120,10 +128,10 @@ const Interview = () => {
     setInterviewItems(interviewItems => [...interviewItems, { question: llmRes.data.data.reply, answer: '' }]);
     setStatus('ready');
 
-    if (llmRes.isFinished) {
-      alert("면접이 종료되었습니다.");
-      navigate("/");
-    }
+    // if (llmRes.data.data.isFinished) {
+    //   alert("면접이 모두 종료되었습니다. 메인 화면으로 이동합니다.");
+    //   navigate("/");
+    // }
   }, [interviewItems, interviewId]);
 
 
@@ -171,7 +179,7 @@ const Interview = () => {
         </InterviewInfo>
       </Header>
       <InterviewBox>
-        <ScrollableArea>
+        <ScrollableArea ref={scrollableAreaRef}>
           <InterviewContent>
             {interviewItems.map((item, index) => (
               <React.Fragment key={index}>
