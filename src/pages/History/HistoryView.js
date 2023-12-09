@@ -76,7 +76,7 @@ const HistoryView = (props) => {
                   readOnly
                 />
               </HistoryViewFeedBack>
-              <HistoryViewDialog dialog={history.question} />
+              <HistoryViewDialog dialog={history.question[0]} />
             </>
           )}
         </>

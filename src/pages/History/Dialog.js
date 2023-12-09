@@ -26,7 +26,7 @@ const Dialog = ({ question }) => {
         }}
       >
         <InterviewAnswer>
-          {question.awnswer}
+          {question.answer}
           <Line />
           <DialogFeedback>
             <div style={{ fontWeight: "bold" }}>{question.feedback}</div>
