@@ -60,7 +60,7 @@ const ProjectForm = ({ setProjectAddMode, project, setProject }) => {
     <>
       {modalOn && (
         <>
-          <Modal>
+          <Modal title="스택 검색" closeFunc={setModalOn}>
             <StackSearch
               setModalOn={setModalOn}
               techStack={techStack}
