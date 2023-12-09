@@ -7,7 +7,7 @@ import ReactSpeechRecognition from "./pages/Test/ReactSpeechRecognition";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Resume from "./pages/Resume/Resume";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import StartInterview from "./pages/StartInterview";
 import Interview from "./pages/Interview";
 import History from "./pages/History/History";
@@ -66,9 +66,30 @@ function App() {
         <Route path="/test/2" element={<ReactSpeechRecognition />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/resume" element={<CheckAuth><Resume /></CheckAuth>} />
-        <Route path="/start-interview" element={<CheckAuth><StartInterview /></CheckAuth>} />
-        <Route path="/interview" element={<CheckAuth><Interview /></CheckAuth>} />
+        <Route
+          path="/resume"
+          element={
+            <CheckAuth>
+              <Resume />
+            </CheckAuth>
+          }
+        />
+        <Route
+          path="/start-interview"
+          element={
+            <CheckAuth>
+              <StartInterview />
+            </CheckAuth>
+          }
+        />
+        <Route
+          path="/interview"
+          element={
+            <CheckAuth>
+              <Interview />
+            </CheckAuth>
+          }
+        />
         <Route
           path="/history"
           element={

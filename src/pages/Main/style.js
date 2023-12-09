@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
-  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: #f9fafb;
@@ -46,6 +45,7 @@ export const HistoryItemContainer = styled.div`
   max-width: 320px;
   padding: 24px;
   gap: 8px;
+  cursor: pointer;
 `;
 
 export const DocumentIcon = styled.img`
@@ -61,8 +61,11 @@ export const ContentContainer = styled.div`
 
 export const CompanyName = styled.div`
   margin-top: 8px;
-  font-size: 18px;
+  color: #1c1c1c;
+  font-size: 20px;
   font-weight: 700;
+  line-height: normal;
+  letter-spacing: -1px;
 `;
 
 export const AdditionalInfo = styled.div`
@@ -74,8 +77,11 @@ export const AdditionalInfo = styled.div`
 export const InfoRow = styled.div`
   display: flex;
   gap: 4px;
-  color: #3d437166;
   font-size: 14px;
+  color: rgba(61, 67, 113, 0.4);
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.7px;
 `;
 
 export const InfoIcon = styled.img`
@@ -83,8 +89,11 @@ export const InfoIcon = styled.img`
 `;
 
 export const Comment = styled.div`
-  color: #3d4371b2;
-  font-weight: 700;
+  font-weight: 500;
+  color: rgba(61, 67, 113, 0.7);
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: -0.75px;
 `;
 
 export const Skills = styled.div`
@@ -103,7 +112,10 @@ export const SkillTag = styled.div`
 
 export const DateInfo = styled.div`
   margin-top: 4px;
-  color: #3d437180;
   text-align: right;
-  font-size: 14px;
+  color: rgba(61, 67, 113, 0.5);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.2px;
 `;

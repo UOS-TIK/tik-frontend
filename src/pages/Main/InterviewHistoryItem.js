@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   HistoryItemContainer,
   DocumentIcon,
@@ -13,30 +14,58 @@ import {
   DateInfo,
 } from "./style";
 
-const InterviewHistoryItem = () => {
+const InterviewHistoryItem = ({ history }) => {
+  const navigate = useNavigate();
+  const { minutes, seconds } = getTimeDifference(
+    history.beginTime,
+    history.endTime
+  );
+
+  function getTimeDifference(beginTime, endTime) {
+    const start = new Date(beginTime);
+    const end = new Date(endTime);
+
+    const difference = Math.abs(end - start) / 1000;
+
+    const minutes = Math.floor(difference / 60);
+    const seconds = Math.floor(difference % 60);
+
+    return { minutes, seconds };
+  }
+
+  const clickHistory = () => {
+    navigate(`/history`);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+  };
+
   return (
-    <HistoryItemContainer>
+    <HistoryItemContainer onClick={clickHistory}>
       <DocumentIcon src="images/ic_document.svg" alt="document_icon" />
       <ContentContainer>
-        <CompanyName>네이버 (1)</CompanyName>
+        <CompanyName>
+          {history.interviewName}({history.company})
+        </CompanyName>
         <AdditionalInfo>
           <InfoRow>
             <InfoIcon src="images/ic_clock.svg" alt="clock_icon" />
-            <div>12분 34초</div>
+            <div>
+              {minutes}분 {seconds}초
+            </div>
           </InfoRow>
           <InfoRow>
             <InfoIcon src="images/ic_score.svg" alt="score_icon" />
-            <div>50 / 100</div>
+            <div>{history.score} / 100</div>
           </InfoRow>
         </AdditionalInfo>
-        <Comment>
-          "아는 것은 많았지만 말은 많이 더듬어서 전체적으로 이상했던 면접"
-        </Comment>
-        <Skills>
-          <SkillTag>Java</SkillTag>
-          <SkillTag>JavaScript</SkillTag>
-        </Skills>
-        <DateInfo>2023/10/04(수) 17:45</DateInfo>
+        <Comment>"{history.comment}"</Comment>
+        <DateInfo>
+          {history.beginTime === null
+            ? "진행되지 않은 면접입니다."
+            : history.beginTime.replace("T", " ")}
+        </DateInfo>
       </ContentContainer>
     </HistoryItemContainer>
   );
