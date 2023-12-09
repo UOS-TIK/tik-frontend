@@ -60,12 +60,14 @@ const Main = () => {
             />
           </HistorySectionTitle>
           <HistoryItems>
-            {historyList.map((history) => (
-              <InterviewHistoryItem
-                key={history.interviewHistoryId}
-                history={history}
-              />
-            ))}
+            {historyList
+              .filter((history) => history.endTime !== null)
+              .map((history) => (
+                <InterviewHistoryItem
+                  key={history.interviewHistoryId}
+                  history={history}
+                />
+              ))}
           </HistoryItems>
         </InterviewHistory>
         <div style={{ width: "333px" }}>
