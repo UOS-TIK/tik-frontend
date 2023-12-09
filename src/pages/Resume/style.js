@@ -95,6 +95,7 @@ export const WhiteBoxContainer = styled.div`
   background: #fff;
   min-height: 350px;
   height: fit-content;
+  justify-content: center;
 `;
 
 export const GrayBoxContainer = styled.div`
