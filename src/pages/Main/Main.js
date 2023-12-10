@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { SyncLoader } from "react-spinners";
 import api from "../../api/api";
 import Header from "../../components/Header";
 import InterviewHistoryItem from "./InterviewHistoryItem";
@@ -28,6 +29,7 @@ const Main = () => {
 
   const getHistoryList = async () => {
     try {
+      setLoading(true);
       const res = await api.get("/history/list");
       if (res.status === 200) {
         setHistoryList(res.data.data);
@@ -35,6 +37,8 @@ const Main = () => {
     } catch (e) {
       console.log(e);
       if (e.response.data.data) console.log("[History]getHistoryList");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -62,39 +66,60 @@ const Main = () => {
               alt="right_arrow_icon"
             />
           </HistorySectionTitle>
-          {historyList.length === 0 ||
-          historyList.filter((history) => history.endTime !== null).length ===
-            0 ? (
-            <div
-              style={{
-                width: "100%",
-                height: "350px",
-                borderRadius: "20px",
-                border: "1px solid rgba(0, 0, 0, 0.1)",
-                backgroundColor: "#fff",
-              }}
-            >
-              <ImageText
-                imageUrl="/images/ic_empty_document.svg"
-                color={ImageTextColor.BLUE}
+          <div style={{ width: "100%", height: "100%" }}>
+            {loading ? (
+              <div
+                style={{
+                  width: "100%",
+                  height: "350px",
+                  borderRadius: "20px",
+                  border: "1px solid rgba(0, 0, 0, 0.1)",
+                  backgroundColor: "#fff",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
-                면접 이력이 없어요.
-                <br />
-                면접을 생성해주세요.
-              </ImageText>
-            </div>
-          ) : (
-            <HistoryItems>
-              {historyList
-                .filter((history) => history.endTime !== null)
-                .map((history) => (
-                  <InterviewHistoryItem
-                    key={history.interviewHistoryId}
-                    history={history}
-                  />
-                ))}
-            </HistoryItems>
-          )}
+                <SyncLoader color="#3d4371" />
+              </div>
+            ) : (
+              <>
+                {historyList.length === 0 ||
+                historyList.filter((history) => history.endTime !== null)
+                  .length === 0 ? (
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "350px",
+                      borderRadius: "20px",
+                      border: "1px solid rgba(0, 0, 0, 0.1)",
+                      backgroundColor: "#fff",
+                    }}
+                  >
+                    <ImageText
+                      imageUrl="/images/ic_empty_document.svg"
+                      color={ImageTextColor.BLUE}
+                    >
+                      면접 이력이 없어요.
+                      <br />
+                      면접을 생성해주세요.
+                    </ImageText>
+                  </div>
+                ) : (
+                  <HistoryItems>
+                    {historyList
+                      .filter((history) => history.endTime !== null)
+                      .map((history) => (
+                        <InterviewHistoryItem
+                          key={history.interviewHistoryId}
+                          history={history}
+                        />
+                      ))}
+                  </HistoryItems>
+                )}
+              </>
+            )}
+          </div>
         </InterviewHistory>
         <Board
           buttonText="면접 생성하기 +"
