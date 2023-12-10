@@ -58,7 +58,7 @@ const HistoryView = (props) => {
               }}
             >
               <ImageText
-                imageUrl="images/ic_resume.svg"
+                imageUrl="/images/ic_resume.svg"
                 color={ImageTextColor.BLUE}
               >
                 피드백 및 저장 중입니다.

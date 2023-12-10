@@ -20,8 +20,12 @@ const HistoryListContainer = (props) => {
   const [selected, setSelected] = useState(false);
 
   useEffect(() => {
-    if (history.interviewHistoryId === selectedHistoryId) {
+    //console.log("selectedHistoryId", selectedHistoryId);
+    //console.log("history.interviewHistoryId", history.interviewHistoryId);
+    //console.log("check", history.interviewHistoryId - selectedHistoryId);
+    if (history.interviewHistoryId - selectedHistoryId === 0) {
       setSelected(true);
+      //console.log("true");
     } else setSelected(false);
   }, [selectedHistoryId]);
 
@@ -60,8 +64,8 @@ const HistoryListContainer = (props) => {
       <HistoryContainerImage
         src={
           selected
-            ? "images/history_scrap_color.svg"
-            : "images/history_scrap.svg"
+            ? "/images/history_scrap_color.svg"
+            : "/images/history_scrap.svg"
         }
       />
       <div
@@ -84,7 +88,7 @@ const HistoryListContainer = (props) => {
           </HistoryIntroduction>
         </HistoryTextWrapper>
         <HistoryDeleteImage
-          src={"images/ic_history.svg"}
+          src={"/images/ic_history.svg"}
           onClick={onClickDeleteButton}
         />
       </div>

@@ -9,8 +9,6 @@ import {
   InfoRow,
   InfoIcon,
   Comment,
-  Skills,
-  SkillTag,
   DateInfo,
 } from "./style";
 
@@ -34,7 +32,7 @@ const InterviewHistoryItem = ({ history }) => {
   }
 
   const clickHistory = () => {
-    navigate(`/history`);
+    navigate(`/history/${history.interviewHistoryId}`);
     window.scrollTo({
       top: 0,
       left: 0,

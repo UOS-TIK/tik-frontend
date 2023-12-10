@@ -7,7 +7,7 @@ import ReactSpeechRecognition from "./pages/Test/ReactSpeechRecognition";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Resume from "./pages/Resume/Resume";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import StartInterview from "./pages/StartInterview";
 import Interview from "./pages/Interview";
 import History from "./pages/History/History";
@@ -40,6 +40,12 @@ function NotFound() {
       올바른 접근인지 확인해주세요.{" "}
     </h2>
   );
+}
+
+function HistoryWithParams() {
+  const { historyId } = useParams();
+
+  return <History historyId={historyId} />;
 }
 
 function App() {
@@ -91,10 +97,18 @@ function App() {
           }
         />
         <Route
-          path="/history"
+          path="/history/*"
           element={
             <CheckAuth>
-              <History />
+              <History historyId={0} />
+            </CheckAuth>
+          }
+        />
+        <Route
+          path="/history/:historyId"
+          element={
+            <CheckAuth>
+              <HistoryWithParams />
             </CheckAuth>
           }
         />

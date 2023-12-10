@@ -46,7 +46,7 @@ const History = () => {
         badgeType="filled"
         title="정리한 면접 결과와 피드백을 읽어보세요!"
         description="자신의 강점과 약점을 파악하고 보완하여, 다시 면접을 연습해보세요."
-        imageUrl="images/ic_feedback.svg"
+        imageUrl="/images/ic_feedback.svg"
         bgColor="#8D99F3"
       />
       <ContentContainer>
@@ -55,7 +55,7 @@ const History = () => {
             <HistorySettingTitle>
               나의 면접 이력
               <RightArrow
-                src="images/ic_right_arrow.svg"
+                src="/images/ic_right_arrow.svg"
                 alt="right_arrow_icon"
               />
             </HistorySettingTitle>
@@ -72,7 +72,7 @@ const History = () => {
           <WhiteBoxContainer>
             {historyList.length === 0 ? (
               <ImageText
-                imageUrl="images/ic_resume.svg"
+                imageUrl="/images/ic_resume.svg"
                 color={ImageTextColor.BLUE}
               >
                 조회할 면접 이력이 없습니다.
