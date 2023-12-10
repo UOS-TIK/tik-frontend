@@ -5,6 +5,9 @@ import Header from "../../components/Header";
 import InterviewHistoryItem from "./InterviewHistoryItem";
 import MainBanner from "../../components/MainBanner/MainBanner";
 import Board from "../../components/Board/Board";
+import ImageText, {
+  ImageTextColor,
+} from "../../components/ImageText/ImageText";
 import {
   MainContainer,
   InterviewSection,
@@ -59,16 +62,39 @@ const Main = () => {
               alt="right_arrow_icon"
             />
           </HistorySectionTitle>
-          <HistoryItems>
-            {historyList
-              .filter((history) => history.endTime !== null)
-              .map((history) => (
-                <InterviewHistoryItem
-                  key={history.interviewHistoryId}
-                  history={history}
-                />
-              ))}
-          </HistoryItems>
+          {historyList.length === 0 ||
+          historyList.filter((history) => history.endTime !== null).length ===
+            0 ? (
+            <div
+              style={{
+                width: "100%",
+                height: "350px",
+                borderRadius: "20px",
+                border: "1px solid rgba(0, 0, 0, 0.1)",
+                backgroundColor: "#fff",
+              }}
+            >
+              <ImageText
+                imageUrl="/images/ic_empty_document.svg"
+                color={ImageTextColor.BLUE}
+              >
+                면접 이력이 없어요.
+                <br />
+                면접을 생성해주세요.
+              </ImageText>
+            </div>
+          ) : (
+            <HistoryItems>
+              {historyList
+                .filter((history) => history.endTime !== null)
+                .map((history) => (
+                  <InterviewHistoryItem
+                    key={history.interviewHistoryId}
+                    history={history}
+                  />
+                ))}
+            </HistoryItems>
+          )}
         </InterviewHistory>
         <Board
           buttonText="면접 생성하기 +"
