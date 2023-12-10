@@ -111,7 +111,7 @@ const Resume = () => {
           <WhiteBoxContainer>
             {resumeList.length === 0 && !addMode ? (
               <ImageText
-                imageUrl="images/ic_resume.svg"
+                imageUrl="/images/ic_empty_document.svg"
                 color={ImageTextColor.BLUE}
               >
                 조회할 이력서가 없습니다.
