@@ -47,7 +47,8 @@ const HistoryView = ({ selectedHistoryId, loading, setLoading }) => {
             </HistoryTextStyle>
           </div>
           <HistoryViewDetail history={history} />
-          {history.comment === null ? (
+          {history.endTime === null ? (
+            // 면접이 끝나지 않은 경우
             <div
               style={{
                 width: "100%",
@@ -57,25 +58,46 @@ const HistoryView = ({ selectedHistoryId, loading, setLoading }) => {
               }}
             >
               <ImageText
-                imageUrl="images/ic_resume.svg"
+                imageUrl="/images/ic_empty_document.svg"
                 color={ImageTextColor.BLUE}
               >
-                피드백 및 저장 중입니다.
-                <br />약 10분 후 확인하실 수 있습니다.
+                끝나지 않은 면접입니다.
               </ImageText>
             </div>
           ) : (
             <>
-              <HistoryViewResult history={history} />
-              <HistoryViewFeedBack>
-                <Textarea
-                  label="피드백"
-                  color={TextareaColor.GRAY}
-                  value={history.comment}
-                  readOnly
-                />
-              </HistoryViewFeedBack>
-              <HistoryViewDialog dialog={history.question[0]} />
+              {history.score === null ? (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "350px",
+                    borderRadius: "20px",
+                    border: "1px solid rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  <ImageText
+                    imageUrl="/images/ic_empty_document.svg"
+                    color={ImageTextColor.BLUE}
+                  >
+                    피드백 및 저장 중입니다.
+                    <br /> 약 10분 후 확인하실 수 있습니다.
+                  </ImageText>
+                </div>
+              ) : (
+                // 피드백이 이미 작성된 경우
+                <>
+                  <HistoryViewResult history={history} />
+                  <HistoryViewFeedBack>
+                    <Textarea
+                      label="피드백"
+                      color={TextareaColor.GRAY}
+                      value={history.comment}
+                      readOnly
+                    />
+                  </HistoryViewFeedBack>
+                  <HistoryViewDialog dialog={history.question[0]} />
+                </>
+              )}
             </>
           )}
         </>
