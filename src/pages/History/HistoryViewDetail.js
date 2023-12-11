@@ -58,10 +58,10 @@ const HistoryViewDetail = ({ history }) => {
       )}
       <ItemContainer>
         <LabelStyle>
-          ✅ 면접 이름: <MainLabelStyle>{history.interviewName}</MainLabelStyle>
-        </LabelStyle>
-        <LabelStyle>
-          ✅ 회사 이름: <MainLabelStyle>{history.company}</MainLabelStyle>
+          ✅ 면접 이름 ( 회사 이름 ):{" "}
+          <MainLabelStyle>
+            {history.interviewName} ( {history.company} )
+          </MainLabelStyle>
         </LabelStyle>
       </ItemContainer>
       <ItemContainer>
