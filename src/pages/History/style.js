@@ -137,7 +137,7 @@ export const LabelStyle = styled.span`
 
   font-size: 14px;
   font-weight: 400;
-  line-height: normal;
+  line-height: 1.5;
   letter-spacing: -0.2px;
 `;
 
