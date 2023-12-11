@@ -50,7 +50,7 @@ const Resume = () => {
     setSelectedResumeId(0);
     setAddMode(true);
     window.scrollTo({
-      top: 0,
+      top: 380,
       left: 0,
     });
   }
