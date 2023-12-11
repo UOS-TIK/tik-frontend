@@ -14,13 +14,13 @@ export const ButtonColor = {
 Object.freeze(ButtonFeature);
 Object.freeze(ButtonColor);
 
-const Button = ({ feature, color, handler, children }) => {
+const Button = ({ feature, color, disabled, handler, children }) => {
   return feature === ButtonFeature.FLEXIBLE ? (
-    <ButtonFlexibleStyle feature={feature} onClick={handler}>
+    <ButtonFlexibleStyle disabled={disabled} feature={feature} onClick={handler}>
       {children}
     </ButtonFlexibleStyle>
   ) : (
-    <ButtonStyle feature={feature} color={color} onClick={handler}>
+    <ButtonStyle disabled={disabled} feature={feature} color={color} onClick={handler}>
       {children}
     </ButtonStyle>
   );
