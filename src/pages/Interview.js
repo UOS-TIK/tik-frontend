@@ -123,10 +123,22 @@ const Interview = () => {
     const audio = new Audio();
     audio.src = URL.createObjectURL(ttsRes);
 
-    audio.addEventListener('ended', () => {
-      if (llmRes.data.data.isFinished) {
-        alert("면접이 모두 종료되었습니다. 메인 화면으로 이동합니다.");
-        navigate("/");
+    audio.addEventListener('ended', async () => {
+      try {
+        if (llmRes.data.data.isFinished) {
+          const finishRes = await api.post('/interview/finish', {
+            interviewId: interviewId,
+          });
+    
+          if (finishRes.status === 201) {
+            alert("면접이 모두 종료되었습니다. 메인 화면으로 이동합니다.");
+            navigate("/");
+          } else {
+            console.error("면접 종료 요청이 실패했습니다.");
+          }
+        }
+      } catch (error) {
+        console.error("면접 종료 중 에러가 발생했습니다:", error);
       }
     });
     
