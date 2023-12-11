@@ -177,7 +177,7 @@ export const ModalScroll = styled.div`
   gap: 22px;
   padding-right: 4px;
   width: 100%;
-  max-height: 500px;
+  max-height: 70vh;
   overflow-y: auto;
 
   &::-webkit-scrollbar {
