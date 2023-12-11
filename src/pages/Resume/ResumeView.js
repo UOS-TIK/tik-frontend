@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
+import { SyncLoader } from "react-spinners";
 import Input, { InputColor } from "../../components/Input/Input";
 import Textarea from "../../components/Textarea/Textarea";
 import ProjectView from "./ProjectView.js";
 
-const ResumeView = ({ selectedResumeId, setResumeList, setAddMode }) => {
+const ResumeView = ({ selectedResumeId }) => {
   const [name, setName] = useState("");
   const [introduction, setIntroduction] = useState("");
   const [project, setProject] = useState([]);
@@ -34,7 +35,7 @@ const ResumeView = ({ selectedResumeId, setResumeList, setAddMode }) => {
   return (
     <>
       {loading ? (
-        <span>로딩중</span>
+        <SyncLoader color="#3d4371" />
       ) : (
         <>
           <Input

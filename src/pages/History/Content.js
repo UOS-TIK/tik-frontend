@@ -1,7 +1,7 @@
 import React from "react";
 import { WrapperStyle, LabelStyle, GrayBoxContainer } from "./style";
 
-const Content = ({ label, value, children }) => {
+const Content = ({ label, children }) => {
   return (
     <WrapperStyle>
       <LabelStyle>{label}</LabelStyle>

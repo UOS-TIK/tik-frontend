@@ -9,14 +9,13 @@ import {
   HistoryDeleteImage,
 } from "./style";
 
-const HistoryListContainer = (props) => {
-  const {
-    history,
-    setHistoryList,
-    setSelectedHistoryId,
-    selectedHistoryId,
-    setLoading,
-  } = props;
+const HistoryListContainer = ({
+  history,
+  setHistoryList,
+  setSelectedHistoryId,
+  selectedHistoryId,
+  setLoading,
+}) => {
   const [selected, setSelected] = useState(false);
 
   useEffect(() => {

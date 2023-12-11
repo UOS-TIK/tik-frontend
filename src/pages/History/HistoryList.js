@@ -3,15 +3,13 @@ import { useParams } from "react-router-dom";
 import { ListWrapper } from "./style";
 import HistoryListContainer from "./HistoryListContainer";
 
-const HistoryList = (props) => {
-  const {
-    historyList,
-    setHistoryList,
-    selectedHistoryId,
-    setSelectedHistoryId,
-    setLoading,
-  } = props;
-  const { historyId } = useParams();
+const HistoryList = ({
+  historyList,
+  setHistoryList,
+  selectedHistoryId,
+  setSelectedHistoryId,
+  setLoading,
+}) => {
   const [cnt, setCnt] = useState(0);
 
   useEffect(() => {

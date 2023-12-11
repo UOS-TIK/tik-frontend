@@ -72,7 +72,7 @@ const History = () => {
           <WhiteBoxContainer>
             {historyList.length === 0 ? (
               <ImageText
-                imageUrl="/images/ic_resume.svg"
+                imageUrl="/images/ic_empty_document.svg"
                 color={ImageTextColor.BLUE}
               >
                 조회할 면접 이력이 없습니다.

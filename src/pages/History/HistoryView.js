@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
+import { SyncLoader } from "react-spinners";
 import { HistoryTextStyle, HistoryViewFeedBack } from "./style";
 import HistoryViewDetail from "./HistoryViewDetail";
 import HistoryViewResult from "./HistoryViewResult";
@@ -9,9 +10,7 @@ import ImageText, {
 } from "../../components/ImageText/ImageText";
 import Textarea, { TextareaColor } from "../../components/Textarea/Textarea";
 
-const HistoryView = (props) => {
-  const { selectedHistoryId, loading, setLoading } = props;
-
+const HistoryView = ({ selectedHistoryId, loading, setLoading }) => {
   const [history, setHistory] = useState({});
 
   useEffect(() => {
@@ -39,7 +38,7 @@ const HistoryView = (props) => {
   return (
     <>
       {loading ? (
-        <span>로딩중</span>
+        <SyncLoader color="#3d4371" />
       ) : (
         <>
           <div style={{ width: "100%" }}>
@@ -48,7 +47,8 @@ const HistoryView = (props) => {
             </HistoryTextStyle>
           </div>
           <HistoryViewDetail history={history} />
-          {history.comment === null ? (
+          {history.endTime === null ? (
+            // 면접이 끝나지 않은 경우
             <div
               style={{
                 width: "100%",
@@ -58,25 +58,46 @@ const HistoryView = (props) => {
               }}
             >
               <ImageText
-                imageUrl="/images/ic_resume.svg"
+                imageUrl="/images/ic_empty_document.svg"
                 color={ImageTextColor.BLUE}
               >
-                피드백 및 저장 중입니다.
-                <br />약 10분 후 확인하실 수 있습니다.
+                끝나지 않은 면접입니다.
               </ImageText>
             </div>
           ) : (
             <>
-              <HistoryViewResult history={history} />
-              <HistoryViewFeedBack>
-                <Textarea
-                  label="피드백"
-                  color={TextareaColor.GRAY}
-                  value={history.comment}
-                  readOnly
-                />
-              </HistoryViewFeedBack>
-              <HistoryViewDialog dialog={history.question[0]} />
+              {history.score === null ? (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "350px",
+                    borderRadius: "20px",
+                    border: "1px solid rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  <ImageText
+                    imageUrl="/images/ic_empty_document.svg"
+                    color={ImageTextColor.BLUE}
+                  >
+                    피드백 및 저장 중입니다.
+                    <br /> 약 10분 후 확인하실 수 있습니다.
+                  </ImageText>
+                </div>
+              ) : (
+                // 피드백이 이미 작성된 경우
+                <>
+                  <HistoryViewResult history={history} />
+                  <HistoryViewFeedBack>
+                    <Textarea
+                      label="피드백"
+                      color={TextareaColor.GRAY}
+                      value={history.comment}
+                      readOnly
+                    />
+                  </HistoryViewFeedBack>
+                  <HistoryViewDialog dialog={history.question[0]} />
+                </>
+              )}
             </>
           )}
         </>

@@ -92,9 +92,7 @@ const HistoryViewDetail = ({ history }) => {
         <LabelStyle>
           ✅ 이력서 기반 질문 개수:{" "}
           <MainLabelStyle>{history.resumeQuestion}</MainLabelStyle> 개 / CS 기반
-          질문 개수: <MainLabelStyle>{history.csQuestion}</MainLabelStyle> 개 /
-          모집 공고 기반 질문 개수:{" "}
-          <MainLabelStyle>{history.jdQuestion}</MainLabelStyle> 개
+          질문 개수: <MainLabelStyle>{history.csQuestion}</MainLabelStyle> 개
         </LabelStyle>
       </ItemContainer>
     </Content>
