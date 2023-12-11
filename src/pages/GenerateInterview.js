@@ -64,6 +64,10 @@ const GenerateInterview = () => {
       alert('모집 공고문을 입력해주세요.');
       return;
     }
+    if (!selectedProject) {
+      alert('이력서를 선택해주세요.');
+      return;
+    }
     const totalQuestions = Number(resumeQuestion) + Number(csQuestion);
     if (totalQuestions < 1 || totalQuestions > 10) {
       alert("질문은 총 1개에서 10개까지 가능합니다.");
@@ -287,7 +291,10 @@ const GenerateInterview = () => {
               </Board>
             </div>
             <div>
-              {resumes.map((resume) => (
+            {resumes.length === 0 ? (
+              <NoContentContainer>저장된 이력서가 없습니다.</NoContentContainer>
+            ) : (
+              resumes.map((resume) => (
                 <RadioWithExplain
                   key={resume.id}
                   name="resume"
@@ -298,8 +305,9 @@ const GenerateInterview = () => {
                 >
                   {resume.name}
                 </RadioWithExplain>
-              ))}
-            </div>
+              ))
+            )}
+          </div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
             <div>5. 면접 질문의 개수를 선택해주세요. (최대 합 10개 이내)</div>
@@ -348,3 +356,18 @@ const RightArrow = styled.img`
   width: 17px;
   margin-left: 4px;
 `;
+
+const NoContentContainer = styled.div`
+  background: #fff;
+  height: 20px;
+  border: 1px solid rgba(61, 67, 113, 0.3);
+  border-radius: 10px;
+  color: rgba(28, 28, 28, 0.7);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.65px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+`;
+
