@@ -85,7 +85,7 @@ const Main = () => {
             ) : (
               <>
                 {historyList.length === 0 ||
-                historyList.filter((history) => history.endTime !== null)
+                historyList.filter((history) => history.comment !== null)
                   .length === 0 ? (
                   <div
                     style={{
