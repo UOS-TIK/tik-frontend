@@ -34,7 +34,7 @@ const InterviewHistoryItem = ({ history }) => {
   const clickHistory = () => {
     navigate(`/history/${history.interviewHistoryId}`);
     window.scrollTo({
-      top: 0,
+      top: 380,
       left: 0,
     });
   };
