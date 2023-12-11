@@ -122,6 +122,14 @@ const Interview = () => {
 
     const audio = new Audio();
     audio.src = URL.createObjectURL(ttsRes);
+
+    audio.addEventListener('ended', () => {
+      if (llmRes.data.data.isFinished) {
+        alert("면접이 모두 종료되었습니다. 메인 화면으로 이동합니다.");
+        navigate("/");
+      }
+    });
+    
     audio.play();
 
     mediaRecorderRef.current = null;
@@ -130,10 +138,6 @@ const Interview = () => {
     setInterviewItems(interviewItems => [...interviewItems, { question: llmRes.data.data.reply, answer: '' }]);
     setStatus('ready');
 
-    // if (llmRes.data.data.isFinished) {
-    //   alert("면접이 모두 종료되었습니다. 메인 화면으로 이동합니다.");
-    //   navigate("/");
-    // }
   }, [interviewItems, interviewId]);
 
 
