@@ -19,7 +19,7 @@ const ResumeListContainer = ({
     if (!selected) setSelectedResumeId(resume.id);
     setAddMode(false);
     window.scrollTo({
-      top: 0,
+      top: 380,
       left: 0,
     });
   };
