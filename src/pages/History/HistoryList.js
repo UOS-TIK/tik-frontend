@@ -10,6 +10,7 @@ const HistoryList = ({
   setSelectedHistoryId,
   setLoading,
 }) => {
+  const { historyId } = useParams();
   const [cnt, setCnt] = useState(0);
 
   useEffect(() => {
