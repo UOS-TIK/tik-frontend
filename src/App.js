@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import GenerateInterview from "./pages/GenerateInterview";
-import Main from "./pages/Main";
+import Main from "./pages/Main/Main";
 import ReactSpeechKit from "./pages/Test/ReactSpeechKit";
 import ReactSpeechRecognition from "./pages/Test/ReactSpeechRecognition";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Resume from "./pages/Resume/Resume";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from "react-router-dom";
 import StartInterview from "./pages/StartInterview";
 import Interview from "./pages/Interview";
 import History from "./pages/History/History";
@@ -42,6 +42,12 @@ function NotFound() {
   );
 }
 
+function HistoryWithParams() {
+  const { historyId } = useParams();
+
+  return <History historyId={historyId} />;
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -66,14 +72,43 @@ function App() {
         <Route path="/test/2" element={<ReactSpeechRecognition />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/resume" element={<CheckAuth><Resume /></CheckAuth>} />
-        <Route path="/start-interview" element={<CheckAuth><StartInterview /></CheckAuth>} />
-        <Route path="/interview" element={<CheckAuth><Interview /></CheckAuth>} />
         <Route
-          path="/history"
+          path="/resume"
           element={
             <CheckAuth>
-              <History />
+              <Resume />
+            </CheckAuth>
+          }
+        />
+        <Route
+          path="/start-interview"
+          element={
+            <CheckAuth>
+              <StartInterview />
+            </CheckAuth>
+          }
+        />
+        <Route
+          path="/interview"
+          element={
+            <CheckAuth>
+              <Interview />
+            </CheckAuth>
+          }
+        />
+        <Route
+          path="/history/*"
+          element={
+            <CheckAuth>
+              <History historyId={0} />
+            </CheckAuth>
+          }
+        />
+        <Route
+          path="/history/:historyId"
+          element={
+            <CheckAuth>
+              <HistoryWithParams />
             </CheckAuth>
           }
         />

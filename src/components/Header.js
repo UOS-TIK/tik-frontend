@@ -27,7 +27,7 @@ const Header = () => {
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
         <Link to="/">
-          <img src="images/ic_logo.svg" alt="logo_icon" />
+          <img src="/images/ic_logo.svg" alt="logo_icon" />
         </Link>
         <MenuContainer>
           <MenuItem onClick={handleInterviewClick}>면접 생성</MenuItem>
