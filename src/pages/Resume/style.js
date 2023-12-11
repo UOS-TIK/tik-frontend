@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const NoContentContainer = styled.div`
   background: #fff;
+  height: 20px;
   border: 1px solid rgba(61, 67, 113, 0.3);
   border-radius: 10px;
   color: rgba(28, 28, 28, 0.7);
@@ -9,6 +10,8 @@ export const NoContentContainer = styled.div`
   font-weight: 400;
   letter-spacing: -0.65px;
   padding: 10px 12px;
+  display: flex;
+  align-items: center;
 `;
 
 export const MainContainer = styled.div`

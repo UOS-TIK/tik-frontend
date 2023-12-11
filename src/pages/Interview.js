@@ -10,6 +10,7 @@ const Interview = () => {
   const interviewId = location.state.interviewId;
   const navigate = useNavigate();
   const [buttonState, setButtonState] = useState("대답할게요!");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const [status, setStatus] = useState('ready');
   const [interviewItems, setInterviewItems] = useState([]);
@@ -29,7 +30,7 @@ const Interview = () => {
     let isMounted = true;
   
     const getInitialQuestion = async () => {
-      const initialQuestion = '지금부터 면접을 시작하겠습니다.';
+      const initialQuestion = '네 잘 부탁드립니다.';
       try {
         const res = await api.post('/interview/answer', {
           interviewId: interviewId,
@@ -37,6 +38,7 @@ const Interview = () => {
         });
   
         if (isMounted) {
+          setIsButtonDisabled(false);
           console.log(res.data.data.reply);
           setInterviewItems(prevItems => {
             if (prevItems.length === 0) {
@@ -120,6 +122,14 @@ const Interview = () => {
 
     const audio = new Audio();
     audio.src = URL.createObjectURL(ttsRes);
+
+    audio.addEventListener('ended', () => {
+      if (llmRes.data.data.isFinished) {
+        alert("면접이 모두 종료되었습니다. 메인 화면으로 이동합니다.");
+        navigate("/");
+      }
+    });
+    
     audio.play();
 
     mediaRecorderRef.current = null;
@@ -128,10 +138,6 @@ const Interview = () => {
     setInterviewItems(interviewItems => [...interviewItems, { question: llmRes.data.data.reply, answer: '' }]);
     setStatus('ready');
 
-    // if (llmRes.data.data.isFinished) {
-    //   alert("면접이 모두 종료되었습니다. 메인 화면으로 이동합니다.");
-    //   navigate("/");
-    // }
   }, [interviewItems, interviewId]);
 
 
@@ -200,6 +206,7 @@ const Interview = () => {
         <div style={{display: "flex",justifyContent: "flex-end"}}>
            <div style={{width: "300px"}}>
             <Button
+                disabled={isButtonDisabled}
                 feature={buttonState === "대답할게요!" ?  ButtonFeature.LINE : ButtonFeature.NONE}
                 color={buttonState === "대답할게요!" ? ButtonColor.WHITE : ButtonColor.BLUE}
                 handler={() => clickSpeakButton()}
