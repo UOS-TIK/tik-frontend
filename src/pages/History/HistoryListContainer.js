@@ -31,7 +31,7 @@ const HistoryListContainer = ({
   const clickHistory = () => {
     if (!selected) setSelectedHistoryId(history.interviewHistoryId);
     window.scrollTo({
-      top: 0,
+      top: 380,
       left: 0,
     });
   };
