@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { ListWrapper } from "./style";
 import HistoryListContainer from "./HistoryListContainer";
 
@@ -10,12 +11,16 @@ const HistoryList = (props) => {
     setSelectedHistoryId,
     setLoading,
   } = props;
+  const { historyId } = useParams();
+  const [cnt, setCnt] = useState(0);
 
   useEffect(() => {
     const firstHistory = historyList[0];
-    if (firstHistory) {
+    if (cnt < 4 && historyId) setSelectedHistoryId(historyId);
+    else if (firstHistory) {
       setSelectedHistoryId(firstHistory.interviewHistoryId);
     }
+    setCnt((prevCnt) => prevCnt + 1);
   }, [historyList]);
 
   return (

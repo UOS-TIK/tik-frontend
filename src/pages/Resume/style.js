@@ -33,7 +33,7 @@ export const RightArrow = styled.img`
 export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 57.5px 80px;
+  margin: 50px 148px;
   height: auto;
 `;
 
