@@ -150,7 +150,7 @@ const LeftContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  margin: 116px 80px;
+  margin: 80px 80px;
 `;
 
 const ContentTitle = styled.div`
