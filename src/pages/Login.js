@@ -37,7 +37,7 @@ const Login = () => {
       <LeftContainer>
         <ContentWrapper>
           <ContentTitle>
-            Teck-Interview King에서 <br />
+            Tech-Interview King에서 <br />
             기술면접을 대비해보세요!
           </ContentTitle>
           <InputWrapper>
