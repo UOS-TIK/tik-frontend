@@ -13,7 +13,11 @@ const RadioWithExplain = ({ name, value, explain, checked, onChange, children })
         />
         <RadioIcon checked={checked}/>
         <RadioTitle checked={checked}>{children}</RadioTitle>
-        <RadioExplain checked={checked}>{explain}</RadioExplain>
+        <RadioExplain checked={checked}>
+          {explain.length > 45
+            ? `${explain.slice(0, 45)}...`
+            : explain}
+        </RadioExplain>
       </RadioWrapper>
     </Wrapper>
   );
