@@ -63,6 +63,13 @@ export const ContentContainer = styled.div`
   gap: 12px;
 `;
 
+export const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: space-between;
+`;
+
 export const CompanyName = styled.div`
   margin-top: 8px;
   color: #1c1c1c;

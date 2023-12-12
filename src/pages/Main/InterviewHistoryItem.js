@@ -4,6 +4,7 @@ import {
   HistoryItemContainer,
   DocumentIcon,
   ContentContainer,
+  ContentWrapper,
   CompanyName,
   AdditionalInfo,
   InfoRow,
@@ -42,29 +43,33 @@ const InterviewHistoryItem = ({ history }) => {
   return (
     <HistoryItemContainer onClick={clickHistory}>
       <DocumentIcon src="images/ic_document.svg" alt="document_icon" />
-      <ContentContainer>
-        <CompanyName>
-          {history.interviewName}({history.company})
-        </CompanyName>
-        <AdditionalInfo>
-          <InfoRow>
-            <InfoIcon src="images/ic_clock.svg" alt="clock_icon" />
-            <div>
-              {minutes}분 {seconds}초
-            </div>
-          </InfoRow>
-          <InfoRow>
-            <InfoIcon src="images/ic_score.svg" alt="score_icon" />
-            <div>{history.score} / 100</div>
-          </InfoRow>
-        </AdditionalInfo>
-        <Comment>"{history.comment}"</Comment>
-        <DateInfo>
-          {history.beginTime === null
-            ? "진행되지 않은 면접입니다."
-            : history.beginTime.replace("T", " ")}
-        </DateInfo>
-      </ContentContainer>
+      <ContentWrapper>
+        <ContentContainer>
+          <CompanyName>
+            {history.interviewName}({history.company})
+          </CompanyName>
+          <AdditionalInfo>
+            <InfoRow>
+              <InfoIcon src="images/ic_clock.svg" alt="clock_icon" />
+              <div>
+                {minutes}분 {seconds}초
+              </div>
+            </InfoRow>
+            <InfoRow>
+              <InfoIcon src="images/ic_score.svg" alt="score_icon" />
+              <div>{history.score} / 100</div>
+            </InfoRow>
+          </AdditionalInfo>
+          <Comment>"{history.comment}"</Comment>
+        </ContentContainer>
+        <ContentContainer>
+          <DateInfo>
+            {history.beginTime === null
+              ? "진행되지 않은 면접입니다."
+              : history.beginTime.replace("T", " ")}
+          </DateInfo>
+        </ContentContainer>
+      </ContentWrapper>
     </HistoryItemContainer>
   );
 };
