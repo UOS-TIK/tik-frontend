@@ -5,7 +5,7 @@ import Button, { ButtonColor, ButtonFeature } from "../components/Button/Button"
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 
-const Interview = () => {
+const Interview = ({startButtonClicked}) => {
   const location = useLocation();
   const interviewId = location.state.interviewId;
   const navigate = useNavigate();
@@ -46,6 +46,25 @@ const Interview = () => {
             }
             return prevItems;
           });
+
+        const ttsRes = await fetch('https://api.openai.com/v1/audio/speech', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+          },
+          body: JSON.stringify({
+            model: 'tts-1',
+            voice: 'onyx',
+            input: res.data.data.reply,
+          }),
+        }).then((data) => data.blob());
+
+        const audio = new Audio();
+        audio.src = URL.createObjectURL(ttsRes);
+        if (startButtonClicked) {
+          audio.play();
+        }
           
         }
       } catch (error) {
