@@ -108,7 +108,7 @@ const Main = () => {
                 ) : (
                   <HistoryItems>
                     {historyList
-                      .filter((history) => history.endTime !== null)
+                      .filter((history) => history.comment !== null)
                       .map((history) => (
                         <InterviewHistoryItem
                           key={history.interviewHistoryId}
