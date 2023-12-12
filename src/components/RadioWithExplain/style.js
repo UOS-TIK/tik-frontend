@@ -25,7 +25,6 @@ export const RadioInput = styled.input`
 
 export const RadioIcon = styled.div`
   position: absolute;
-  top: 0;
   left: 0;
   height: 14px;
   width: 14px;
@@ -49,7 +48,7 @@ export const RadioIcon = styled.div`
 
 export const RadioTitle = styled.div`
   margin-left: 30px;
-  width: 150px;
+  min-width: 150px;
   font-weight: 700;
   color: ${(props) => (props.checked ? '#1C1C1CD9' : '#1C1C1C99')};
 `;
