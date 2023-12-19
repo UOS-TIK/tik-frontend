@@ -36,4 +36,6 @@ export const LabelStyle = styled.span`
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.2px;
+  display: flex;
+  align-items: center;
 `;

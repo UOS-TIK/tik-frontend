@@ -38,11 +38,20 @@ const ProjectView = ({ project, setProject, addMode }) => {
   return (
     <WrapperStyle>
       <TitleWrapper>
-        <LabelStyle>사이드 프로젝트</LabelStyle>
-        {addMode && (
-          <Button feature={ButtonFeature.FLEXIBLE} handler={onClickAddButton}>
-            사이드 프로젝트 추가
-          </Button>
+        {addMode ? (
+          <>
+            <LabelStyle>
+              사이드 프로젝트&nbsp;
+              <div style={{ fontSize: "11px" }}>
+                (프로젝트를 수정하시려면 삭제하고 다시 입력해주세요)
+              </div>
+            </LabelStyle>
+            <Button feature={ButtonFeature.FLEXIBLE} handler={onClickAddButton}>
+              사이드 프로젝트 추가
+            </Button>
+          </>
+        ) : (
+          <LabelStyle>사이드 프로젝트</LabelStyle>
         )}
       </TitleWrapper>
       {project.length === 0 && !projectAddMode ? (
